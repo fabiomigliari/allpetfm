@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
 
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
-    initialDate: '2023-05-07',
+   // initialDate: '2023-08-14',
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
@@ -48,7 +48,6 @@ document.addEventListener('DOMContentLoaded', function() {
           timeGridDay: 'Dia'
         },
     events: [
-         
           
           //-------------------------------
           
@@ -100,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion fixed-top" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../tests/index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./index.html">
                 <div class="sidebar-brand-icon">
                     <img src="../icon-allpet.svg" alt="Dog">
                 </div>
@@ -112,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="../tests/index.html">
+                <a class="nav-link" href="./index.html">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Home</span></a>
             </li>
@@ -180,21 +179,21 @@ document.addEventListener('DOMContentLoaded', function() {
             </li>
 
 
-            <!-- Nav Item - Utilities Collapse Menu -->
+            <!-- Nav Item - Utilities Collapse Menu PET -->
             <li class="nav-item">
                 <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAgenda"
                     aria-expanded="true" aria-controls="collapseAgenda">
                     <a class="text-reset text-decoration-none" href="./conagenda.html">
                 <i class="fas fa-fw fa-calendar"></i>
-                    <span>Agenda</span>
+                    <span>Pet</span>
                     </a>
                 </div>
                 <div id="collapseAgenda" class="collapse" aria-labelledby="headingPets"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addagenda.html">Adicionar Agenda</a>
-                        <a class="collapse-item" href="./conagenda.html">Consultar Agenda</a>
+                        <a class="collapse-item" href="./addpet.html">Adicionar Pet</a>
+                        <a class="collapse-item" href="./conpet.html">Consultar Pet</a>
                         
                     </div>
                 </div>
@@ -208,18 +207,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 Outros
             </div>
 
-            <!-- Nav Item - Configurações -->
+            <!-- Nav Item - Relatórios -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSettings"
                     aria-expanded="true" aria-controls="collapseSettings">
                     <i class="fas fa-fw fa-cogs"></i>
-                    <span>Configurações</span>
+                    <span>Relatórios</span>
                 </a>
                 <div id="collapseSettings" class="collapse" aria-labelledby="headingSettings" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções</h6>
-                        <a class="collapse-item" href="../buttons.html">Buttons</a>
-                        <a class="collapse-item" href="../cards.html">Cards</a>
+                        <a class="collapse-item" href="../buttons.html">1</a>
+                        <a class="collapse-item" href="../cards.html">2</a>
                     </div>
                 </div>
             </li>
@@ -293,15 +292,15 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>
                         </li>
 
-                        <!-- Nav Item - Alerts -->
+                        <!-- Nav Item - Alerts >
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
+                                <-- Counter - Alerts >
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>
-                            <!-- Dropdown - Alerts -->
+                            <-- Dropdown - Alerts 
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
@@ -344,15 +343,15 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>
                         </li>
 
-                        <!-- Nav Item - Messages -->
+                        < Nav Item - Messages >
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
+                                < Counter - Messages >
                                 <span class="badge badge-danger badge-counter">7</span>
                             </a>
-                            <!-- Dropdown - Messages -->
+                            <-- Dropdown - Messages >
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="messagesDropdown">
                                 <h6 class="dropdown-header">
@@ -410,7 +409,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>
                         </li>
 
-                        <div class="topbar-divider d-none d-sm-block"></div>
+                        <div class="topbar-divider d-none d-sm-block"></div> -->
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
@@ -487,40 +486,36 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="tab-content" id="myTabContent">
           
               <div class="tab-pane fade show active" id="Agenda" role="tabpanel" aria-labelledby="Agenda-tab">
-                <!-- Agenda tab content -->
+               
+                <!-- Agenda adicionar - tab content -->
+
                 <div class="container mt-5">
                     <div class="row">
                       <div class="col mb-3">
-                        <label for="tutor" class="form-label">Tutor</label>
+                        <label for="tutor" class="form-label"><b>Tutor</b></label>
                       
               
                         <select class="form-control" name="tutor">
                             <option value="Flávio Eduardo de Oliveira">Flávio Eduardo de Oliveira</option>
                             <option value="Gabriel Paduleto">Gabriel Paduleto</option>
                             <option value="Helio Neves">Helio Neves</option>
-                            <option value="Isadora Marques">Isadora Marques</option>
-                            <option value="João Pedro de Souza">João Pedro de Souza</option>
-                            <option value="Leonardo de lima">Leonardo de lima</option>
-                            <option value="Matheus Gomes">Matheus Gomes</option>
-                            <option value="Otávio Oliveira de Souza">Otávio Oliveira de Souza</option>
-                            <option value="Patrícia da Silva">Patrícia da Silva</option>
-                          
-                            </select><br>
+                                                    
+                            </select>
                       </div>
                       <div class="col mb-3">
-                        <label for="funcao" class="form-label">Pet</label>
+                        <label for="funcao" class="form-label"><b>Pet</b></label>
                         <select class="form-control" name="pet">
                             <option value="Bob">Bob</option>
                             <option value="Doguinho">Doguinho</option>
                             <option value="Mrley">Marley</option>
                             <option value="Scooby">Scooby</option>
                           
-                            </select><br>
+                            </select>
                       </div>
                     </div>
                     <div class="row">
                         <div class="col mb-3">
-                          <label for="tutor" class="form-label">Funcionário</label>
+                          <label for="tutor" class="form-label"><b></b>Funcionário</label>
                         
                 
                           <select class="form-control" name="funcionario">
@@ -534,50 +529,50 @@ document.addEventListener('DOMContentLoaded', function() {
                             <option value="Felipe Botello de Andradina Silva">Felipe Botello de Andradina Silva</option>
                             <option value="José da Silva">José da Silva</option>
                           
-                            </select><br>
+                            </select>
                         </div>
                         <div class="col mb-3">
-                          <label for="funcao" class="form-label">Serviço</label>
+                          <label for="funcao" class="form-label"><b>Serviço</b></label>
                           <select class="form-control" name="servico">
                             <option value="Banho">Banho</option>
                             <option value="Tosa">Tosa</option>
                             <option value="Banho e Tosa">Banho e Tosa</option>
                           
-                            </select><br>
+                            </select>
                         </div>
                       </div>
                     <div class="row">
                       <div class="col mb-3">
-                        <label for="data_agenda" class="form-label">Data</label>
+                        <label for="data_agenda" class="form-label"><b>Data</b></label>
                             <input type="date" class="form-control" id="data_agenda" name="data_agenda" ">
                       </div>
                       <div class="col mb-3">
-                        <label for="hora" class="form-label">Horário</label>
+                        <label for="hora" class="form-label"><b>Horário</b></label>
                             <input type="number" class="form-control" id="hora" name="hora" placeholder="Digite o horário">
                       </div>
                       <div class="col mb-3">
-                        <label for="status" class="form-label">Status</label>
+                        <label for="status" class="form-label"><b>Status</b></label>
                       
               
                         <select class="form-control" name="status">
                         <option value="ativo">Ativo</option>
-                        <option value="desativo">Desativo</option>
+                        <option value="desativo">Inativo</option>
                       
-                        </select><br>
+                        </select>
                       
                       </div>
                     </div>
                     <div class="row">
                         
                         <div class="col mb-3">
-                          <label for="hora" class="form-label">Recebimento</label>
+                          <label for="hora" class="form-label"><b>Recebimento</b></label>
                               <input type="text" class="form-control" id="recebi" name="recebi" placeholder="Digite o aqui">
                         </div>
                         
                       </div>
                     <div class="row">
                         <div class="col mb-3">
-                          <label for="hora" class="form-label">Relatório Serviço</label>
+                          <label for="hora" class="form-label"><b>Relatório Serviço</b></label>
                               <textarea type="text" class="form-control" id="rel_serv" name="rel_serv" placeholder="Digite aqui"></textarea>
                         </div>
                         

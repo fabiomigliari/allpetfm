@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>AllPet | Agenda</title>
+    <title>AllPet | Pet </title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/fontawesome-free-6.4.0-web/css/all.min.css" rel="stylesheet" type="text/css">
@@ -21,72 +21,6 @@
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="../agenda/main.min.js"></script>
-    <script src="../agenda/pt-br.js"></script>
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    
-    <script>
-
-document.addEventListener('DOMContentLoaded', function() {
-  var calendarEl = document.getElementById('calendar');
-
-  var calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'dayGridMonth',
-    initialDate: '2023-05-07',
-    headerToolbar: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'dayGridMonth,timeGridWeek,timeGridDay'
-    },
-    // Informações motradas na agenda - Se for editar, edite aqui
-    locale: 'pt-br',
-    buttonText: {
-          today: 'Hoje',
-          dayGridMonth: 'Mês',
-          timeGridWeek: 'Semana',
-          timeGridDay: 'Dia'
-        },
-    events: [
-          
-          //-------------------------------
-          
-          // Add more events...
-        ],
-        eventContent: function(info) {
-          var title = info.event.title;
-          var funcionario = info.event.extendedProps.funcionario;
-          var tutor = info.event.extendedProps.tutor;
-          var pet = info.event.extendedProps.pet;
-          var servico = info.event.extendedProps.servico;
-
-          var content = document.createElement('button');
-          content.classList.add('light-blue');
-          content.setAttribute('data-bs-target', '#exampleModal2');
-          content.setAttribute('data-bs-toggle', 'modal');
-          content.innerHTML = '<span class="fc-title">' + title + '</span>' +
-            '<div class="fc-description">' +
-            '<strong>Func.:</strong> ' + funcionario + '<br>' +
-            '<strong>Tut.:</strong> ' + tutor + '<br>' +
-            '<strong>Pet:</strong> ' + pet + '<br>' +
-            '<strong>Ser.:</strong> ' + servico +
-            '</div>';
-
-          return { domNodes: [content] };
-        }
-      });
-
-      calendar.render();
-      var toolbar = calendarEl.querySelectorAll('.fc-button');
-      console.log(toolbar);
-      toolbar.forEach(toolbar => {
-    toolbar.classList.add('blue-color');
-  
-});
-      
-    });
-
-    </script>
 
 </head>
 
@@ -129,11 +63,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFuncionarios"
                     aria-expanded="true" aria-controls="collapseFuncionarios">
                     <a class="text-reset text-decoration-none" href="./confuncionario.html">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Funcionário</span>
+                        <i class="fas fa-fw fa-user"></i>
+                        <span>Funcionário</span>
                     </a>
                 </div>
-                <div id="collapseFuncionarios" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseFuncionarios" class="collapse" aria-labelledby="headingTwo"
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
                         <a class="collapse-item" href="./addfuncionario.html">Adicionar Funcionário</a>
@@ -147,8 +82,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
                     aria-expanded="true" aria-controls="collapseThree">
                     <a class="text-reset text-decoration-none" href="./conservico.html">
-                    <i class="fas fa-fw fa-file-alt"></i>
-                    <span>Serviços</span>
+                        <i class="fas fa-fw fa-file-alt"></i>
+                        <span>Serviços</span>
                     </a>
                 </div>
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
@@ -165,9 +100,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
                     aria-expanded="true" aria-controls="collapseFour">
                     <a class="text-reset text-decoration-none" href="./contutor.html">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Tutores</span>
-                </a>
+                        <i class="fas fa-fw fa-user"></i>
+                        <span>Tutor</span>
+                    </a>
                 </div>
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -178,23 +113,43 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </li>
 
+            <!-- Nav Item - Pet Collapse Menu -->
+            <li class="nav-item">
+                <div class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePet" aria-expanded="true"
+                    aria-controls="collapsePet">
+                    <a class="text-reset text-decoration-none" href="./conpet.html">
+                        <i class="fas fa-fw fa-paw"></i>
+
+                        <span>
+                            Pet
+                        </span>
+                    </a>
+                </div>
+                <div id="collapsePet" class="collapse" aria-labelledby="headingPets" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Opções:</h6>
+                        <a class="collapse-item" href="./addpet.html">Adicionar Pet</a>
+                        <a class="collapse-item" href="./conpet.html">Consultar Pet</a>
+
+                    </div>
+                </div>
+            </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAgenda"
                     aria-expanded="true" aria-controls="collapseAgenda">
                     <a class="text-reset text-decoration-none" href="./conagenda.html">
-                <i class="fas fa-fw fa-calendar"></i>
-                    <span>Agenda</span>
+                        <i class="fas fa-fw fa-calendar"></i>
+                        <span>Agenda</span>
                     </a>
                 </div>
-                <div id="collapseAgenda" class="collapse" aria-labelledby="headingPets"
-                    data-parent="#accordionSidebar">
+                <div id="collapseAgenda" class="collapse" aria-labelledby="headingPets" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
                         <a class="collapse-item" href="./addagenda.html">Adicionar Agenda</a>
                         <a class="collapse-item" href="./conagenda.html">Consultar Agenda</a>
-                        
+
                     </div>
                 </div>
             </li>
@@ -211,10 +166,11 @@ document.addEventListener('DOMContentLoaded', function() {
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSettings"
                     aria-expanded="true" aria-controls="collapseSettings">
-                    <i class="fas fa-fw fa-cogs"></i>
+                    <i class="fas fa-fw fa-cog"></i>
                     <span>Configurações</span>
                 </a>
-                <div id="collapseSettings" class="collapse" aria-labelledby="headingSettings" data-parent="#accordionSidebar">
+                <div id="collapseSettings" class="collapse" aria-labelledby="headingSettings"
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções</h6>
                         <a class="collapse-item" href="../buttons.html">Buttons</a>
@@ -223,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </li>
 
-            
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -232,7 +188,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
-        
+
 
         </ul>
         <!-- End of Sidebar -->
@@ -244,7 +200,8 @@ document.addEventListener('DOMContentLoaded', function() {
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow fixed-top margin-l">
+                <nav
+                    class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow fixed-top margin-l">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -280,8 +237,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
                                         <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Buscar..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
+                                            placeholder="Buscar..." aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -292,15 +248,15 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>
                         </li>
 
-                        <!-- Nav Item - Alerts -->
+                        <!-- Nav Item - Alerts 
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
+                                < Counter - Alerts 
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>
-                            <!-- Dropdown - Alerts -->
+                            <Dropdown - Alerts 
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
@@ -343,15 +299,15 @@ document.addEventListener('DOMContentLoaded', function() {
                             </div>
                         </li>
 
-                        <!-- Nav Item - Messages -->
+                        <Nav Item - Messages 
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages -->
+                                < Counter - Messages 
                                 <span class="badge badge-danger badge-counter">7</span>
                             </a>
-                            <!-- Dropdown - Messages -->
+                            < Dropdown - Messages 
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="messagesDropdown">
                                 <h6 class="dropdown-header">
@@ -415,9 +371,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Legume McLanche</span>
-                                <img class="img-profile rounded-circle"
-                                    src="../img/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <img class="img-profile rounded-circle" src="../img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -447,300 +402,122 @@ document.addEventListener('DOMContentLoaded', function() {
                 </nav>
                 <!-- End of Topbar -->
 
-                
-                
-                
-                
                 <!-- Body Content-->
 
                 <!-- Form Container-->
-            <div class="card shadow container w-75 margin-b margin-t" id="card">
+                <div class="card shadow container w-75 margin-b margin-t" id="card">
 
-                      <!-- Begin Page Content -->
-                <div class="container-fluid mt-5 mb-5">
-                  
-<div class="d-flex justify-content-between">
-  <h4 class="fs-1">Agenda</h4>
+                    <!-- Begin Page Content -->
+                    <div class="container-fluid">
 
-                    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" title="Agendar" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  <i class="fas fa-fw fa-plus"></i>
-</button>
+                        <div class="mt-3">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="pet-tab" data-bs-toggle="tab" href="#pet" role="tab"
+                                        aria-controls="pet" aria-selected="true">Pet</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="pet" role="tabpanel" aria-labelledby="pet-tab">
 
+                                <!-- Pet tab content -->
 
-</div>
-<!-- Modal 1 -->
-<div id="card">
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg custom-dialog">
-    <div class="modal-content p-3">
-        <!--Modal Content-->
-        <div class="mt-3">
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link active" id="Agenda-tab" data-bs-toggle="tab" href="#Agenda" role="tab" aria-controls="Agenda" aria-selected="true">Agenda</a>
-              </li>
-            </ul>
-        </div>
-            
-            <div class="tab-content" id="myTabContent">
-          
-              <div class="tab-pane fade show active" id="Agenda" role="tabpanel" aria-labelledby="Agenda-tab">
-                <!-- Agenda tab content -->
-                <div class="container mt-5">
-                    <div class="row">
-                      <div class="col mb-3">
-                        <label for="tutor" class="form-label">Tutor</label>
-                      
-              
-                        <select class="form-control" name="tutor">
-                            <option value="Flávio Eduardo de Oliveira">Flávio Eduardo de Oliveira</option>
-                            <option value="Gabriel Paduleto">Gabriel Paduleto</option>
-                            <option value="Helio Neves">Helio Neves</option>
-                            <option value="Isadora Marques">Isadora Marques</option>
-                            <option value="João Pedro de Souza">João Pedro de Souza</option>
-                            <option value="Leonardo de lima">Leonardo de lima</option>
-                            <option value="Matheus Gomes">Matheus Gomes</option>
-                            <option value="Otávio Oliveira de Souza">Otávio Oliveira de Souza</option>
-                            <option value="Patrícia da Silva">Patrícia da Silva</option>
-                          
-                            </select><br>
-                      </div>
-                      <div class="col mb-3">
-                        <label for="funcao" class="form-label">Pet</label>
-                        <select class="form-control" name="pet">
-                            <option value="Bob">Bob</option>
-                            <option value="Doguinho">Doguinho</option>
-                            <option value="Mrley">Marley</option>
-                            <option value="Scooby">Scooby</option>
-                          
-                            </select><br>
-                      </div>
+                                <div class="container mt-5">
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="nomepet" class="form-label"><b>Nome</b></label>
+                                            <type="text" class="form-control" id="nomepet" name="nomepet">
+                                                </type>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="especiepet" class="form-label"><b>Espécie</b></label>
+                                            <type="text" class="form-control" id="especiepet" name="especiepet">
+                                                </type>
+
+                                        </div>
+                                        <div class="col mb-3">
+                                            <label for="racapet" class="form-label"><b>Raça</b></label>
+                                            <type="text" class="form-control" name="racapet" id="racapet">
+                                                </type>
+
+                                        </div>
+                                        <div class="col mb-3">
+                                            <label for="pelagempet" class="form-label"><b>Pelagem</b></label>
+                                            <type="text" class="form-control" id="pelagempet" name="pelagempet">
+                                                </type>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="sexopet" class="form-label"><b>Sexo</b></label>
+                                            <type="text" class="form-control" id="sexopet" name="sexopet">
+                                                </type>
+
+                                        </div>
+                                        <div class="col mb-3">
+                                            <label for="funcao" class="form-label"><b>Data de Nascimento</b></label>
+                                            <type="text" class="form-control" id="dtnasc" name="dtnasc">
+                                                </type>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="obspet" class="form-label"><b>Observações</b></label>
+                                           <type="text" class="form-control" id="obspet" rows="5" nome="obspet"></type>
+                                        </div>    
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="container mt-4 mb-5">
+                                        <div class="d-flex justify-content-between">
+
+                                            <button type="button" class="btn btn-primary btn-circle"><i
+                                                    class="fas fa-fw fa-chevron-left"></i></button>
+                                            <div class="ml-auto">
+                                                <a href="contutor2.html" class="btn btn-success btn-circle"><i
+                                                        class="fas fa-fw fa-chevron-down"></i></a>
+                                                <a href="contutor2.html" class="btn btn-danger btn-circle"><i
+                                                        class="fas fa-fw fa-xmark"></i></a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /.container-fluid -->
+
                     </div>
-                    <div class="row">
-                        <div class="col mb-3">
-                          <label for="tutor" class="form-label">Funcionário</label>
-                        
-                
-                          <select class="form-control" name="funcionario">
-                            <option value="Alan Silva">Alan Silva</option>
-                            <option value="Brenda Gimenes">Brenda Gimenes</option>
-                            <option value="Bruno Pereira">Bruno Pereira</option>
-                            <option value="Carlos Gomes de Souza">Carlos Gomes de Souza</option>
-                            <option value="Caroline Benedita dos Santos">Caroline Benedita dos Santos</option>
-                            <option value="Daniele de Souza dos Santos">Daniele de Souza dos Santos</option>
-                            <option value="Eduardo Augusto Pereira">Eduardo Augusto Pereira</option>
-                            <option value="Felipe Botello de Andradina Silva">Felipe Botello de Andradina Silva</option>
-                            <option value="José da Silva">José da Silva</option>
-                          
-                            </select><br>
-                        </div>
-                        <div class="col mb-3">
-                          <label for="funcao" class="form-label">Serviço</label>
-                          <select class="form-control" name="servico">
-                            <option value="Banho">Banho</option>
-                            <option value="Tosa">Tosa</option>
-                            <option value="Banho e Tosa">Banho e Tosa</option>
-                          
-                            </select><br>
-                        </div>
-                      </div>
-                    <div class="row">
-                      <div class="col mb-3">
-                        <label for="data_agenda" class="form-label">Data</label>
-                            <input type="date" class="form-control" id="data_agenda" name="data_agenda" ">
-                      </div>
-                      <div class="col mb-3">
-                        <label for="hora" class="form-label">Horário</label>
-                            <input type="number" class="form-control" id="hora" name="hora" placeholder="Digite o horário">
-                      </div>
-                      <div class="col mb-3">
-                        <label for="status" class="form-label">Status</label>
-                      
-              
-                        <select class="form-control" name="status">
-                        <option value="ativo">Ativo</option>
-                        <option value="desativo">Desativo</option>
-                      
-                        </select><br>
-                      
-                      </div>
-                    </div>
-                    <div class="row">
-                        
-                        <div class="col mb-3">
-                          <label for="hora" class="form-label">Recebimento</label>
-                              <input type="text" class="form-control" id="recebi" name="recebi" placeholder="Digite o aqui">
-                        </div>
-                        
-                      </div>
-                    <div class="row">
-                        <div class="col mb-3">
-                          <label for="hora" class="form-label">Relatório Serviço</label>
-                              <textarea type="text" class="form-control" id="rel_serv" name="rel_serv" placeholder="Digite aqui"></textarea>
-                        </div>
-                        
-                      </div>
-                    <hr>
-                <div class="container mt-4 mb-5">
-                    <div class="d-flex justify-content-between">
-                    
-                        <button type="button" class="btn btn-primary btn-circle" title="Voltar"><i class="fas fa-fw fa-chevron-left"></i></button>
-                        <div class="ml-auto">
-                        <a href="contutor2.html" class="btn btn-success btn-circle" title="Salvar"><i class="fas fa-fw fa-chevron-down"></i></a>
-                        <a href="contutor2.html" class="btn btn-danger btn-circle" title="Cancelar"><i class="fas fa-fw fa-xmark"></i></a>
-                        </div> 
-                        
-                      </div> 
                 </div>
-              </div>
-              </div>
-            </div>
-        <!----------------->
-        
-      
-    </div>
-  </div>
-</div>
-</div>
-<!----------------->
-<!-- Modal 1 -->
-<div id="card">
-    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg custom-dialog">
-        <div class="modal-content p-3">
-            <!--Modal Content-->
-            <div class="mt-3">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                  <li class="nav-item">
-                    <a class="nav-link active" id="Agenda2-tab" data-bs-toggle="tab" href="#Agenda2" role="tab" aria-controls="Agenda2" aria-selected="true">Agenda</a>
-                  </li>
-                </ul>
-            </div>
-                
-                <div class="tab-content" id="myTabContent">
-              
-                  <div class="tab-pane fade show active" id="Agenda2" role="tabpanel" aria-labelledby="Agenda2-tab">
-                     <!-- Agenda tab content -->
-                <div class="container mt-5">
-                    <div class="row">
-                      <div class="col-4 mb-3">
-                        <label for="tutor" class="form-label">Tutor</label>
-                      
-              
-                        <p>Prayer</p>
-                      </div>
-                      <div class="col mb-3">
-                        <label for="funcao" class="form-label">Pet</label>
-                        <p>Scooby</p>
-                      </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-4 mb-3">
-                          <label for="tutor" class="form-label">Funcionário</label>
-                        
-                
-                          <p>John Kennedy</p>
-                        </div>
-                        <div class="col mb-3">
-                          <label for="funcao" class="form-label">Serviço</label>
-                          <p>Tosa</p>
-                        </div>
-                      </div>
-                    <div class="row">
-                      <div class="col mb-3">
-                        <label for="data_agenda" class="form-label">Data</label>
-                            <p>2023-06-08</p>
-                      </div>
-                      <div class="col mb-3">
-                        <label for="hora" class="form-label">Horário</label>
-                            <p>10:00:00AM</p>
-                      </div>
-                      <div class="col mb-3">
-                        <label for="status" class="form-label">Status</label>
-                      
-              
-                        <p>Ativo</p>
-                      
-                      </div>
-                    </div>
-                    <div class="row">
-                        
-                        <div class="col mb-3">
-                          <label for="hora" class="form-label">Recebimento</label>
-                              <p>R$300.00</p>
-                        </div>
-                        
-                      </div>
-                    <div class="row">
-                        <div class="col mb-3">
-                          <label for="hora" class="form-label">Relatório Serviço</label>
-                              <p>Ele saiu pulando aqui me ajudaaa, help me please, oh my gosh.</p>
-                        </div>
-                        
-                      </div>
-                    <hr>
-                <div class="container mt-4 mb-5">
-                    <div class="d-flex justify-content-between">
-                    
-                        <button type="button" class="btn btn-primary btn-circle" title="Voltar"><i class="fas fa-fw fa-chevron-left"></i></button>
-                        <div class="ml-auto">
-                        <a href="contutor2.html" class="btn btn-success btn-circle" title="Salvar"><i class="fas fa-fw fa-chevron-down"></i></a>
-                        <a href="contutor2.html" class="btn btn-danger btn-circle" title="Cancelar"><i class="fas fa-fw fa-xmark"></i></a>
-                        </div> 
-                        
-                      </div>
-                </div>
-                  </div>
-                  </div>
-                </div>
-            <!----------------->
-            
-          
-        </div>
-      </div>
-    </div>
-    </div>
-    <!----------------->            
-                            <hr>
-                    <div id="calendar"></div>
-                            
-                            
-                    
-                    
-                
-                    
-                </div>
-                <!-- /.container-fluid -->
-
-            </div>
                 <!-- End Form Container-->
 
                 <!-- End Body Content-->
-                
-            
-            
-            
-            
+
             </div>
             <!-- End of Main Content -->
 
-            
+
 
         </div>
         <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
-<!-- Footer -->
-<footer class="sticky-footer bg-white margin-l" >
-    <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2021</span>
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white margin-l">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; Your Website 2021</span>
+            </div>
         </div>
-    </div>
-</footer>
-<!-- End of Footer -->
+    </footer>
+    <!-- End of Footer -->
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
@@ -769,13 +546,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <script>
         // Activate tab functionality
-        var tab = new bootstrap.Tab(document.getElementById("pessoa-tab"));
+        var tab = new bootstrap.Tab(document.getElementById("pet-tab"));
         tab.show();
 
-        // Get reference to the calendar container element
-      </script>
-      <script src="../js/allpet.js"></script>
-      
+
+    </script>
+    <script src="../js/allpet.js"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -794,8 +570,5 @@ document.addEventListener('DOMContentLoaded', function() {
     <script src="../js/demo/chart-pie-demo.js"></script>
 
 </body>
-
-
-
 
 </html>
