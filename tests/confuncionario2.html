@@ -119,17 +119,16 @@
                 <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAgenda"
                     aria-expanded="true" aria-controls="collapseAgenda">
                     <a class="text-reset text-decoration-none" href="./conagenda.html">
-                <i class="fas fa-fw fa-calendar"></i>
-                    <span>Pet</span>
+                        <i class="fas fa-fw fa-calendar"></i>
+                        <span>Pet</span>
                     </a>
                 </div>
-                <div id="collapseAgenda" class="collapse" aria-labelledby="headingPets"
-                    data-parent="#accordionSidebar">
+                <div id="collapseAgenda" class="collapse" aria-labelledby="headingPets" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
                         <a class="collapse-item" href="./addpet.html">Adicionar Pet</a>
                         <a class="collapse-item" href="./conpet.html">Consultar Pet</a>
-                        
+
                     </div>
                 </div>
             </li>
@@ -149,7 +148,8 @@
                     <i class="fas fa-fw fa-cogs"></i>
                     <span>Relatórios</span>
                 </a>
-                <div id="collapseSettings" class="collapse" aria-labelledby="headingSettings" data-parent="#accordionSidebar">
+                <div id="collapseSettings" class="collapse" aria-labelledby="headingSettings"
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções</h6>
                         <a class="collapse-item" href="../buttons.html">1</a>
@@ -201,7 +201,7 @@
                             </div>
                         </div>
                     </form>
-
+                    <h5 class="text-primary">Funcionário - Consultar</h5>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -233,10 +233,10 @@
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts ->
+                                <-- Counter - Alerts ->
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>
-                            <!-- Dropdown - Alerts ->
+                            <-- Dropdown - Alerts ->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
@@ -279,15 +279,15 @@
                             </div>
                         </li>
 
-                        <!-- Nav Item - Messages ->
+                        <-- Nav Item - Messages ->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages ->
+                                <-- Counter - Messages ->
                                 <span class="badge badge-danger badge-counter">7</span>
                             </a>
-                            <!-- Dropdown - Messages ->
+                            <-- Dropdown - Messages ->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="messagesDropdown">
                                 <h6 class="dropdown-header">
@@ -344,7 +344,7 @@
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
-                        <!-- Nav Item - User Information -->
+                        <-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -413,7 +413,7 @@
                             <div class="tab-pane fade show active" id="pessoa" role="tabpanel"
                                 aria-labelledby="pessoa-tab">
 
-                                <!-- Pessoa tab content -->
+                                <!-- Aba Pessoa tab content -->
 
                                 <div class="container mt-5">
                                     <div class="row">
@@ -450,29 +450,29 @@
                                     </div>
                                 </div>
                                 <hr>
+                                <!--BOTÕES Consultar/editar/excluir -->
                                 <div class="container mt-4 mb-5">
-
                                     <div class="d-flex justify-content-between">
-
-                                        <a href="confuncionario.html" class="btn btn-primary btn-circle"
-                                            title="Voltar"><i class="fas fa-fw fa-chevron-left"></i></a>
+                                        <a href="./confuncionario.html" class="btn btn-primary btn-circle"
+                                            title="Voltar">
+                                            <i class="fas fa-fw fa-chevron-left"></i></a>
                                         <div class="ml-auto">
-                                            <button type="button" class="btn btn-primary btn-circle" title="Editar"><i
-                                                    class="fas fa-fw fa-pencil"></i></button>
-                                            <button type="button" class="btn btn-danger btn-circle" title="Excluir"><i
-                                                    class="fas fa-fw fa-trash"></i></button>
+                                            <a href="./addfuncionario.html" class="btn btn-primary btn-circle"
+                                                title="Editar">
+                                                <i class="fas fa-fw fa-pencil"></i></a>
+                                            <a href="./addfuncionario.html" class="btn btn-danger btn-circle"
+                                                title="Excluir">
+                                                <i class="fas fa-fw fa-trash"></i></a>
                                         </div>
-
                                     </div>
                                 </div>
+                                <!--Fim BOTÕES Consultar/editar/excluir -->
                             </div>
-                            <!--Endereço-->
+
+                            <!-- Aba Endereço tab content -->
+
                             <div class="tab-pane fade" id="endereco" role="tabpanel" aria-labelledby="endereco-tab">
-
-                                <!-- Endereço tab content -->
-
                                 <div class="container mt-5">
-
                                     <div class="row">
                                         <div class="col mb-3">
                                             <label for="rua" class="form-label"><b>Logradouro</b></label>
@@ -516,28 +516,28 @@
                                     </div>
                                 </div>
                                 <hr>
+                                <!--BOTÕES Consultar/editar/excluir -->
                                 <div class="container mt-4 mb-5">
                                     <div class="d-flex justify-content-between">
-
-                                        <a href="confuncionario.html" class="btn btn-primary btn-circle"
-                                            title="Voltar"><i class="fas fa-fw fa-chevron-left"></i></a>
+                                        <a href="./confuncionario.html" class="btn btn-primary btn-circle"
+                                            title="Voltar">
+                                            <i class="fas fa-fw fa-chevron-left"></i></a>
                                         <div class="ml-auto">
-                                            <button type="button" class="btn btn-primary btn-circle" title="Editar"><i
-                                                    class="fas fa-fw fa-pencil"></i></button>
-                                            <button type="button" class="btn btn-danger btn-circle" title="Excluir"><i
-                                                    class="fas fa-fw fa-trash"></i></button>
+                                            <a href="./addfuncionario.html" class="btn btn-primary btn-circle"
+                                                title="Editar">
+                                                <i class="fas fa-fw fa-pencil"></i></a>
+                                            <a href="./addfuncionario.html" class="btn btn-danger btn-circle"
+                                                title="Excluir">
+                                                <i class="fas fa-fw fa-trash"></i></a>
                                         </div>
-
                                     </div>
-
                                 </div>
+                                <!--Fim BOTÕES Consultar/editar/excluir -->
                             </div>
 
-                            <!--Função-->
+                            <!-- Funcão tab content -->
+
                             <div class="tab-pane fade" id="funcao" role="tabpanel" aria-labelledby="funcao-tab">
-
-                                <!-- Funcão tab content -->
-
                                 <div class="container mt-5 mb-4">
                                     <div class="row">
                                         <div class="col-4 mb-3">
@@ -562,27 +562,27 @@
                                         <div class="col mb-3">
                                             <label for="diadefolga" class="form-label"><b>Dia de Folga</b></label>
                                             <type="text" class="form-control" id="diadefolga" name="diadefolga">
-
                                         </div>
                                     </div>
-
                                 </div>
                                 <hr>
-                                <div class="container mt-4 mb-5">
-
+                                 <!--BOTÕES Consultar/editar/excluir -->
+                                 <div class="container mt-4 mb-5">
                                     <div class="d-flex justify-content-between">
-
-                                        <a href="confuncionario.html" class="btn btn-primary btn-circle"
-                                            title="Voltar"><i class="fas fa-fw fa-chevron-left"></i></a>
+                                        <a href="./confuncionario.html" class="btn btn-primary btn-circle"
+                                            title="Voltar">
+                                            <i class="fas fa-fw fa-chevron-left"></i></a>
                                         <div class="ml-auto">
-                                            <button type="button" class="btn btn-primary btn-circle" title="Editar"><i
-                                                    class="fas fa-fw fa-pencil"></i></button>
-                                            <button type="button" class="btn btn-danger btn-circle" title="Excluir"><i
-                                                    class="fas fa-fw fa-trash"></i></button>
+                                            <a href="./addfuncionario.html" class="btn btn-primary btn-circle"
+                                                title="Editar">
+                                                <i class="fas fa-fw fa-pencil"></i></a>
+                                            <a href="./addfuncionario.html" class="btn btn-danger btn-circle"
+                                                title="Excluir">
+                                                <i class="fas fa-fw fa-trash"></i></a>
                                         </div>
-
                                     </div>
                                 </div>
+                                <!--Fim BOTÕES Consultar/editar/excluir -->
                             </div>
                             <!--Endereço-->
                         </div>
