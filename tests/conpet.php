@@ -1,5 +1,19 @@
+<?php
+
+require_once "./conexao_bd.php";
+require_once "./pessoaRepositorio.php";
+require_once "./Classes/Pessoa.php";
+require_once "./Classes/Endereco.php";
+require_once "./Classes/Tutor.php";
+require_once "./Classes/Pet.php";
+
+$pessoaRepositorio = new pessoaRepositorio($pdo);
+$pets = $pessoaRepositorio->buscarPets();
+
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
 
@@ -219,21 +233,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-            <!-- Nav Item - Utilities Collapse Menu PET -->
+            <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAgenda"
                     aria-expanded="true" aria-controls="collapseAgenda">
                     <a class="text-reset text-decoration-none" href="./conagenda.html">
                 <i class="fas fa-fw fa-calendar"></i>
-                    <span>Pet</span>
+                    <span>Agenda</span>
                     </a>
                 </div>
                 <div id="collapseAgenda" class="collapse" aria-labelledby="headingPets"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addpet.html">Adicionar Pet</a>
-                        <a class="collapse-item" href="./conpet.html">Consultar Pet</a>
+                        <a class="collapse-item" href="./addagenda.html">Adicionar Agenda</a>
+                        <a class="collapse-item" href="./conagenda.html">Consultar Agenda</a>
                         
                     </div>
                 </div>
@@ -247,22 +261,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 Outros
             </div>
 
-            <!-- Nav Item - Relatórios -->
+            <!-- Nav Item - Configurações -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSettings"
                     aria-expanded="true" aria-controls="collapseSettings">
                     <i class="fas fa-fw fa-cogs"></i>
-                    <span>Relatórios</span>
+                    <span>Configurações</span>
                 </a>
                 <div id="collapseSettings" class="collapse" aria-labelledby="headingSettings" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções</h6>
-                        <a class="collapse-item" href="../buttons.html">1</a>
-                        <a class="collapse-item" href="../cards.html">2</a>
+                        <a class="collapse-item" href="../buttons.html">Buttons</a>
+                        <a class="collapse-item" href="../cards.html">Cards</a>
                     </div>
                 </div>
             </li>
-
 
             
             <!-- Divider -->
@@ -507,7 +520,7 @@ document.addEventListener('DOMContentLoaded', function() {
                           
                           <div class="row">
                               <div class="col">
-                                  <h6 class="m-0 font-weight-bold text-primary">Tutores</h6>
+                                  <h6 class="m-0 font-weight-bold text-primary">Petz</h6>
                               </div>
                               <div class="col-auto">
                                 <form class="form-inline">
@@ -515,11 +528,11 @@ document.addEventListener('DOMContentLoaded', function() {
                                   <button class="btn btn-primary" type="button">
                                       <i class="fas fa-search fa-sm"></i>
                                   </button>
-                                 <!-- Botão CADASTRAR na tela de consulta-->
-                                 <a href="./addtutor.html" class="btn btn-primary ml-1"
-                                 title="Cadastrar">
-                                 <i class="fas fa-fw fa-plus"></i></a>
-                             <!-- Fim Botão CADASTRAR na tela de consulta-->
+                                <!-- Botão CADASTRAR na tela de consulta-->
+                                <a href="./addpet.html" class="btn btn-primary ml-1"
+                                title="Cadastrar">
+                                <i class="fas fa-fw fa-plus"></i></a>
+                                 <!-- Fim Botão CADASTRAR na tela de consulta-->
                                 </form>
                                 
                                 <!-- Modal -->
@@ -658,77 +671,41 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <table class="table table-bordered" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Nome</th>
-                                            <th>Telefone</th>
-                                            <th>Email</th>
-                                            <th>Data Cad.</th>
+                                            <th>Nome do Pet</th>
+                                            <th>Espécie</th>
+                                            <th>Raça</th>
+                                            <th>Nome do Tutor</th>
+                                            <th>Fone Tutor</th>
+                                            <th colspan="2">Ações</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Nome</th>
-                                            <th>Telefone</th>
-                                            <th>Email</th>
-                                            <th>Data Cad.</th>
+                                            <th>Nome do Pet</th>
+                                            <th>Espécie</th>
+                                            <th>Raça</th>
+                                            <th>Nome do Tutor</th>
+                                            <th>Fone Tutor</th>
+                                            <th colspan="2">Ações</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                    
+                                        <?php foreach($pets as $pet):?>
                                         <tr>
-                                            <td><a href="contutor2.html">Flávio Eduardo de Oliveria</a></td>
-                                            <td><a href="contutor2.html">14997749635</a></td>
-                                            <td><a href="contutor2.html">flavio.oliveira@hotmail.com</a></td>
-                                            <td><a href="contutor2.html">10/06/2023</a></td>
+                                            <td><?= $pet->get_nomePet() ?></td>
+                                            <td><?= $pet->get_especie() ?></a></td>
+                                            <td><?= $pet->get_raca() ?></a></td>
+                                            <td><?php echo "Nome do dono?";?></a></td>
+                                            <td><?php echo "Tel do dono?";?></a></td>
+                                            <td><input type="submit" class="btn btn-warning btn-sm" value="Editar"></td>
+                                            <td>
+                                                <form action="droppet.php" method="post">
+                                                    <input type="hidden" name="idPet" value="<?= $pet->get_idPet()?>" >
+                                                    <input type="submit" class="btn btn-danger btn-sm" value="Excuir">
+                                                </form>
+                                            </td>
                                         </tr>
-                                    
-                                        <tr>
-                                            <td><a href="contutor2.html">Gabriel Paduleto</a></td>
-                                            <td><a href="contutor2.html">14997749635</a></td>
-                                            <td><a href="contutor2.html">Gabriel.paduleto@hotmail.com</a></td>
-                                            <td><a href="contutor2.html">10/06/2023</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="contutor2.html">Helio neves</a></td>
-                                            <td><a href="contutor2.html">14997749635</a></td>
-                                            <td><a href="contutor2.html">helio.neves@hotmail.com</a></td>
-                                            <td><a href="contutor2.html">10/06/2023</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="contutor2.html">Isadora Marques</a></td>
-                                            <td><a href="contutor2.html">14997749635</a></td>
-                                            <td><a href="contutor2.html">isadora.marques@hotmail.com</a></td>
-                                            <td><a href="contutor2.html">10/06/2023</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="contutor2.html">João Pedro de Souza</a></td>
-                                            <td><a href="contutor2.html">14997749635</a></td>
-                                            <td><a href="contutor2.html">joao.pedro@hotmail.com</a></td>
-                                            <td><a href="contutor2.html">10/06/2023</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="contutor2.html">Leonardo de lima</a></td>
-                                            <td><a href="contutor2.html">14997749635</a></td>
-                                            <td><a href="contutor2.html">leonardo.lima@hotmail.com</a></td>
-                                            <td><a href="contutor2.html">10/06/2023</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="contutor2.html">Matheus Gomes</a></td>
-                                            <td><a href="contutor2.html">14997749635</a></td>
-                                            <td><a href="contutor2.html">matheus.gomes@hotmail.com</a></td>
-                                            <td><a href="contutor2.html">10/06/2023</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="contutor2.html">Otávio Oliveira de Souza</a></td>
-                                            <td><a href="contutor2.html">14997749635</a></td>
-                                            <td><a href="contutor2.html">otavio.oliveira@hotmail.com</a></td>
-                                            <td><a href="contutor2.html">10/06/2023</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="contutor2.html">Patrícia da Silva</a></td>
-                                            <td><a href="contutor2.html">14997749635</a></td>
-                                            <td><a href="contutor2.html">patricia.silva@hotmail.com</a></td>
-                                            <td><a href="contutor2.html">10/06/2023</a></td>
-                                        </tr>
+                                        <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>

@@ -1,3 +1,17 @@
+<?php
+
+    require_once "./conexao_bd.php";
+    require_once "./pessoaRepositorio.php";
+    require_once "./Classes/Pessoa.php";
+    require_once "./Classes/Endereco.php";
+    require_once "./Classes/Funcao.php";
+    require_once "./Classes/Funcionario.php";
+
+    $pessoaRepositorio = new pessoaRepositorio($pdo);
+    $funcionarios = $pessoaRepositorio->buscarFuncionarios();
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,8 +96,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addfuncionario.html">Adicionar Funcionário</a>
-                        <a class="collapse-item" href="./confuncionario.html">Consultar Funcionário</a>
+                        <a class="collapse-item" href="./addfuncionario.php">Adicionar Funcionário</a>
+                        <a class="collapse-item" href="./confuncionario.php">Consultar Funcionário</a>
                     </div>
                 </div>
             </li>
@@ -118,8 +132,8 @@
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addtutor.html">Adicionar Tutor</a>
-                        <a class="collapse-item" href="./contutor.html">Consultar Tutor</a>
+                        <a class="collapse-item" href="./addtutor.php">Adicionar Tutor</a>
+                        <a class="collapse-item" href="./contutor.php">Consultar Tutor</a>
                     </div>
                 </div>
             </li>
@@ -718,44 +732,41 @@
                                             <table class="table table-bordered" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
+                                                    <th>CPF</th>
                                                         <th>Nome</th>
                                                         <th>Telefone</th>
-                                                        <th>Email</th>
-                                                        <th>Data Cad.</th>
+                                                        <th>Função</th>
+                                                        <th>Endereço</th>
+                                                        <th colspan="2">Ações</th>
                                                     </tr>
                                                 </thead>
                                                 <tfoot>
                                                     <tr>
+                                                        <th>CPF</th>
                                                         <th>Nome</th>
                                                         <th>Telefone</th>
-                                                        <th>Email</th>
-                                                        <th>Data Cad.</th>
+                                                        <th>Função</th>
+                                                        <th>Endereço</th>
+                                                        <th colspan="2">Ações</th>
                                                     </tr>
                                                 </tfoot>
                                                 <tbody>
-
+                                                    <?php foreach ($funcionarios as $funcionario): ?>
                                                     <tr>
-                                                        <td><a href="confuncionario2.html">Alan Silva</a></td>
-                                                        <td><a href="confuncionario2.html">14998446242</a></td>
-                                                        <td><a href="confuncionario2.html">alan.silva@gmail.com</a></td>
-                                                        <td><a href="confuncionario2.html">03/06/2023</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a href="confuncionario2.html">Brenda Gimenes</a></td>
-                                                        <td><a href="confuncionario2.html">14996325722</a></td>
-                                                        <td><a
-                                                                href="confuncionario2.html">brenda.gimenes@outlook.com</a>
+                                                        <td><?= $funcionario->get_cpf(); ?></td>
+                                                        <td><?= $funcionario->get_nome(); ?></td>
+                                                        <td><?= $funcionario->get_telefone(); ?></td>
+                                                        <td><?= empty($funcionario->get_funcao()) ? 'N/A' : $funcionario->get_funcao()->get_nomeFuncao()?>"?></td>
+                                                        <td><?= empty($funcionario->get_endereco()) ? 'N/A' : $funcionario->get_endereco()->get_logradouro().", ". $funcionario->get_endereco()->get_num_casa().". ".$funcionario->get_endereco()->get_bairro()." - ".$funcionario->get_endereco()->get_cidade()."/".$funcionario->get_endereco()->get_estado(); ?></td>
+                                                        <td><input type="submit" class="btn btn-warning btn-sm" value="Editar"></td>
+                                                        <td>
+                                                            <form action="./dropfuncionario.php" >
+                                                                <input type="hidden" name="idFuncionario" value="<?= $funcionario->get_id_funcionario()?>" >
+                                                                <input type="submit" class="btn btn-danger btn-sm" value="Excuir">
+                                                            </form>
                                                         </td>
-                                                        <td><a href="confuncionario2.html">03/06/2023</a></td>
                                                     </tr>
-                                                    <tr>
-                                                        <td><a href="confuncionario2.html">Bruno Pereira</a></td>
-                                                        <td><a href="confuncionario2.html">14998653274</a></td>
-                                                        <td><a href="confuncionario2.html">bruno.pereira@hotmail.com</a>
-                                                        </td>
-                                                        <td><a href="confuncionario2.html">03/06/2023</a></td>
-                                                    </tr>
-
+                                                    <?php endforeach; ?>
                                                 </tbody>
                                             </table>
                                         </div>

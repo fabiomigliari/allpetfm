@@ -1,3 +1,8 @@
+<?php
+   var_dump($_POST);
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -71,8 +76,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addfuncionario.html">Adicionar Funcionário</a>
-                        <a class="collapse-item" href="./confuncionario.html">Consultar Funcionário</a>
+                        <a class="collapse-item" href="./addfuncionario.php">Adicionar Funcionário</a>
+                        <a class="collapse-item" href="./confuncionario.php">Consultar Funcionário</a>
                     </div>
                 </div>
             </li>
@@ -107,8 +112,8 @@
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addtutor.html">Adicionar Tutor</a>
-                        <a class="collapse-item" href="./contutor.html">Consultar Tutor</a>
+                        <a class="collapse-item" href="./addtutor.php">Adicionar Tutor</a>
+                        <a class="collapse-item" href="./contutor.php">Consultar Tutor</a>
                     </div>
                 </div>
             </li>
@@ -415,6 +420,7 @@
                                  <!-- Aba Pessoa tab content -->
 
                                 <div class="container mt-5">
+                                    <form action="#" >
                                     <div class="row">
                                         <div class="col mb-3">
                                             <label for="nometut" class="form-label"><B>Nome</B></label>
@@ -457,34 +463,36 @@
 
                                  <!--BOTÕES ADICIONAR -->
                                  <div class="container mt-4 mb-5">
+
                                     <div class="d-flex justify-content-between">
-                                        <a href="./addtutor.html" class="btn btn-primary btn-circle" title="Voltar">
+                                        <a  onclick="history.go(-1)" class="btn btn-primary btn-circle" title="Voltar">
                                             <i class="fas fa-fw fa-chevron-left"></i></a>
                                         <div class="ml-auto">
-                                            <a href="./addtutor.html" class="btn btn-success btn-circle"
+                                            <a href="./addtutor.php" class="btn btn-success btn-circle"
                                                 title="Adicionar">
                                                 <i class="fas fa-fw fa-chevron-down"></i></a>
-                                            <a href="./addtutor.html" class="btn btn-danger btn-circle"
-                                                title="Excluir">
-                                                <i class="fas fa-fw fa-xmark"></i></a>
+                                            <button type="reset" class="btn btn-danger btn-circle">
+                                                <i class="fas fa-fw fa-xmark"></i></button>
                                         </div>
                                     </div>
                                 </div>
+                                </form>
                                 <!-- FIM BOTÕES ADICIONAR -->
                             </div>
 
                             <div class="tab-pane fade" id="endereco" role="tabpanel" aria-labelledby="endereco-tab">
-
+                            
                           
                                 <!-- Aba Endereço tab content -->
 
                                 <div class="container mt-5">
-
+                                
                                     <div class="row">
+                                    
                                         <div class="col mb-3">
                                             <label for="logratut" class="form-label"><b>Logradouro</b></label>
                                             <input type="text" class="form-control" id="logratut" name="logratut"
-                                                placeholder="Digite o endereço">
+                                                placeholder="Digite o logradouro">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -533,15 +541,14 @@
                                 <!--BOTÕES ADICIONAR -->
                                 <div class="container mt-4 mb-5">
                                     <div class="d-flex justify-content-between">
-                                        <a href="./addtutor.html" class="btn btn-primary btn-circle" title="Voltar">
+                                    <a  onclick="history.go(-1)" class="btn btn-primary btn-circle" title="Voltar">
                                             <i class="fas fa-fw fa-chevron-left"></i></a>
                                         <div class="ml-auto">
-                                            <a href="./addtutor.html" class="btn btn-success btn-circle"
+                                            <a href="./addtutor.php" class="btn btn-success btn-circle"
                                                 title="Adicionar">
                                                 <i class="fas fa-fw fa-chevron-down"></i></a>
-                                            <a href="./addtutor.html" class="btn btn-danger btn-circle"
-                                                title="Excluir">
-                                                <i class="fas fa-fw fa-xmark"></i></a>
+                                            <button type="reset" class="btn btn-danger btn-circle">
+                                                <i class="fas fa-fw fa-xmark"></i></button>
                                         </div>
                                     </div>
                                 </div>
