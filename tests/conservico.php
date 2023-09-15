@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>AllPet | Serviço</title>
+    <title>AllPet | Consultar Serviço</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/fontawesome-free-6.4.0-web/css/all.min.css" rel="stylesheet" type="text/css">
@@ -127,7 +127,7 @@
             <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAgenda"
                 aria-expanded="true" aria-controls="collapseAgenda">
                 <a class="text-reset text-decoration-none" href="./conagenda.html">
-            <i class="fas fa-fw fa-calendar"></i>
+            <i class="fas fa-fw fa-paw"></i>
                 <span>Pet</span>
                 </a>
             </div>

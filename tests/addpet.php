@@ -1,5 +1,8 @@
+<?php
+
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
 
@@ -9,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>AllPet | Funcionário</title>
+    <title>AllPet | Adicionar Pet </title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/fontawesome-free-6.4.0-web/css/all.min.css" rel="stylesheet" type="text/css">
@@ -101,7 +104,7 @@
                     aria-expanded="true" aria-controls="collapseFour">
                     <a class="text-reset text-decoration-none" href="./contutor.html">
                         <i class="fas fa-fw fa-user"></i>
-                        <span>Tutores</span>
+                        <span>Tutor</span>
                     </a>
                 </div>
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
@@ -113,17 +116,19 @@
                 </div>
             </li>
 
-
-            <!-- Nav Item - Utilities Collapse Menu PET -->
+            <!-- Nav Item - Pet Collapse Menu -->
             <li class="nav-item">
-                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAgenda"
-                    aria-expanded="true" aria-controls="collapseAgenda">
-                    <a class="text-reset text-decoration-none" href="./conagenda.html">
-                        <i class="fas fa-fw fa-calendar"></i>
-                        <span>Pet</span>
+                <div class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePet" aria-expanded="true"
+                    aria-controls="collapsePet">
+                    <a class="text-reset text-decoration-none" href="./conpet.html">
+                        <i class="fas fa-fw fa-paw"></i>
+
+                        <span>
+                            Pet
+                        </span>
                     </a>
                 </div>
-                <div id="collapseAgenda" class="collapse" aria-labelledby="headingPets" data-parent="#accordionSidebar">
+                <div id="collapsePet" class="collapse" aria-labelledby="headingPets" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
                         <a class="collapse-item" href="./addpet.html">Adicionar Pet</a>
@@ -141,23 +146,22 @@
                 Outros
             </div>
 
-            <!-- Nav Item - Relatórios -->
+            <!-- Nav Item - Configurações -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSettings"
                     aria-expanded="true" aria-controls="collapseSettings">
-                    <i class="fas fa-fw fa-cogs"></i>
-                    <span>Relatórios</span>
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Configurações</span>
                 </a>
                 <div id="collapseSettings" class="collapse" aria-labelledby="headingSettings"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções</h6>
-                        <a class="collapse-item" href="../buttons.html">1</a>
-                        <a class="collapse-item" href="../cards.html">2</a>
+                        <a class="collapse-item" href="../buttons.html">Buttons</a>
+                        <a class="collapse-item" href="../cards.html">Cards</a>
                     </div>
                 </div>
             </li>
-
 
 
             <!-- Divider -->
@@ -167,9 +171,6 @@
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-
-
-
         </ul>
         <!-- End of Sidebar -->
 
@@ -192,7 +193,7 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..."
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Buscareee..."
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
@@ -201,7 +202,7 @@
                             </div>
                         </div>
                     </form>
-                    <h5 class="text-primary">Funcionário - Consultar</h5>
+                    <h5 class="text-primary">Pet - Adicionar</h5>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -228,15 +229,15 @@
                             </div>
                         </li>
 
-                        <!-- Nav Item - Alerts ->
+                        <!-- Nav Item - Alerts 
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
-                                <-- Counter - Alerts ->
+                                < Counter - Alerts 
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>
-                            <-- Dropdown - Alerts ->
+                            <Dropdown - Alerts 
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
@@ -279,15 +280,15 @@
                             </div>
                         </li>
 
-                        <-- Nav Item - Messages ->
+                        <Nav Item - Messages 
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
-                                <-- Counter - Messages ->
+                                < Counter - Messages 
                                 <span class="badge badge-danger badge-counter">7</span>
                             </a>
-                            <-- Dropdown - Messages ->
+                            < Dropdown - Messages 
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="messagesDropdown">
                                 <h6 class="dropdown-header">
@@ -295,7 +296,8 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../img/undraw_profile_1.svg" alt="...">
+                                        <img class="rounded-circle" src="../img/undraw_profile_1.svg"
+                                            alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -306,7 +308,8 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../img/undraw_profile_2.svg" alt="...">
+                                        <img class="rounded-circle" src="../img/undraw_profile_2.svg"
+                                            alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -317,7 +320,8 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../img/undraw_profile_3.svg" alt="...">
+                                        <img class="rounded-circle" src="../img/undraw_profile_3.svg"
+                                            alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -344,11 +348,11 @@
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
-                        <-- Nav Item - User Information -->
+                        <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Fábio Migliari</span>
                                 <img class="img-profile rounded-circle" src="../img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -379,10 +383,6 @@
                 </nav>
                 <!-- End of Topbar -->
 
-
-
-
-
                 <!-- Body Content-->
 
                 <!-- Form Container-->
@@ -390,214 +390,153 @@
 
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
-                        <!--Start Consulta Content-->
-                        <!-- abas -->
+
                         <div class="mt-3">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="pessoa-tab" data-bs-toggle="tab" href="#pessoa"
-                                        role="tab" aria-controls="pessoa" aria-selected="true">Pessoa</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="endereco-tab" data-bs-toggle="tab" href="#endereco"
-                                        role="tab" aria-controls="endereco" aria-selected="false">Endereço</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="funcao-tab" data-bs-toggle="tab" href="#funcao" role="tab"
-                                        aria-controls="funcao" aria-selected="false">Função</a>
+                                    <a class="nav-link active" id="pet-tab" data-bs-toggle="tab" href="#pet" role="tab"
+                                        aria-controls="pet" aria-selected="true">Pet</a>
                                 </li>
                             </ul>
                         </div>
-
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="pessoa" role="tabpanel"
-                                aria-labelledby="pessoa-tab">
+                            <div class="tab-pane fade show active" id="pet" role="tabpanel" aria-labelledby="pet-tab">
 
-                                <!-- Aba Pessoa tab content -->
+                                <!-- Pet tab content -->
 
                                 <div class="container mt-5">
                                     <div class="row">
                                         <div class="col mb-3">
-                                            <label for="nome" class="form-label"><b>Nome</b></label>
-                                            <type="text" class="form-control" id="nome" name="nome">
-                                        </div>
-                                    </div>
-
-
-                                    <div class="row">
-                                        <div class="col mb-3">
-                                            <label for="cpf" class="form-label"><b>CPF</b></label>
-                                            <type="text" class="form-control" id="cpf" name="cpf">
-                                        </div>
-                                        <div class="col mb-3">
-                                            <label for="rg" class="form-label"><b>RG</b></label>
-                                            <type="text" class="form-control" id="rg" name="rg">
-                                        </div>
-                                        <div class="col mb-3">
-                                            <label for="telefone" class="form-label"><b>Telefone</b></label>
-                                            <type="text" class="form-control" id="telefone" name="telefone">
+                                            <label for="nomepet" class="form-label"><b>Nome</b></label>
+                                            <input type="text" class="form-control" id="nomepet" name="nomepet"
+                                                placeholder="Digite o nome do pet">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-4 mb-3">
-                                            <label for="email" class="form-label"><b>Email</b></label>
-                                            <type="email" class="form-control" id="email" name="email">
+                                        <div class="col mb-3">
+                                            <label for="especiepet" class="form-label"><b>Espécie</b></label>
+                                            <select class="form-control" id="especiepet" name="especiepet">
+                                                <option value="0">Selecione...</option>
+                                                <option value="1">A </option>
+                                                <option value="2">B </option>
+                                                <option value="3">C </option>
+                                                <option value="4">D </option>
+                                            </select>
                                         </div>
                                         <div class="col mb-3">
-                                            <label for="dtnasc" class="form-label"><b>Data de Nascimento</b></label>
-                                            <type="text" class="form-control" id="dtnasc" name="dtnasc">
+                                            <label for="racapet" class="form-label"><b>Raça</b></label>
+                                            <select class="form-control" name="racapet" id="racapet">
+                                                <option value="0">Selecione...</option>
+                                                <option value="1">Akita </option>
+                                                <option value="2">Basset hound </option>
+                                                <option value="3">Beagle </option>
+                                                <option value="4">Bichon frise </option>
+                                                <option value="5">Boiadeiro australiano </option>
+                                                <option value="6">Border collie </option>
+                                                <option value="7">Boston terrier </option>
+                                                <option value="8">Boxer </option>
+                                                <option value="9">Buldogue francês </option>
+                                                <option value="10">Buldogue ingles </option>
+                                                <option value="11">Bullterrier </option>
+                                                <option value="12">Cane corso </option>
+                                                <option value="13"> Cavalier king charles spaniel </option>
+                                                <option value="14"> Chihuahua </option>
+                                                <option value="15"> Chow chow </option>
+                                                <option value="16"> Cocker spaniel ingles </option>
+                                                <option value="17"> Dachshund </option>
+                                                <option value="18"> Dálmata </option>
+                                                <option value="19"> Doberman </option>
+                                                <option value="20"> Dogo argentino </option>
+                                                <option value="21"> Dogue alemão </option>
+                                                <option value="22"> Fila brasileiro </option>
+                                                <option value="23"> Golden retriever </option>
+                                                <option value="24"> Husky siberiano </option>
+                                                <option value="25"> Jack russell terror </option>
+                                                <option value="26"> Labrador retriever </option>
+                                                <option value="27"> Lhasa apso </option>
+                                                <option value="28"> Lulu da pomerânia </option>
+                                                <option value="29"> Maltês </option>
+                                                <option value="30"> Mastiff inglês </option>
+                                                <option value="31"> Mastim tibetano </option>
+                                                <option value="32"> Pastor alemão </option>
+                                                <option value="33"> Pastor australiano </option>
+                                                <option value="34"> Pastor de Shetland </option>
+                                                <option value="35"> Pequines </option>
+                                                <option value="36"> Pinscher </option>
+                                                <option value="37"> Pit bull </option>
+                                                <option value="38"> Poodle </option>
+                                                <option value="39"> Pug </option>
+                                                <option value="40"> Rottweiler </option>
+                                                <option value="41"> Schnauzer </option>
+                                                <option value="42"> Shar-pei </option>
+                                                <option value="43"> Shiba </option>
+                                                <option value="44"> Shih tzu </option>
+                                                <option value="45"> Staffordshire bull terrier </option>
+                                                <option value="46"> Weimaraner </option>
+                                                <option value="47"> Vorkshire </option>
+                                            </select>
+                                        </div>
+                                        <div class="col mb-3">
+                                            <label for="pelagempet" class="form-label"><b>Pelagem</b></label>
+                                            <select class="form-control" id="pelagempet" name="pelagempet">
+                                                <option value="0">Selecione...</option>
+                                                <option value="Pequeno">Pequena</option>
+                                                <option value="medio">Média</option>
+                                                <option value="grande">Grande</option>
+                                            </select>
                                         </div>
                                     </div>
-                                </div>
-                                <hr>
-                                <!--BOTÕES Consultar/editar/excluir -->
-                                <div class="container mt-4 mb-5">
-                                    <div class="d-flex justify-content-between">
-                                        <a href="./confuncionario.html" class="btn btn-primary btn-circle"
-                                            title="Voltar">
-                                            <i class="fas fa-fw fa-chevron-left"></i></a>
-                                        <div class="ml-auto">
-                                            <a href="./addfuncionario.html" class="btn btn-primary btn-circle"
-                                                title="Editar">
-                                                <i class="fas fa-fw fa-pencil"></i></a>
-                                            <a href="./addfuncionario.html" class="btn btn-danger btn-circle"
-                                                title="Excluir">
-                                                <i class="fas fa-fw fa-trash"></i></a>
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="sexopet" class="form-label"><b>Sexo</b></label>
+                                            <select class="form-control" id="sexopet" name="sexopet">
+                                                <option value="0">Selecione...</option>
+                                                <option value="Pequeno">Masculino </option>
+                                                <option value="medio">Feminino </option>
+                                            </select>
+                                        </div>
+                                        <div class="col mb-3">
+                                            <label for="funcao" class="form-label"><b>Data de Nascimento</b></label>
+                                            <input type="date" class="form-control" id="dtnasc" name="dtnasc">
                                         </div>
                                     </div>
+
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="obspet" class="form-label"><b>Observações</b></label>
+                                            <textarea class="form-control" id="obspet" rows="5" nome="obspet"
+                                                placeholder="Insira aqui observações importantes"></textarea>
+                                        </div>
+                                    </div>
+                                    <hr>
+
+                                    <!--BOTÕES ADICIONAR -->
+                                    <div class="container mt-4 mb-5">
+                                        <div class="d-flex justify-content-between">
+                                            <a href="./addpet.html" class="btn btn-primary btn-circle" title="Voltar">
+                                                <i class="fas fa-fw fa-chevron-left"></i></a>
+                                            <div class="ml-auto">
+                                                <a href="./addpet.html" class="btn btn-success btn-circle"
+                                                    title="Adicionar">
+                                                    <i class="fas fa-fw fa-chevron-down"></i></a>
+                                                <a href="./addpet.html" class="btn btn-danger btn-circle"
+                                                    title="Excluir">
+                                                    <i class="fas fa-fw fa-xmark"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- FIM BOTÕES ADICIONAR -->
                                 </div>
-                                <!--Fim BOTÕES Consultar/editar/excluir -->
                             </div>
 
-                            <!-- Aba Endereço tab content -->
-
-                            <div class="tab-pane fade" id="endereco" role="tabpanel" aria-labelledby="endereco-tab">
-                                <div class="container mt-5">
-                                    <div class="row">
-                                        <div class="col mb-3">
-                                            <label for="rua" class="form-label"><b>Logradouro</b></label>
-                                            <type="text" class="form-control" id="rua" name="rua">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col mb-3">
-                                            <label for="bairro" class="form-label"><b>Bairro</b></label>
-                                            <type="text" class="form-control" id="bairro" name="bairro">
-                                        </div>
-                                        <div class="col mb-3">
-                                            <label for="cidade" class="form-label"><b>Cidade</b></label>
-                                            <type="text" class="form-control" id="cidade" name="cidade">
-                                        </div>
-                                        <div class="col mb-3">
-                                            <label for="estado" class="form-label"><b>Estado</b></label>
-                                            <type="text" class="form-control" id="estado" name="estado">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4 mb-3">
-                                            <label for="cep" class="form-label"><b>CEP</b></label>
-                                            <type="text" class="form-control" id="cep" name="cep">
-                                        </div>
-                                        <div class="col mb-3">
-                                            <label for="numero" class="form-label"><b>Numero</b></label>
-                                            <type="text" class="form-control" id="numero" name="numero">
-                                        </div>
-                                        <div class="col mb-3">
-                                            <label for="complemento" class="form-label"><b>Complemento</b></label>
-                                            <type="text" class="form-control" id="complemento">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col mb-3">
-                                            <label for="pontoreferencia" class="form-label"><b>Ponto de
-                                                    Referência</b></label>
-                                            <type="text" class="form-control" id="pontoreferencia">
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
-                                <!--BOTÕES Consultar/editar/excluir -->
-                                <div class="container mt-4 mb-5">
-                                    <div class="d-flex justify-content-between">
-                                        <a href="./confuncionario.html" class="btn btn-primary btn-circle"
-                                            title="Voltar">
-                                            <i class="fas fa-fw fa-chevron-left"></i></a>
-                                        <div class="ml-auto">
-                                            <a href="./addfuncionario.html" class="btn btn-primary btn-circle"
-                                                title="Editar">
-                                                <i class="fas fa-fw fa-pencil"></i></a>
-                                            <a href="./addfuncionario.html" class="btn btn-danger btn-circle"
-                                                title="Excluir">
-                                                <i class="fas fa-fw fa-trash"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--Fim BOTÕES Consultar/editar/excluir -->
-                            </div>
-
-                            <!-- Funcão tab content -->
-
-                            <div class="tab-pane fade" id="funcao" role="tabpanel" aria-labelledby="funcao-tab">
-                                <div class="container mt-5 mb-4">
-                                    <div class="row">
-                                        <div class="col-4 mb-3">
-                                            <label for="funcao" class="form-label"><b>Função</b></label>
-                                            <type="text" class="form-control" id="funcao" name="funcao">
-                                        </div>
-                                        <div class="col-4 mb-3">
-                                            <label for="salario" class="form-label"><b>Salário</b></label>
-                                            <type="text" class="form-control" id="salario" name="salario">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col mb-3">
-                                            <label for="perfil" class="form-label"><b>Perfil</b></label>
-                                            <type="text" class="form-control" id="perfil" name="perfil">
-                                        </div>
-                                        <div class="col mb-3">
-                                            <label for="hora_de_trab" class="form-label"><b>Horário de
-                                                    Trabalho</b></label>
-                                            <type="number" class="form-control" id="hora_de_trab">
-                                        </div>
-                                        <div class="col mb-3">
-                                            <label for="diadefolga" class="form-label"><b>Dia de Folga</b></label>
-                                            <type="text" class="form-control" id="diadefolga" name="diadefolga">
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
-                                 <!--BOTÕES Consultar/editar/excluir -->
-                                 <div class="container mt-4 mb-5">
-                                    <div class="d-flex justify-content-between">
-                                        <a href="./confuncionario.html" class="btn btn-primary btn-circle"
-                                            title="Voltar">
-                                            <i class="fas fa-fw fa-chevron-left"></i></a>
-                                        <div class="ml-auto">
-                                            <a href="./addfuncionario.html" class="btn btn-primary btn-circle"
-                                                title="Editar">
-                                                <i class="fas fa-fw fa-pencil"></i></a>
-                                            <a href="./addfuncionario.html" class="btn btn-danger btn-circle"
-                                                title="Excluir">
-                                                <i class="fas fa-fw fa-trash"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--Fim BOTÕES Consultar/editar/excluir -->
-                            </div>
-                            <!--Endereço-->
                         </div>
+                        <!-- /.container-fluid -->
 
                     </div>
-                    <!-- /.container-fluid -->
-
                 </div>
                 <!-- End Form Container-->
 
                 <!-- End Body Content-->
-
-
-
-
 
             </div>
             <!-- End of Main Content -->
@@ -646,16 +585,10 @@
 
     <script>
         // Activate tab functionality
-        var tab = new bootstrap.Tab(document.getElementById("pessoa-tab"));
+        var tab = new bootstrap.Tab(document.getElementById("pet-tab"));
         tab.show();
 
-        var sidebar = document.getElementById("page-top");
-        if (sidebar.classList.contains("sidebar-toggled")) {
-            console.log("The class is present");
-        }
-        else {
-            console.log("The class is not present");
-        }
+
     </script>
     <script src="../js/allpet.js"></script>
     <!-- Bootstrap core JavaScript-->

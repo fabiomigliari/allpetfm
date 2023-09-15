@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>AllPet | Serviço</title>
+    <title>AllPet | Adicionar Serviço</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/fontawesome-free-6.4.0-web/css/all.min.css" rel="stylesheet" type="text/css">
@@ -62,7 +62,7 @@
             <li class="nav-item">
                 <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFuncionarios"
                     aria-expanded="true" aria-controls="collapseFuncionarios">
-                    <a class="text-reset text-decoration-none" href="./confuncionario.html">
+                    <a class="text-reset text-decoration-none" href="./confuncionario.php">
                         <i class="fas fa-fw fa-user"></i>
                         <span>Funcionário</span>
                     </a>
@@ -71,8 +71,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addfuncionario.html">Adicionar Funcionário</a>
-                        <a class="collapse-item" href="./confuncionario.html">Consultar Funcionário</a>
+                        <a class="collapse-item" href="./addfuncionario.php">Adicionar Funcionário</a>
+                        <a class="collapse-item" href="./confuncionario.php">Consultar Funcionário</a>
                     </div>
                 </div>
             </li>
@@ -81,7 +81,7 @@
             <li class="nav-item">
                 <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
                     aria-expanded="true" aria-controls="collapseThree">
-                    <a class="text-reset text-decoration-none" href="./conservico.html">
+                    <a class="text-reset text-decoration-none" href="./conservico.php">
                         <i class="fas fa-fw fa-file-alt"></i>
                         <span>Serviços</span>
                     </a>
@@ -89,8 +89,8 @@
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addservico.html">Adicionar Serviços</a>
-                        <a class="collapse-item" href="./conservico.html">Consultar Serviços</a>
+                        <a class="collapse-item" href="./addservico.php">Adicionar Serviços</a>
+                        <a class="collapse-item" href="./conservico.php">Consultar Serviços</a>
                     </div>
                 </div>
             </li>
@@ -99,7 +99,7 @@
             <li class="nav-item">
                 <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
                     aria-expanded="true" aria-controls="collapseFour">
-                    <a class="text-reset text-decoration-none" href="./contutor.html">
+                    <a class="text-reset text-decoration-none" href="./contutor.php">
                         <i class="fas fa-fw fa-user"></i>
                         <span>Tutores</span>
                     </a>
@@ -107,8 +107,8 @@
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addtutor.html">Adicionar Tutor</a>
-                        <a class="collapse-item" href="./contutor.html">Consultar Tutor</a>
+                        <a class="collapse-item" href="./addtutor.php">Adicionar Tutor</a>
+                        <a class="collapse-item" href="./contutor.php">Consultar Tutor</a>
                     </div>
                 </div>
             </li>
@@ -117,16 +117,16 @@
             <li class="nav-item">
                 <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAgenda"
                     aria-expanded="true" aria-controls="collapseAgenda">
-                    <a class="text-reset text-decoration-none" href="./conagenda.html">
-                        <i class="fas fa-fw fa-calendar"></i>
+                    <a class="text-reset text-decoration-none" href="./conpet.php">
+                        <i class="fas fa-fw fa-paw"></i>
                         <span>Pet</span>
                     </a>
                 </div>
                 <div id="collapseAgenda" class="collapse" aria-labelledby="headingPets" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addpet.html">Adicionar Pet</a>
-                        <a class="collapse-item" href="./conpet.html">Consultar Pet</a>
+                        <a class="collapse-item" href="./addpet.php">Adicionar Pet</a>
+                        <a class="collapse-item" href="./conpet.php">Consultar Pet</a>
 
                     </div>
                 </div>
