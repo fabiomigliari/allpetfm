@@ -25,7 +25,7 @@
 
     <title>AllPet | Consultar Funcionário</title>
 
-    !-- Custom fonts for this template-->
+    <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/fontawesome-free-6.4.0-web/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="../vendor/fontawesome-free/css/style-allpet.css" rel="stylesheet" type="text/css">
     <link
@@ -35,10 +35,21 @@
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="../agenda/main.min.js"></script>
+    <script src="../agenda/pt-br.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+    <script>
+
+
+
+    </script>
 
 </head>
 
 <body id="page-top">
+
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -127,7 +138,9 @@
                 </div>
             </li>
 
-            <!-- Nav Item - PET -->
+
+
+            <!-- Nav Item - Utilities Collapse Menu PET -->
             <li class="nav-item">
                 <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePet"
                     aria-expanded="true" aria-controls="collapsePet">
@@ -155,24 +168,25 @@
             </div>
 
             <!-- Nav Item - Relatórios -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSettings"
-                    aria-expanded="true" aria-controls="collapseSettings">
-                    <i class="fas fa fa-bar-chart"></i>
-                    <span>Relatórios</span>
-                </a>
-                <div id="collapseSettings" class="collapse" aria-labelledby="headingSettings"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Opções</h6>
-                        <a class="collapse-item" href="../buttons.html">1</a>
-                        <a class="collapse-item" href="../cards.html">2</a>
-                    </div>
-                </div>
-            </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRelatorio"
+                aria-expanded="true" aria-controls="collapseRelatorio" href="#collapseRelatorio">
+                <i class="fas fa fa-bar-chart" aria-hidden="true"></i>
+                <span>Relatórios</span>
+            </a>
+            <div id="collapseRelatorio" class="collapse" aria-labelledby="headingSettings" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Opções</h6>
+                    <a class="collapse-item" href="alterar">Relatório Financeiro</a>
+                    <a class="collapse-item" href="alterar">Relatório Funcionário</a>
+                    <a class="collapse-item" href="alterar">Relatório Pet</a>
+                    <a class="collapse-item" href="alterar">Relatório Serviço</a>
+                    <a class="collapse-item" href="alterar">Relatório Tutor</a></li>
+            </div>
+        </li>
 
 
-
+            
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -719,7 +733,7 @@
                                             <table class="table table-bordered" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
-                                                    <th>CPF</th>
+                                                        <th>CPF</th>
                                                         <th>Nome</th>
                                                         <th>Telefone</th>
                                                         <th>Função</th>
@@ -738,7 +752,8 @@
                                                     </tr>
                                                 </tfoot>
                                                 <tbody>
-                                                    <?php foreach ($funcionarios as $funcionario): ?>
+
+                                                <?php foreach ($funcionarios as $funcionario): ?>
                                                     <tr>
                                                         <td><?= $funcionario->get_cpf(); ?></td>
                                                         <td><?= $funcionario->get_nome(); ?></td>
@@ -754,6 +769,7 @@
                                                         </td>
                                                     </tr>
                                                     <?php endforeach; ?>
+
                                                 </tbody>
                                             </table>
                                         </div>
