@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     aria-expanded="true" aria-controls="collapseFuncionario">
                     <a class="text-reset text-decoration-none" href="#collapseFuncionario">
                     <i class="fas fa-fw fa-user"></i>
-                    <span>Funcionário</span>
+                    <span>Funcionários</span>
                     </a>
                 </div>
                 <div id="collapseFuncionario" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     aria-expanded="true" aria-controls="collapsePet">
                     <a class="text-reset text-decoration-none" href="#collapsePet">
                 <i class="fas fa-fw fa-paw"></i>
-                    <span>Pet</span>
+                    <span>Pets</span>
                     </a>
                 </div>
                 <div id="collapsePet" class="collapse" aria-labelledby="headingPets"
@@ -261,14 +261,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 Outros
             </div>
 
-            <!-- Nav Item - Configurações -->
+            <!-- Nav Item - Relatório -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSettings"
-                    aria-expanded="true" aria-controls="collapseSettings">
-                    <i class="fas fa-fw fa-cogs"></i>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRelatorio"
+                    aria-expanded="true" aria-controls="collapseRelatorio" herf="#collapseRelatorio">
+                    <i class="fas fa fa-bar-chart"></i>
                     <span>Relatórios</span>
                 </a>
-                <div id="collapseSettings" class="collapse" aria-labelledby="headingSettings" data-parent="#accordionSidebar">
+                <div id="collapseRelatorio" class="collapse" aria-labelledby="headingSettings" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções</h6>
                         <a class="collapse-item" href="../buttons.html">Buttons</a>

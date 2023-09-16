@@ -25,7 +25,7 @@
 
     <title>AllPet | Consultar Funcionário</title>
 
-    <!-- Custom fonts for this template-->
+    !-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/fontawesome-free-6.4.0-web/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="../vendor/fontawesome-free/css/style-allpet.css" rel="stylesheet" type="text/css">
     <link
@@ -35,21 +35,10 @@
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="../agenda/main.min.js"></script>
-    <script src="../agenda/pt-br.js"></script>
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-
-    <script>
-
-
-
-    </script>
 
 </head>
 
 <body id="page-top">
-
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -58,7 +47,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion fixed-top" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../tests/index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./index.html">
                 <div class="sidebar-brand-icon">
                     <img src="../icon-allpet.svg" alt="Dog">
                 </div>
@@ -89,10 +78,11 @@
                     aria-expanded="true" aria-controls="collapseFuncionario">
                     <a class="text-reset text-decoration-none" href="#collapseFuncionario">
                         <i class="fas fa-fw fa-user"></i>
-                        <span>Funcionário</span>
+                        <span>Funcionários</span>
                     </a>
                 </div>
-                <div id="collapseFuncionario" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseFuncionario" class="collapse" aria-labelledby="headingTwo"
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
                         <a class="collapse-item" href="./addfuncionario.php">Adicionar Funcionário</a>
@@ -119,7 +109,7 @@
                 </div>
             </li>
 
-            <!-- Nav Item - Tutor-->
+            <!-- Nav Item - Tutor -->
             <li class="nav-item">
                 <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTutor"
                     aria-expanded="true" aria-controls="collapseTutor">
@@ -137,15 +127,13 @@
                 </div>
             </li>
 
-
-
-            <!-- Nav Item - Pet -->
+            <!-- Nav Item - PET -->
             <li class="nav-item">
                 <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePet"
                     aria-expanded="true" aria-controls="collapsePet">
                     <a class="text-reset text-decoration-none" href="#collapsePet">
                         <i class="fas fa-fw fa-paw"></i>
-                        <span>Pet</span>
+                        <span>Pets</span>
                     </a>
                 </div>
                 <div id="collapsePet" class="collapse" aria-labelledby="headingPets" data-parent="#accordionSidebar">
@@ -170,7 +158,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSettings"
                     aria-expanded="true" aria-controls="collapseSettings">
-                    <i class="fas fa-fw fa-cogs"></i>
+                    <i class="fas fa fa-bar-chart"></i>
                     <span>Relatórios</span>
                 </a>
                 <div id="collapseSettings" class="collapse" aria-labelledby="headingSettings"
