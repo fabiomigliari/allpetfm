@@ -104,7 +104,7 @@
                     aria-expanded="true" aria-controls="collapseTutor">
                     <a class="text-reset text-decoration-none" href="#collapseTutor">
                         <i class="fas fa-fw fa-user"></i>
-                        <span>Tutor</span>
+                        <span>Tutores</span>
                     </a>
                 </div>
                 <div id="collapseTutor" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">

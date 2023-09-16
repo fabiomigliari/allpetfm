@@ -1,6 +1,5 @@
 <?php
-   var_dump($_POST);
-
+  // var_dump($_POST);
 ?>
 
 <!DOCTYPE html>
@@ -371,7 +370,7 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="./login.html" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -408,19 +407,17 @@
 
                             </ul>
                         </div>
-
+                        
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="pessoa" role="tabpanel"
                                 aria-labelledby="pessoa-tab">
 
                                
 
-                                <!-- ADICIONA PESSOA-->
-
-                                 <!-- Aba Pessoa tab content -->
-
+                                <!-- Aba ADICIONA PESSOA-->
+                        
+                                 <!-- Formulário de Tutor -->
                                 <div class="container mt-5">
-                                    <form action="#" >
                                     <div class="row">
                                         <div class="col mb-3">
                                             <label for="nometut" class="form-label"><B>Nome</B></label>
@@ -459,31 +456,23 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <!-- FIM ADICIONA PESSOA -->
+                                <!-- FIM TUTOR-->
 
-                                 <!--BOTÕES ADICIONAR -->
-                                 <div class="container mt-4 mb-5">
+                                <!--BOTÃO VOLTAR-->
+                                <div class="container mt-4 mb-5">
 
                                     <div class="d-flex justify-content-between">
-                                        <a  onclick="history.go(-1)" class="btn btn-primary btn-circle" title="Voltar">
-                                            <i class="fas fa-fw fa-chevron-left"></i></a>
-                                        <div class="ml-auto">
-                                            <a href="./addtutor.php" class="btn btn-success btn-circle"
-                                                title="Adicionar">
-                                                <i class="fas fa-fw fa-chevron-down"></i></a>
-                                            <button type="reset" class="btn btn-danger btn-circle">
-                                                <i class="fas fa-fw fa-xmark"></i></button>
-                                        </div>
+                                         <a  onclick="history.go(-1)" class="btn btn-primary btn-circle" title="Voltar">
+                                             <i class="fas fa-fw fa-chevron-left"></i></a>
                                     </div>
                                 </div>
-                                </form>
-                                <!-- FIM BOTÕES ADICIONAR -->
+                                <!-- FIM BOTÃO VOLTAR -->
                             </div>
 
                             <div class="tab-pane fade" id="endereco" role="tabpanel" aria-labelledby="endereco-tab">
                             
                           
-                                <!-- Aba Endereço tab content -->
+                                <!-- Aba cadastro Endereço  -->
 
                                 <div class="container mt-5">
                                 
@@ -531,8 +520,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col mb-3">
-                                            <label for="pontoreferenciatut" class="form-label"><b>Ponto de
-                                                    Referência</b></label>
+                                            <label for="pontoreferenciatut" class="form-label"><b>Ponto de Referência</b></label>
                                             <input type="text" class="form-control" id="pontoreferenciatut"
                                                 name="pontoreferenciatut" placeholder="Digite o ponto de referência">
                                         </div>
@@ -543,18 +531,21 @@
                                     <div class="d-flex justify-content-between">
                                     <a  onclick="history.go(-1)" class="btn btn-primary btn-circle" title="Voltar">
                                             <i class="fas fa-fw fa-chevron-left"></i></a>
+
                                         <div class="ml-auto">
-                                            <a href="./addtutor.php" class="btn btn-success btn-circle"
-                                                title="Adicionar">
-                                                <i class="fas fa-fw fa-chevron-down"></i></a>
+                                            <button type="submit" name="Adicionartut" class="btn btn-success btn-circle"
+                                                title="Adicionar"  value="adicionarTutor">
+                                                <i class="fas fa-fw fa-chevron-down"></i></button>
+
                                             <button type="reset" class="btn btn-danger btn-circle">
                                                 <i class="fas fa-fw fa-xmark"></i></button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- FIM BOTÕES ADICIONAR -->
+                                    <!-- FIM BOTÕES ADICIONAR -->
                             </div>
                         </div>
+
                         <!--fIm Endereço-->
 
                         <!--Pet-->
@@ -721,7 +712,7 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
+    <!-- Popup Logout -->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">

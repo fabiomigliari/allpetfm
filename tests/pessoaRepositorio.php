@@ -11,7 +11,7 @@ class pessoaRepositorio
 
 
 
-    /*---------->   MÉTODOS DE BUSCAR    <----------*/
+/*---------->   MÉTODOS DE BUSCA DE DADOS    <----------*/
 
     //método para buscar todos os Tutores no banco de dados.
     public function buscarTutores()
@@ -166,7 +166,7 @@ class pessoaRepositorio
 
         return $funcao;
     }
-/*---------->   MÉTODOS DE DELETAR     <----------*/
+/*---------->   MÉTODOS DE EXCLUSÃO DE DADOS    <----------*/
 
     //Método para deletar o TUTOR do banco de dados cadastrado.
     public function deletarTutor(int $id)
@@ -194,5 +194,8 @@ class pessoaRepositorio
         $statement->bindValue(1, $id);
         $statement->execute();
     }
+
+
+/*---------->   MÉTODOS DE INSERÇÃO DE DADOS    <----------*/
     
 }
