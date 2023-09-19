@@ -1,12 +1,13 @@
 <?php
 
-    require_once "./conexao_bd.php";
+    
     require_once "./pessoaRepositorio.php";
     require_once "./Classes/Pessoa.php";
     require_once "./Classes/Endereco.php";
     require_once "./Classes/Tutor.php";
+    require_once('autoload.php');
 
-    $pessoaRepositorio = new pessoaRepositorio($pdo);
+    $pessoaRepositorio = new pessoaRepositorio($db);
     $tutores = $pessoaRepositorio->buscarTutores();
 
     
@@ -526,8 +527,8 @@ document.addEventListener('DOMContentLoaded', function() {
                               </div>
                               <div class="col-auto">
                                 <form id="form" class="form-inline">
-                                  <input type="text" class="form-control" placeholder="Pesquisar" value="inputSearch">
-                                  <button class="btn btn-primary" type="button" value="search">
+                                  <input type="text" class="form-control" placeholder="Pesquisar">
+                                  <button type="button" class="btn btn-primary" title="Pesquisar" value="search">
                                       <i class="fas fa-search fa-sm"></i>
                                   </button>
                                  <!-- Botão CADASTRAR na tela de consulta-->

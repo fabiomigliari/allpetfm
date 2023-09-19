@@ -169,7 +169,7 @@ case 'cadastro':
   
 setTimeout(() => {
   window.addEventListener('click', clickHandler);
-}, 1000);
+}, 200);
 
 
 
