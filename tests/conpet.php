@@ -1,5 +1,19 @@
+<?php
+
+require_once "./conexao_bd.php";
+require_once "./pessoaRepositorio.php";
+require_once "./Classes/Pessoa.php";
+require_once "./Classes/Endereco.php";
+require_once "./Classes/Tutor.php";
+require_once "./Classes/Pet.php";
+
+$pessoaRepositorio = new pessoaRepositorio($pdo);
+$pets = $pessoaRepositorio->buscarPets();
+
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
 
@@ -9,7 +23,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>AllPet | Tutor</title>
+    <title>AllPet | Consultar Pet</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/fontawesome-free-6.4.0-web/css/all.min.css" rel="stylesheet" type="text/css">
@@ -138,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion fixed-top" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/tests/index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./index.html">
                 <div class="sidebar-brand-icon">
                     <img src="../icon-allpet.svg" alt="Dog">
                 </div>
@@ -150,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="/tests/index.html">
+                <a class="nav-link" href="./index.html">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Home</span></a>
             </li>
@@ -163,77 +177,77 @@ document.addEventListener('DOMContentLoaded', function() {
                 Interface
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Funcionário -->
             <li class="nav-item">
-                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFuncionarios"
-                    aria-expanded="true" aria-controls="collapseFuncionarios">
-                    <a class="text-reset text-decoration-none" href="./confuncionario.html">
+                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFuncionario"
+                    aria-expanded="true" aria-controls="collapseFuncionario">
+                    <a class="text-reset text-decoration-none" href="#collapseFuncionario">
                     <i class="fas fa-fw fa-user"></i>
-                    <span>Funcionário</span>
+                    <span>Funcionários</span>
                     </a>
                 </div>
-                <div id="collapseFuncionarios" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseFuncionario" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addfuncionario.html">Adicionar Funcionário</a>
-                        <a class="collapse-item" href="./confuncionario.html">Consultar Funcionário</a>
+                        <a class="collapse-item" href="./addfuncionario.php">Adicionar Funcionário</a>
+                        <a class="collapse-item" href="./confuncionario.php">Consultar Funcionário</a>
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Serviço -->
             <li class="nav-item">
-                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
-                    aria-expanded="true" aria-controls="collapseThree">
-                    <a class="text-reset text-decoration-none" href="./conservico.html">
+                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseServico"
+                    aria-expanded="true" aria-controls="collapseServico">
+                    <a class="text-reset text-decoration-none" href="#collapseServico">
                     <i class="fas fa-fw fa-file-alt"></i>
                     <span>Serviços</span>
                     </a>
                 </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                <div id="collapseServico" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addservico.html">Adicionar Serviços</a>
-                        <a class="collapse-item" href="./conservico.html">Consultar Serviços</a>
+                        <a class="collapse-item" href="./addservico.php">Adicionar Serviços</a>
+                        <a class="collapse-item" href="./conservico.php">Consultar Serviços</a>
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Tutor -->
             <li class="nav-item">
-                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
-                    aria-expanded="true" aria-controls="collapseFour">
-                    <a class="text-reset text-decoration-none" href="./contutor.html">
+                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTutor"
+                    aria-expanded="true" aria-controls="collapseTutor">
+                    <a class="text-reset text-decoration-none" href="#collapseTutor">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Tutores</span>
                 </a>
                 </div>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
+                <div id="collapseTutor" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addtutor.html">Adicionar Tutor</a>
-                        <a class="collapse-item" href="./contutor.html">Consultar Tutor</a>
+                        <a class="collapse-item" href="./addtutor.php">Adicionar Tutor</a>
+                        <a class="collapse-item" href="./contutor.php">Consultar Tutor</a>
                     </div>
                 </div>
             </li>
 
 
 
-            <!-- Nav Item - Utilities Collapse Menu PET -->
+            <!-- Nav Item - Pet -->
             <li class="nav-item">
-                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAgenda"
-                    aria-expanded="true" aria-controls="collapseAgenda">
-                    <a class="text-reset text-decoration-none" href="./conagenda.html">
-                        <i class="fas fa-fw fa-paw"></i>
-                    <span>Pet</span>
+                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePet"
+                    aria-expanded="true" aria-controls="collapsePet">
+                    <a class="text-reset text-decoration-none" href="#collapsePet">
+                <i class="fas fa-fw fa-paw"></i>
+                    <span>Pets</span>
                     </a>
                 </div>
-                <div id="collapseAgenda" class="collapse" aria-labelledby="headingPets"
+                <div id="collapsePet" class="collapse" aria-labelledby="headingPets"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addpet.html">Adicionar Pet</a>
-                        <a class="collapse-item" href="./conpet.html">Consultar Pet</a>
+                        <a class="collapse-item" href="./addpet.php">Adicionar Pet</a>
+                        <a class="collapse-item" href="./conpet.php">Consultar Pet</a>
                         
                     </div>
                 </div>
@@ -247,24 +261,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 Outros
             </div>
 
-            <!-- Nav Item - Relatórios -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSettings"
-                aria-expanded="true" aria-controls="collapseSettings">
-                <i class="fa fa-print" aria-hidden="true"></i>
-                <span>Relatórios</span>
-            </a>
-            <div id="collapseSettings" class="collapse" aria-labelledby="headingSettings" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Opções</h6>
-                    <a class="collapse-item" href="alterar">Relatório Financeiro</a>
-                    <a class="collapse-item" href="alterar">Relatório Funcionário</a>
-                    <a class="collapse-item" href="alterar">Relatório Pet</a>
-                    <a class="collapse-item" href="alterar">Relatório Serviço</a>
-                    <a class="collapse-item" href="alterar">Relatório Tutor</a></li>
-            </div>
-        </li>
-
+            <!-- Nav Item - Relatório -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRelatorio"
+                    aria-expanded="true" aria-controls="collapseRelatorio" herf="#collapseRelatorio">
+                    <i class="fas fa fa-bar-chart"></i>
+                    <span>Relatórios</span>
+                </a>
+                <div id="collapseRelatorio" class="collapse" aria-labelledby="headingSettings" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Opções</h6>
+                        <a class="collapse-item" href="../buttons.html">Buttons</a>
+                        <a class="collapse-item" href="../cards.html">Cards</a>
+                    </div>
+                </div>
+            </li>
 
             
             <!-- Divider -->
@@ -509,7 +520,7 @@ document.addEventListener('DOMContentLoaded', function() {
                           
                           <div class="row">
                               <div class="col">
-                                  <h6 class="m-0 font-weight-bold text-primary">Tutores</h6>
+                                  <h6 class="m-0 font-weight-bold text-primary">Petz</h6>
                               </div>
                               <div class="col-auto">
                                 <form class="form-inline">
@@ -517,11 +528,11 @@ document.addEventListener('DOMContentLoaded', function() {
                                   <button class="btn btn-primary" type="button">
                                       <i class="fas fa-search fa-sm"></i>
                                   </button>
-                                 <!-- Botão CADASTRAR na tela de consulta-->
-                                 <a href="./addtutor.html" class="btn btn-primary ml-1"
-                                 title="Cadastrar">
-                                 <i class="fas fa-fw fa-plus"></i></a>
-                             <!-- Fim Botão CADASTRAR na tela de consulta-->
+                                <!-- Botão CADASTRAR na tela de consulta-->
+                                <a href="./addpet.html" class="btn btn-primary ml-1"
+                                title="Cadastrar">
+                                <i class="fas fa-fw fa-plus"></i></a>
+                                 <!-- Fim Botão CADASTRAR na tela de consulta-->
                                 </form>
                                 
                                 <!-- Modal -->
@@ -660,77 +671,41 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <table class="table table-bordered" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Nome</th>
-                                            <th>Telefone</th>
-                                            <th>Email</th>
-                                            <th>Data Cad.</th>
+                                            <th>Nome do Pet</th>
+                                            <th>Espécie</th>
+                                            <th>Raça</th>
+                                            <th>Nome do Tutor</th>
+                                            <th>Fone Tutor</th>
+                                            <th colspan="2">Ações</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Nome</th>
-                                            <th>Telefone</th>
-                                            <th>Email</th>
-                                            <th>Data Cad.</th>
+                                            <th>Nome do Pet</th>
+                                            <th>Espécie</th>
+                                            <th>Raça</th>
+                                            <th>Nome do Tutor</th>
+                                            <th>Fone Tutor</th>
+                                            <th colspan="2">Ações</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                    
+                                        <?php foreach($pets as $pet):?>
                                         <tr>
-                                            <td><a href="contutor2.html">Flávio Eduardo de Oliveria</a></td>
-                                            <td><a href="contutor2.html">14997749635</a></td>
-                                            <td><a href="contutor2.html">flavio.oliveira@hotmail.com</a></td>
-                                            <td><a href="contutor2.html">10/06/2023</a></td>
+                                            <td><?= $pet->get_nomePet() ?></td>
+                                            <td><?= $pet->get_especie() ?></a></td>
+                                            <td><?= $pet->get_raca() ?></a></td>
+                                            <td><?php echo "Nome do dono?";?></a></td>
+                                            <td><?php echo "Tel do dono?";?></a></td>
+                                            <td><input type="submit" class="btn btn-warning btn-sm" value="Editar"></td>
+                                            <td>
+                                                <form action="droppet.php" method="post">
+                                                    <input type="hidden" name="idPet" value="<?= $pet->get_idPet()?>" >
+                                                    <input type="submit" class="btn btn-danger btn-sm" value="Excuir">
+                                                </form>
+                                            </td>
                                         </tr>
-                                    
-                                        <tr>
-                                            <td><a href="contutor2.html">Gabriel Paduleto</a></td>
-                                            <td><a href="contutor2.html">14997749635</a></td>
-                                            <td><a href="contutor2.html">Gabriel.paduleto@hotmail.com</a></td>
-                                            <td><a href="contutor2.html">10/06/2023</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="contutor2.html">Helio neves</a></td>
-                                            <td><a href="contutor2.html">14997749635</a></td>
-                                            <td><a href="contutor2.html">helio.neves@hotmail.com</a></td>
-                                            <td><a href="contutor2.html">10/06/2023</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="contutor2.html">Isadora Marques</a></td>
-                                            <td><a href="contutor2.html">14997749635</a></td>
-                                            <td><a href="contutor2.html">isadora.marques@hotmail.com</a></td>
-                                            <td><a href="contutor2.html">10/06/2023</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="contutor2.html">João Pedro de Souza</a></td>
-                                            <td><a href="contutor2.html">14997749635</a></td>
-                                            <td><a href="contutor2.html">joao.pedro@hotmail.com</a></td>
-                                            <td><a href="contutor2.html">10/06/2023</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="contutor2.html">Leonardo de lima</a></td>
-                                            <td><a href="contutor2.html">14997749635</a></td>
-                                            <td><a href="contutor2.html">leonardo.lima@hotmail.com</a></td>
-                                            <td><a href="contutor2.html">10/06/2023</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="contutor2.html">Matheus Gomes</a></td>
-                                            <td><a href="contutor2.html">14997749635</a></td>
-                                            <td><a href="contutor2.html">matheus.gomes@hotmail.com</a></td>
-                                            <td><a href="contutor2.html">10/06/2023</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="contutor2.html">Otávio Oliveira de Souza</a></td>
-                                            <td><a href="contutor2.html">14997749635</a></td>
-                                            <td><a href="contutor2.html">otavio.oliveira@hotmail.com</a></td>
-                                            <td><a href="contutor2.html">10/06/2023</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="contutor2.html">Patrícia da Silva</a></td>
-                                            <td><a href="contutor2.html">14997749635</a></td>
-                                            <td><a href="contutor2.html">patricia.silva@hotmail.com</a></td>
-                                            <td><a href="contutor2.html">10/06/2023</a></td>
-                                        </tr>
+                                        <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>

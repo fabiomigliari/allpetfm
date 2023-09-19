@@ -1,3 +1,7 @@
+<?php
+  // var_dump($_POST);
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -9,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>AllPet | Tutores</title>
+    <title>AllPet | Adicionar Tutor</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/fontawesome-free-6.4.0-web/css/all.min.css" rel="stylesheet" type="text/css">
@@ -33,7 +37,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion fixed-top" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/tests/index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./index.html">
                 <div class="sidebar-brand-icon">
                     <img src="../icon-allpet.svg" alt="Dog">
                 </div>
@@ -45,7 +49,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="../tests/index.html">
+                <a class="nav-link" href="./index.html">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Home</span></a>
             </li>
@@ -58,75 +62,75 @@
                 Interface
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Funcionário -->
             <li class="nav-item">
-                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFuncionarios"
-                    aria-expanded="true" aria-controls="collapseFuncionarios">
-                    <a class="text-reset text-decoration-none" href="./confuncionario.html">
+                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFuncionario"
+                    aria-expanded="true" aria-controls="collapseFuncionario">
+                    <a class="text-reset text-decoration-none" href="#collapseFuncionario">
                         <i class="fas fa-fw fa-user"></i>
-                        <span>Funcionário</span>
+                        <span>Funcionários</span>
                     </a>
                 </div>
-                <div id="collapseFuncionarios" class="collapse" aria-labelledby="headingTwo"
+                <div id="collapseFuncionario" class="collapse" aria-labelledby="headingTwo"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addfuncionario.html">Adicionar Funcionário</a>
-                        <a class="collapse-item" href="./confuncionario.html">Consultar Funcionário</a>
+                        <a class="collapse-item" href="./addfuncionario.php">Adicionar Funcionário</a>
+                        <a class="collapse-item" href="./confuncionario.php">Consultar Funcionário</a>
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Serviço -->
             <li class="nav-item">
-                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
-                    aria-expanded="true" aria-controls="collapseThree">
-                    <a class="text-reset text-decoration-none" href="./conservico.html">
+                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseServico"
+                    aria-expanded="true" aria-controls="collapseServico">
+                    <a class="text-reset text-decoration-none" href="#collapseServico">
                         <i class="fas fa-fw fa-file-alt"></i>
                         <span>Serviços</span>
                     </a>
                 </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                <div id="collapseServico" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addservico.html">Adicionar Serviços</a>
-                        <a class="collapse-item" href="./conservico.html">Consultar Serviços</a>
+                        <a class="collapse-item" href="./addservico.php">Adicionar Serviços</a>
+                        <a class="collapse-item" href="./conservico.php">Consultar Serviços</a>
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Tutor -->
             <li class="nav-item">
-                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
-                    aria-expanded="true" aria-controls="collapseFour">
-                    <a class="text-reset text-decoration-none" href="./contutor.html">
+                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTutor"
+                    aria-expanded="true" aria-controls="collapseTutor">
+                    <a class="text-reset text-decoration-none" href="#collapseTutor">
                         <i class="fas fa-fw fa-user"></i>
                         <span>Tutores</span>
                     </a>
                 </div>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
+                <div id="collapseTutor" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addtutor.html">Adicionar Tutor</a>
-                        <a class="collapse-item" href="./contutor.html">Consultar Tutor</a>
+                        <a class="collapse-item" href="./addtutor.php">Adicionar Tutor</a>
+                        <a class="collapse-item" href="./contutor.php">Consultar Tutor</a>
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu PET -->
+            <!-- Nav Item - PET -->
             <li class="nav-item">
-                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAgenda"
-                    aria-expanded="true" aria-controls="collapseAgenda">
-                    <a class="text-reset text-decoration-none" href="./conagenda.html">
+                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePet"
+                    aria-expanded="true" aria-controls="collapsePet">
+                    <a class="text-reset text-decoration-none" href="#collapsePet">
                         <i class="fas fa-fw fa-paw"></i>
-                        <span>Pet</span>
+                        <span>Pets</span>
                     </a>
                 </div>
-                <div id="collapseAgenda" class="collapse" aria-labelledby="headingPets" data-parent="#accordionSidebar">
+                <div id="collapsePet" class="collapse" aria-labelledby="headingPets" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addpet.html">Adicionar Pet</a>
-                        <a class="collapse-item" href="./conpet.html">Consultar Pet</a>
+                        <a class="collapse-item" href="./addpet.php">Adicionar Pet</a>
+                        <a class="collapse-item" href="./conpet.php">Consultar Pet</a>
 
                     </div>
                 </div>
@@ -140,27 +144,22 @@
                 Outros
             </div>
 
-             <!-- Nav Item - Relatórios -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSettings"
-                aria-expanded="true" aria-controls="collapseSettings">
-                <i class="fa fa-print" aria-hidden="true"></i>
-                <span>Relatórios</span>
-            </a>
-            <div id="collapseSettings" class="collapse" aria-labelledby="headingSettings" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Opções</h6>
-                    <a class="collapse-item" href="alterar">Relatório Financeiro</a>
-                    <a class="collapse-item" href="alterar">Relatório Funcionário</a>
-                    <a class="collapse-item" href="alterar">Relatório Pet</a>
-                    <a class="collapse-item" href="alterar">Relatório Serviço</a>
-                    <a class="collapse-item" href="alterar">Relatório Tutor</a></li>
-            </div>
-        </li>
-
-
-            
-            <!-- Divider -->
+            <!-- Nav Item - Relatórios -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRelatorio"
+                    aria-expanded="true" aria-controls="collapseRelatorio" href="#collapseRelatorio">
+                    <i class="fas fa fa-bar-chart"></i>
+                    <span>Relatórios</span>
+                </a>
+                <div id="collapseRelatorio" class="collapse" aria-labelledby="headingSettings"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Opções</h6>
+                        <a class="collapse-item" href="../buttons.html">1</a>
+                        <a class="collapse-item" href="../cards.html">2</a>
+                    </div>
+                </div>
+            </li>
 
 
 
@@ -205,7 +204,7 @@
                             </div>
                         </div>
                     </form>
-                    <h5 class="text-primary">Tutor - Adicionar</h5>
+                    <h5 class="text-primary">Tutor -Adicionar</h5>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -371,7 +370,7 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="./login.html" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -384,7 +383,7 @@
                 <!-- End of Topbar -->
 
                 <!-- Body Content-->
-
+                <form>
                 <!-- Form Container-->
                 <div class="card shadow container w-75 margin-b margin-t" id="card">
 
@@ -408,17 +407,17 @@
 
                             </ul>
                         </div>
-
+                        
                         <div class="tab-content" id="myTabContent">
+                        
                             <div class="tab-pane fade show active" id="pessoa" role="tabpanel"
                                 aria-labelledby="pessoa-tab">
 
                                
 
-                                <!-- ADICIONA PESSOA-->
-
-                                 <!-- Aba Pessoa tab content -->
-
+                                <!-- Aba ADICIONA PESSOA-->
+                        
+                                 <!-- Formulário de Tutor -->
                                 <div class="container mt-5">
                                     <div class="row">
                                         <div class="col mb-3">
@@ -458,31 +457,32 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <!-- FIM ADICIONA PESSOA -->
+                                <!-- FIM TUTOR-->
 
-                                 <!--BOTÕES ADICIONAR -->
-                                 <div class="container mt-4 mb-5">
+                                <!--BOTÃO VOLTAR-->
+                                <div class="container mt-4 mb-5">
+
                                     <div class="d-flex justify-content-between">
-                                        <a href="./addtutor.html" class="btn btn-primary btn-circle" title="Voltar">
-                                            <i class="fas fa-fw fa-chevron-left"></i></a>
-                                       
+                                         <a  onclick="history.go(-1)" class="btn btn-primary btn-circle" title="Voltar">
+                                             <i class="fas fa-fw fa-chevron-left"></i></a>
                                     </div>
                                 </div>
-                                <!-- FIM BOTÕES ADICIONAR -->
+                                <!-- FIM BOTÃO VOLTAR -->
                             </div>
 
                             <div class="tab-pane fade" id="endereco" role="tabpanel" aria-labelledby="endereco-tab">
-
+                            
                           
-                                <!-- Aba Endereço tab content -->
+                                <!-- Aba cadastro Endereço  -->
 
                                 <div class="container mt-5">
-
+                                
                                     <div class="row">
+                                    
                                         <div class="col mb-3">
                                             <label for="logratut" class="form-label"><b>Logradouro</b></label>
                                             <input type="text" class="form-control" id="logratut" name="logratut"
-                                                placeholder="Digite o endereço">
+                                                placeholder="Digite o logradouro">
                                         </div>
                                     </div>
                                     <div class="row">
@@ -521,8 +521,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col mb-3">
-                                            <label for="pontoreferenciatut" class="form-label"><b>Ponto de
-                                                    Referência</b></label>
+                                            <label for="pontoreferenciatut" class="form-label"><b>Ponto de Referência</b></label>
                                             <input type="text" class="form-control" id="pontoreferenciatut"
                                                 name="pontoreferenciatut" placeholder="Digite o ponto de referência">
                                         </div>
@@ -531,21 +530,24 @@
                                 <!--BOTÕES ADICIONAR -->
                                 <div class="container mt-4 mb-5">
                                     <div class="d-flex justify-content-between">
-                                        <a href="./addtutor.html" class="btn btn-primary btn-circle" title="Voltar">
+                                    <a  onclick="history.go(-1)" class="btn btn-primary btn-circle" title="Voltar">
                                             <i class="fas fa-fw fa-chevron-left"></i></a>
+
                                         <div class="ml-auto">
-                                            <a href="./addtutor.html" class="btn btn-success btn-circle"
-                                                title="Adicionar">
-                                                <i class="fas fa-fw fa-chevron-down"></i></a>
-                                            <a href="./addtutor.html" class="btn btn-danger btn-circle"
-                                                title="Excluir">
-                                                <i class="fas fa-fw fa-xmark"></i></a>
+                                            <button type="button" name="Adicionartut" class="btn btn-success btn-circle"
+                                                title="Adicionar"  value="adicionarTutor">
+                                                <i class="fas fa-fw fa-chevron-down"></i></button>
+
+                                            <button type="reset" class="btn btn-danger btn-circle">
+                                                <i class="fas fa-fw fa-xmark"></i></button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- FIM BOTÕES ADICIONAR -->
+                                    <!-- FIM BOTÕES ADICIONAR -->
                             </div>
+                        
                         </div>
+                
                         <!--fIm Endereço-->
 
                         <!--Pet-->
@@ -685,7 +687,7 @@
 
                 </div>
                 <!-- End Form Container-->
-
+</form>
                 <!-- End Body Content-->
 
             </div>
@@ -712,7 +714,7 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
+    <!-- Popup Logout -->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">

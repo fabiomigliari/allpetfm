@@ -1,3 +1,18 @@
+<?php
+
+    require_once "./conexao_bd.php";
+    require_once "./pessoaRepositorio.php";
+    require_once "./Classes/Pessoa.php";
+    require_once "./Classes/Endereco.php";
+    require_once "./Classes/Tutor.php";
+
+    $pessoaRepositorio = new pessoaRepositorio($pdo);
+    $tutores = $pessoaRepositorio->buscarTutores();
+
+    
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +24,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>AllPet | Funcionário</title>
+    <title>AllPet | Consultar Tutor</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/fontawesome-free-6.4.0-web/css/all.min.css" rel="stylesheet" type="text/css">
@@ -21,6 +36,111 @@
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="../agenda/main.min.js"></script>
+    <script src="../agenda/pt-br.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    
+    <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendar');
+
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    initialDate: '2023-05-07',
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay'
+    },
+    locale: 'pt-br',
+    buttonText: {
+          today: 'Hoje',
+          dayGridMonth: 'Mês',
+          timeGridWeek: 'Semana',
+          timeGridDay: 'Dia'
+        },
+    events: [
+          {
+            title: 'Chegada',
+            start: '2023-06-01',
+            
+            description: 'Description for Event 1',
+            funcionario: 'John Doe',
+            tutor: 'Selinha',
+            pet: 'Max',
+            servico: 'Grooming'
+          },
+          {
+            title: 'Saida',
+            
+            start: '2023-06-08',
+            end: '2023-06-08',
+            description: 'Description for Event 1',
+            funcionario: 'John Doe',
+            tutor: 'Selinha',
+            pet: 'Max',
+            servico: 'Grooming'
+          },
+          {
+            title: 'Chegada',
+            
+            start: '2023-06-08',
+            end: '2023-06-08',
+            description: 'Description for Event 1',
+            funcionario: 'John Kennedy',
+            tutor: 'Prayer',
+            pet: 'Scooby',
+            servico: 'Grooming'
+          },
+          {
+            title: 'Chegada',
+            
+            start: '2023-06-09T10:30:00',
+            end: '2023-06-09T16:30:00',
+            description: 'Description for Event 1',
+            funcionario: 'John Doe',
+            tutor: 'Selinha',
+            pet: 'Max',
+            servico: 'Grooming'
+          },
+          
+          // Add more events...
+        ],
+        eventContent: function(info) {
+          var title = info.event.title;
+          var funcionario = info.event.extendedProps.funcionario;
+          var tutor = info.event.extendedProps.tutor;
+          var pet = info.event.extendedProps.pet;
+          var servico = info.event.extendedProps.servico;
+
+          var content = document.createElement('div');
+          content.innerHTML = '<span class="fc-title">' + title + '</span>' +
+          '<a class="text-decoration-none text-reset" href="conagenda2.html">' +
+            '<div class="fc-description">' +
+            '<strong>Func.:</strong> ' + funcionario + '<br>' +
+            '<strong>Tut.:</strong> ' + tutor + '<br>' +
+            '<strong>Pet:</strong> ' + pet + '<br>' +
+            '<strong>Ser.:</strong> ' + servico +
+            '</div>'
+          '</a>';
+
+          return { domNodes: [content] };
+        }
+      });
+
+      calendar.render();
+      var toolbar = calendarEl.querySelectorAll('.fc-button');
+      toolbar.forEach(toolbar => {
+    toolbar.classList.add('blue-color');
+  
+});
+      
+    });
+    
+
+    </script>
 
 </head>
 
@@ -33,7 +153,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion fixed-top" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../tests/index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./index.html">
                 <div class="sidebar-brand-icon">
                     <img src="../icon-allpet.svg" alt="Dog">
                 </div>
@@ -45,7 +165,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="../tests/index.html">
+                <a class="nav-link" href="./index.html">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Home</span></a>
             </li>
@@ -58,77 +178,78 @@
                 Interface
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Funcionário -->
             <li class="nav-item">
-                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFuncionarios"
-                    aria-expanded="true" aria-controls="collapseFuncionarios">
-                    <a class="text-reset text-decoration-none" href="./confuncionario.html">
-                        <i class="fas fa-fw fa-user"></i>
-                        <span>Funcionário</span>
+                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFuncionario"
+                    aria-expanded="true" aria-controls="collapseFuncionario">
+                    <a class="text-reset text-decoration-none" href="#collapseFuncionario">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Funcionários</span>
                     </a>
                 </div>
-                <div id="collapseFuncionarios" class="collapse" aria-labelledby="headingTwo"
+                <div id="collapseFuncionario" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Opções:</h6>
+                        <a class="collapse-item" href="./addfuncionario.php">Adicionar Funcionário</a>
+                        <a class="collapse-item" href="./confuncionario.php">Consultar Funcionário</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Serviço -->
+            <li class="nav-item">
+                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseServico"
+                    aria-expanded="true" aria-controls="collapseServico">
+                    <a class="text-reset text-decoration-none" href="#collapseServico">
+                    <i class="fas fa-fw fa-file-alt"></i>
+                    <span>Serviços</span>
+                    </a>
+                </div>
+                <div id="collapseServico" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Opções:</h6>
+                        <a class="collapse-item" href="./addservico.php">Adicionar Serviços</a>
+                        <a class="collapse-item" href="./conservico.php">Consultar Serviços</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Tutor -->
+            <li class="nav-item">
+                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTutor"
+                    aria-expanded="true" aria-controls="collapseTutor">
+                    <a class="text-reset text-decoration-none" href="#collapseTutor">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Tutores</span>
+                </a>
+                </div>
+                <div id="collapseTutor" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Opções:</h6>
+                        <a class="collapse-item" href="./addtutor.php">Adicionar Tutor</a>
+                        <a class="collapse-item" href="./contutor.php">Consultar Tutor</a>
+                    </div>
+                </div>
+            </li>
+
+
+
+            <!-- Nav Item - PET -->
+            <li class="nav-item">
+                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePet"
+                    aria-expanded="true" aria-controls="collapsePet">
+                    <a class="text-reset text-decoration-none" href="#collapsePet">
+                <i class="fas fa-fw fa-paw"></i>
+                    <span>Pets</span>
+                    </a>
+                </div>
+                <div id="collapsePet" class="collapse" aria-labelledby="headingPets"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addfuncionario.html">Adicionar Funcionário</a>
-                        <a class="collapse-item" href="./confuncionario.html">Consultar Funcionário</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
-                    aria-expanded="true" aria-controls="collapseThree">
-                    <a class="text-reset text-decoration-none" href="./conservico.html">
-                        <i class="fas fa-fw fa-file-alt"></i>
-                        <span>Serviços</span>
-                    </a>
-                </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addservico.html">Adicionar Serviços</a>
-                        <a class="collapse-item" href="./conservico.html">Consultar Serviços</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
-                    aria-expanded="true" aria-controls="collapseFour">
-                    <a class="text-reset text-decoration-none" href="./contutor.html">
-                        <i class="fas fa-fw fa-user"></i>
-                        <span>Tutores</span>
-                    </a>
-                </div>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addtutor.html">Adicionar Tutor</a>
-                        <a class="collapse-item" href="./contutor.html">Consultar Tutor</a>
-                    </div>
-                </div>
-            </li>
-
-
-            <!-- Nav Item - Utilities Collapse Menu PET -->
-            <li class="nav-item">
-                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAgenda"
-                    aria-expanded="true" aria-controls="collapseAgenda">
-                    <a class="text-reset text-decoration-none" href="./conagenda.html">
-                        <i class="fas fa-fw fa-paw"></i>
-                        <span>Pet</span>
-                    </a>
-                </div>
-                <div id="collapseAgenda" class="collapse" aria-labelledby="headingPets" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addpet.html">Adicionar Pet</a>
-                        <a class="collapse-item" href="./conpet.html">Consultar Pet</a>
-
+                        <a class="collapse-item" href="./addpet.php">Adicionar Pet</a>
+                        <a class="collapse-item" href="./conpet.php">Consultar Pet</a>
+                        
                     </div>
                 </div>
             </li>
@@ -142,29 +263,23 @@
             </div>
 
             <!-- Nav Item - Relatórios -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSettings"
-                aria-expanded="true" aria-controls="collapseSettings">
-                <i class="fa fa-print" aria-hidden="true"></i>
-                <span>Relatórios</span>
-            </a>
-            <div id="collapseSettings" class="collapse" aria-labelledby="headingSettings" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Opções</h6>
-                    <a class="collapse-item" href="alterar">Relatório Financeiro</a>
-                    <a class="collapse-item" href="alterar">Relatório Funcionário</a>
-                    <a class="collapse-item" href="alterar">Relatório Pet</a>
-                    <a class="collapse-item" href="alterar">Relatório Serviço</a>
-                    <a class="collapse-item" href="alterar">Relatório Tutor</a></li>
-            </div>
-        </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRelatorio"
+                    aria-expanded="true" aria-controls="collapseRelatorio" href="#collapseRelatorio">
+                    <i class="fas fa fa-bar-chart"></i>
+                    <span>Relatórios</span>
+                </a>
+                <div id="collapseRelatorio" class="collapse" aria-labelledby="headingSettings" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Opções</h6>
+                        <a class="collapse-item" href="../buttons.html">1</a>
+                        <a class="collapse-item" href="../cards.html">2</a>
+                    </div>
+                </div>
+            </li>
 
 
             
-            <!-- Divider -->
-
-
-
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -173,7 +288,7 @@
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
-
+        
 
         </ul>
         <!-- End of Sidebar -->
@@ -185,8 +300,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav
-                    class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow fixed-top margin-l">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow fixed-top margin-l">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -206,7 +320,7 @@
                             </div>
                         </div>
                     </form>
-                    <h5 class="text-primary">Funcionário - Consultar</h5>
+
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -222,7 +336,8 @@
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
                                         <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Buscar..." aria-label="Search" aria-describedby="basic-addon2">
+                                            placeholder="Buscar..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -238,10 +353,10 @@
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
-                                <-- Counter - Alerts ->
+                                <!-- Counter - Alerts ->
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>
-                            <-- Dropdown - Alerts ->
+                            <!-- Dropdown - Alerts ->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
@@ -284,15 +399,15 @@
                             </div>
                         </li>
 
-                        <-- Nav Item - Messages ->
+                        <!-- Nav Item - Messages ->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
-                                <-- Counter - Messages ->
+                                <!-- Counter - Messages ->
                                 <span class="badge badge-danger badge-counter">7</span>
                             </a>
-                            <-- Dropdown - Messages ->
+                            <!-- Dropdown - Messages ->
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="messagesDropdown">
                                 <h6 class="dropdown-header">
@@ -300,7 +415,8 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../img/undraw_profile_1.svg" alt="...">
+                                        <img class="rounded-circle" src="../img/undraw_profile_1.svg"
+                                            alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -311,7 +427,8 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../img/undraw_profile_2.svg" alt="...">
+                                        <img class="rounded-circle" src="../img/undraw_profile_2.svg"
+                                            alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -322,7 +439,8 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../img/undraw_profile_3.svg" alt="...">
+                                        <img class="rounded-circle" src="../img/undraw_profile_3.svg"
+                                            alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -349,12 +467,13 @@
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
-                        <-- Nav Item - User Information -->
+                        <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="../img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle"
+                                    src="../img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -384,245 +503,328 @@
                 </nav>
                 <!-- End of Topbar -->
 
-
-
-
-
+                
+                
+                
+                
                 <!-- Body Content-->
 
                 <!-- Form Container-->
-                <div class="card shadow container w-75 margin-b margin-t" id="card">
+            <div class="card shadow container w-75 margin-b margin-t" id="card">
+
+                      <!-- Begin Page Content -->
+                <div class="container-fluid">
+                  
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4 mt-5">
+                      <div class="card-header py-3">
+                          
+                          <div class="row">
+                              <div class="col">
+                                  <h6 class="m-0 font-weight-bold text-primary">Tutores</h6>
+                              </div>
+                              <div class="col-auto">
+                                <form id="form" class="form-inline">
+                                  <input type="text" class="form-control" placeholder="Pesquisar" value="inputSearch">
+                                  <button class="btn btn-primary" type="button" value="search">
+                                      <i class="fas fa-search fa-sm"></i>
+                                  </button>
+                                 <!-- Botão CADASTRAR na tela de consulta-->
+                                 <button type="button" class="btn btn-primary ml-1"
+                                 title="Cadastrar" value="cadastro">
+                                 <i class="fas fa-fw fa-plus"></i></button>
+                             <!-- Fim Botão CADASTRAR na tela de consulta-->
+                                </form>
+                                </div>
+                                <!--Body Pesquisa-->
+                              <div class="col-auto card-body">
+                            
+
+                            <div class="table-responsive">
+                          <form>
+                              <table class="table table-bordered" width="100%" cellspacing="0">
+                                  <thead>
+                                      <tr>
+                                          <th>CPF</th>
+                                          <th>Nome</th>
+                                          <th>Endereço</th>
+                                          <th>Telefone</th>
+                                          <th colspan="2">Ações</th>
+                                      </tr>
+                                  </thead>
+                                  <tfoot>
+                                      <tr>
+                                          <th>CPF</th>
+                                          <th>Nome</th>
+                                          <th>Endereço</th>
+                                          <th>Telefone</th>
+                                          <th colspan="2">Ações</th>
+                                      </tr>
+                                  </tfoot>
+                                  <tbody>
+                                      <?php foreach ($tutores as $tutor): ?>
+                                      
+                                          <tr>
+                                          <td><?= $tutor->get_cpf(); ?></td>
+                                          <td><?= $tutor->get_nome(); ?></td>
+                                          <td><?= empty($tutor->get_endereco()) ? 'N/A' : $tutor->get_endereco()->get_logradouro().", ". $tutor->get_endereco()->get_num_casa().". ".$tutor->get_endereco()->get_bairro()." - ".$tutor->get_endereco()->get_cidade()."/".$tutor->get_endereco()->get_estado(); ?></td>
+                                          <td><?= $tutor->get_telefone(); ?></td>
+                                          <td><button type="button" class="btn btn-warning btn-sm" value="Editar">Editar</button></td>
+                                          <td>
+                                          
+                                  
+                                                  <input type="hidden" value="<?= $tutor->get_idTutor()?>" >
+                                                  <button type="button" class="btn btn-danger btn-sm" value="Excluir">Excluir</button>
+                                              
+                                          </td>
+                                      </tr>
+                                      
+                                      <?php endforeach; ?>
+                                      
+                                  </tbody>
+                              </table>
+                              </form>
+                          </div>
+                              </div>
+                            <!----------------->
+                                
+                                      
+                                    </div>
+                                    <!-- Card header -->
+                                  </div>
+
+                                  
+                                </div>
+                                <!-- Data tables end -->
+                                    
+                                </div>
+                              <!-- /.container-fluid -->
+                              
+                            <!-- PopUp -->
+
+                      <!-- Form Container-->
+                    
+                <div class="shadow w-50 popup">
 
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
-                        <!--Start Consulta Content-->
-                        <!-- abas -->
+
+
+                        <!-- abas superiores -->
+
                         <div class="mt-3">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="pessoa-tab" data-bs-toggle="tab" href="#pessoa"
                                         role="tab" aria-controls="pessoa" aria-selected="true">Pessoa</a>
                                 </li>
+
                                 <li class="nav-item">
                                     <a class="nav-link" id="endereco-tab" data-bs-toggle="tab" href="#endereco"
                                         role="tab" aria-controls="endereco" aria-selected="false">Endereço</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="funcao-tab" data-bs-toggle="tab" href="#funcao" role="tab"
-                                        aria-controls="funcao" aria-selected="false">Função</a>
-                                </li>
+
                             </ul>
                         </div>
-
+                        <form>
+                        
                         <div class="tab-content" id="myTabContent">
+                        
                             <div class="tab-pane fade show active" id="pessoa" role="tabpanel"
                                 aria-labelledby="pessoa-tab">
 
-                                <!-- Aba Pessoa tab content -->
+                            
 
+                                <!-- Aba ADICIONA PESSOA-->
+                        
+                                <!-- Formulário de Tutor -->
                                 <div class="container mt-5">
                                     <div class="row">
                                         <div class="col mb-3">
-                                            <label for="nome" class="form-label"><b>Nome</b></label>
-                                            <type="text" class="form-control" id="nome" name="nome">
-                                        </div>
-                                    </div>
-
-
-                                    <div class="row">
-                                        <div class="col mb-3">
-                                            <label for="cpf" class="form-label"><b>CPF</b></label>
-                                            <type="text" class="form-control" id="cpf" name="cpf">
-                                        </div>
-                                        <div class="col mb-3">
-                                            <label for="rg" class="form-label"><b>RG</b></label>
-                                            <type="text" class="form-control" id="rg" name="rg">
-                                        </div>
-                                        <div class="col mb-3">
-                                            <label for="telefone" class="form-label"><b>Telefone</b></label>
-                                            <type="text" class="form-control" id="telefone" name="telefone">
+                                            <label for="nometut" class="form-label"><B>Nome</B></label>
+                                            <input type="text" class="form-control" id="nometut" name="nometut"
+                                                placeholder="Digite o nome">
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-4 mb-3">
-                                            <label for="email" class="form-label"><b>Email</b></label>
-                                            <type="email" class="form-control" id="email" name="email">
+                                        <div class="col mb-3">
+                                            <label for="cpftut" class="form-label"><b>CPF</b></label>
+                                            <input type="text" class="form-control" id="cpftut" name="cpftut"
+                                                placeholder="Digite o cpf">
                                         </div>
                                         <div class="col mb-3">
-                                            <label for="dtnasc" class="form-label"><b>Data de Nascimento</b></label>
-                                            <type="text" class="form-control" id="dtnasc" name="dtnasc">
+                                            <label for="rgtut" class="form-label"><b>RG</b></label>
+                                            <input type="text" class="form-control" id="rgtut" name="rgtut"
+                                                placeholder="Digite o RG">
+                                        </div>
+                                        <div class="col mb-3">
+                                            <label for="telefonetut" class="form-label"><b>Telefone</b></label>
+                                            <input type="text" class="form-control" id="telefonetut" name="telefonetut"
+                                                placeholder="Digite o telefone">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-8 mb-3">
+                                            <label for="emailtut" class="form-label"><b>Email</b></label>
+                                            <input type="email" class="form-control" id="emailtut" name="emailtut"
+                                                placeholder="Digite o email">
+                                        </div>
+                                        <div class="col mb-1">
+                                            <label for="dtnasctut" class="form-label"><b>Data de Nascimento</b></label>
+                                            <input type="email" class="form-control" id="dtnasctut" name="dtnasctut"
+                                                placeholder="Digite a data de Nascimento">
                                         </div>
                                     </div>
                                 </div>
                                 <hr>
-                                <!--BOTÕES Consultar/editar/excluir -->
+                                <!-- FIM TUTOR-->
+
+                                <!--BOTÃO VOLTAR-->
                                 <div class="container mt-4 mb-5">
+
                                     <div class="d-flex justify-content-between">
-                                        <a href="./confuncionario.html" class="btn btn-primary btn-circle"
-                                            title="Voltar">
+                                        <a  onclick="history.go(-1)" class="btn btn-primary btn-circle" title="Voltar">
                                             <i class="fas fa-fw fa-chevron-left"></i></a>
-                                        <div class="ml-auto">
-                                            <a href="./addfuncionario.html" class="btn btn-primary btn-circle"
-                                                title="Editar">
-                                                <i class="fas fa-fw fa-pencil"></i></a>
-                                            <a href="./addfuncionario.html" class="btn btn-danger btn-circle"
-                                                title="Excluir">
-                                                <i class="fas fa-fw fa-trash"></i></a>
-                                        </div>
                                     </div>
                                 </div>
-                                <!--Fim BOTÕES Consultar/editar/excluir -->
+                                <!-- FIM BOTÃO VOLTAR -->
                             </div>
-
-                            <!-- Aba Endereço tab content -->
 
                             <div class="tab-pane fade" id="endereco" role="tabpanel" aria-labelledby="endereco-tab">
+                            
+                        
+                                <!-- Aba cadastro Endereço  -->
+
                                 <div class="container mt-5">
+                                
                                     <div class="row">
+                                    
                                         <div class="col mb-3">
-                                            <label for="rua" class="form-label"><b>Logradouro</b></label>
-                                            <type="text" class="form-control" id="rua" name="rua">
+                                            <label for="logratut" class="form-label"><b>Logradouro</b></label>
+                                            <input type="text" class="form-control" id="logratut" name="logratut"
+                                                placeholder="Digite o logradouro">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col mb-3">
-                                            <label for="bairro" class="form-label"><b>Bairro</b></label>
-                                            <type="text" class="form-control" id="bairro" name="bairro">
+                                            <label for="bairrotut" class="form-label"><b>Bairro</b></label>
+                                            <input type="text" class="form-control" id="bairrotut" name="bairrotut"
+                                                placeholder="Digite o bairro">
                                         </div>
                                         <div class="col mb-3">
-                                            <label for="cidade" class="form-label"><b>Cidade</b></label>
-                                            <type="text" class="form-control" id="cidade" name="cidade">
+                                            <label for="cidadetut" class="form-label"><b>Cidade</b></label>
+                                            <input type="text" class="form-control" id="cidadetut" name="cidadetut"
+                                                placeholder="Digite a cidade">
                                         </div>
                                         <div class="col mb-3">
-                                            <label for="estado" class="form-label"><b>Estado</b></label>
-                                            <type="text" class="form-control" id="estado" name="estado">
+                                            <label for="estadotut" class="form-label"><b>Estado</b></label>
+                                            <input type="text" class="form-control" id="estadotut" name="estadotut"
+                                                placeholder="Digite estado">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-4 mb-3">
-                                            <label for="cep" class="form-label"><b>CEP</b></label>
-                                            <type="text" class="form-control" id="cep" name="cep">
+                                            <label for="ceptut" class="form-label"><b>CEP</b></label>
+                                            <input type="text" class="form-control" id="ceptut" name="ceptut"
+                                                placeholder="Digite o CEP">
                                         </div>
                                         <div class="col mb-3">
-                                            <label for="numero" class="form-label"><b>Numero</b></label>
-                                            <type="text" class="form-control" id="numero" name="numero">
+                                            <label for="numerotut" class="form-label"><b>Número</b></label>
+                                            <input type="text" class="form-control" id="numerotut" name="numerotut"
+                                                placeholder="Digite o numero">
                                         </div>
-                                        <div class="col mb-3">
-                                            <label for="complemento" class="form-label"><b>Complemento</b></label>
-                                            <type="text" class="form-control" id="complemento">
+                                        <div class="col-6 mb-3">
+                                            <label for="complementotut" class="form-label"><b>Complemento</b></label>
+                                            <input type="text" class="form-control" id="complementotut"
+                                                name="complementotut" placeholder="Digite o complemento">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col mb-3">
-                                            <label for="pontoreferencia" class="form-label"><b>Ponto de
-                                                    Referência</b></label>
-                                            <type="text" class="form-control" id="pontoreferencia">
+                                            <label for="pontoreferenciatut" class="form-label"><b>Ponto de Referência</b></label>
+                                            <input type="text" class="form-control" id="pontoreferenciatut"
+                                                name="pontoreferenciatut" placeholder="Digite o ponto de referência">
                                         </div>
                                     </div>
                                 </div>
-                                <hr>
-                                <!--BOTÕES Consultar/editar/excluir -->
+                                <!--BOTÕES ADICIONAR -->
                                 <div class="container mt-4 mb-5">
                                     <div class="d-flex justify-content-between">
-                                        <a href="./confuncionario.html" class="btn btn-primary btn-circle"
-                                            title="Voltar">
+                                    <a  onclick="history.go(-1)" class="btn btn-primary btn-circle" title="Voltar">
                                             <i class="fas fa-fw fa-chevron-left"></i></a>
+                                    
                                         <div class="ml-auto">
-                                            <a href="./addfuncionario.html" class="btn btn-primary btn-circle"
-                                                title="Editar">
-                                                <i class="fas fa-fw fa-pencil"></i></a>
-                                            <a href="./addfuncionario.html" class="btn btn-danger btn-circle"
-                                                title="Excluir">
-                                                <i class="fas fa-fw fa-trash"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--Fim BOTÕES Consultar/editar/excluir -->
-                            </div>
+                                            
+                                            <button type="submit" name="Adicionartut" class="btn btn-success btn-circle"
+                                                title="Adicionar"  value="adicionarTutor">
+                                                <i class="fas fa-fw fa-chevron-down"></i></button>
 
-                            <!-- Funcão tab content -->
-
-                            <div class="tab-pane fade" id="funcao" role="tabpanel" aria-labelledby="funcao-tab">
-                                <div class="container mt-5 mb-4">
-                                    <div class="row">
-                                        <div class="col-4 mb-3">
-                                            <label for="funcao" class="form-label"><b>Função</b></label>
-                                            <type="text" class="form-control" id="funcao" name="funcao">
-                                        </div>
-                                        <div class="col-4 mb-3">
-                                            <label for="salario" class="form-label"><b>Salário</b></label>
-                                            <type="text" class="form-control" id="salario" name="salario">
+                                            <button type="button" class="btn btn-danger btn-circle" value="closePopupButton">
+                                                <i class="fas fa-fw fa-xmark"></i></button>
+                                            </form>
+                                            </div>
+                                        
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col mb-3">
-                                            <label for="perfil" class="form-label"><b>Perfil</b></label>
-                                            <type="text" class="form-control" id="perfil" name="perfil">
-                                        </div>
-                                        <div class="col mb-3">
-                                            <label for="hora_de_trab" class="form-label"><b>Horário de
-                                                    Trabalho</b></label>
-                                            <type="number" class="form-control" id="hora_de_trab">
-                                        </div>
-                                        <div class="col mb-3">
-                                            <label for="diadefolga" class="form-label"><b>Dia de Folga</b></label>
-                                            <type="text" class="form-control" id="diadefolga" name="diadefolga">
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
-                                 <!--BOTÕES Consultar/editar/excluir -->
-                                 <div class="container mt-4 mb-5">
-                                    <div class="d-flex justify-content-between">
-                                        <a href="./confuncionario.html" class="btn btn-primary btn-circle"
-                                            title="Voltar">
-                                            <i class="fas fa-fw fa-chevron-left"></i></a>
-                                        <div class="ml-auto">
-                                            <a href="./addfuncionario.html" class="btn btn-primary btn-circle"
-                                                title="Editar">
-                                                <i class="fas fa-fw fa-pencil"></i></a>
-                                            <a href="./addfuncionario.html" class="btn btn-danger btn-circle"
-                                                title="Excluir">
-                                                <i class="fas fa-fw fa-trash"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--Fim BOTÕES Consultar/editar/excluir -->
+                                    <!-- FIM BOTÕES ADICIONAR -->
                             </div>
-                            <!--Endereço-->
+                        
                         </div>
+
+                        <!--fIm Endereço-->
+
+                        
 
                     </div>
                     <!-- /.container-fluid -->
 
                 </div>
-                <!-- End Form Container-->
+                
+               <!-- End Form Container-->
 
-                <!-- End Body Content-->
+                            <!-- End PopUp -->
+                          
+                                        
+                            
+                            
+                    
+                    
+                
+                    
+                
 
+                
 
-
-
-
+                
+                
+            
+            
+            
+            
             </div>
-            <!-- End of Main Content -->
+            <!-- End Form Container-->
+            <!-- End Body Content-->
+            
 
+            
 
+        </div>
+        <!-- End of Main Content -->
 
         </div>
         <!-- End of Content Wrapper -->
-
     </div>
     <!-- End of Page Wrapper -->
-    <!-- Footer -->
-    <footer class="sticky-footer bg-white margin-l">
-        <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-                <span>Copyright &copy; Your Website 2021</span>
-            </div>
+<!-- Footer -->
+<footer class="sticky-footer bg-white margin-l" >
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2021</span>
         </div>
-    </footer>
-    <!-- End of Footer -->
+    </div>
+</footer>
+<!-- End of Footer -->
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
@@ -654,15 +856,11 @@
         var tab = new bootstrap.Tab(document.getElementById("pessoa-tab"));
         tab.show();
 
-        var sidebar = document.getElementById("page-top");
-        if (sidebar.classList.contains("sidebar-toggled")) {
-            console.log("The class is present");
-        }
-        else {
-            console.log("The class is not present");
-        }
-    </script>
-    <script src="../js/allpet.js"></script>
+       
+        // Get reference to the calendar container element
+      </script>
+      <script src="../js/allpet.js"></script>
+      
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -681,5 +879,8 @@
     <script src="../js/demo/chart-pie-demo.js"></script>
 
 </body>
+
+
+
 
 </html>

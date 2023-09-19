@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
 
@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>AllPet | Serviço</title>
+    <title>AllPet | Consultar Serviço</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/fontawesome-free-6.4.0-web/css/all.min.css" rel="stylesheet" type="text/css">
@@ -21,6 +21,14 @@
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="../agenda/main.min.js"></script>
+    <script src="../agenda/pt-br.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    
+    <script>
+
+    </script>
 
 </head>
 
@@ -58,104 +66,103 @@
                 Interface
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Funcionário -->
             <li class="nav-item">
-                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFuncionarios"
-                    aria-expanded="true" aria-controls="collapseFuncionarios">
-                    <a class="text-reset text-decoration-none" href="./confuncionario.html">
-                        <i class="fas fa-fw fa-user"></i>
-                        <span>Funcionário</span>
+                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFuncionario"
+                    aria-expanded="true" aria-controls="collapseFuncionario">
+                    <a class="text-reset text-decoration-none" href="#collapseFuncionario">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Funcionários</span>
                     </a>
                 </div>
-                <div id="collapseFuncionarios" class="collapse" aria-labelledby="headingTwo"
-                    data-parent="#accordionSidebar">
+                <div id="collapseFuncionario" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addfuncionario.html">Adicionar Funcionário</a>
-                        <a class="collapse-item" href="./confuncionario.html">Consultar Funcionário</a>
+                        <a class="collapse-item" href="./addfuncionario.php">Adicionar Funcionário</a>
+                        <a class="collapse-item" href="./confuncionario.php">Consultar Funcionário</a>
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Serviço -->
             <li class="nav-item">
-                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
-                    aria-expanded="true" aria-controls="collapseThree">
-                    <a class="text-reset text-decoration-none" href="./conservico.html">
-                        <i class="fas fa-fw fa-file-alt"></i>
-                        <span>Serviços</span>
+                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseServico"
+                    aria-expanded="true" aria-controls="collapseServico">
+                    <a class="text-reset text-decoration-none" href="#collapseServico">
+                    <i class="fas fa-fw fa-file-alt"></i>
+                    <span>Serviços</span>
                     </a>
                 </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                <div id="collapseServico" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addservico.html">Adicionar Serviços</a>
-                        <a class="collapse-item" href="./conservico.html">Consultar Serviços</a>
+                        <a class="collapse-item" href="./addservico.php">Adicionar Serviços</a>
+                        <a class="collapse-item" href="./conservico.php">Consultar Serviços</a>
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Tutor-->
             <li class="nav-item">
-                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
-                    aria-expanded="true" aria-controls="collapseFour">
-                    <a class="text-reset text-decoration-none" href="./contutor.html">
-                        <i class="fas fa-fw fa-user"></i>
-                        <span>Tutores</span>
-                    </a>
+                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTutor"
+                    aria-expanded="true" aria-controls="collapseTutor">
+                    <a class="text-reset text-decoration-none" href="#collapseTutor">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Tutores</span>
+                </a>
                 </div>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
+                <div id="collapseTutor" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addtutor.html">Adicionar Tutor</a>
-                        <a class="collapse-item" href="./contutor.html">Consultar Tutor</a>
+                        <a class="collapse-item" href="./addtutor.php">Adicionar Tutor</a>
+                        <a class="collapse-item" href="./contutor.php">Consultar Tutor</a>
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu PET -->
-            <li class="nav-item">
-                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAgenda"
-                    aria-expanded="true" aria-controls="collapseAgenda">
-                    <a class="text-reset text-decoration-none" href="./conagenda.html">
-                        <i class="fas fa-fw fa-paw"></i>
-                    <span>Pet</span>
-                    </a>
-                </div>
-                <div id="collapseAgenda" class="collapse" aria-labelledby="headingPets"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addpet.html">Adicionar Pet</a>
-                        <a class="collapse-item" href="./conpet.html">Consultar Pet</a>
-                        
-                    </div>
-                </div>
-            </li>
+    
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Outros
+          <!-- Nav Item - PET -->
+          <li class="nav-item">
+            <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePet"
+                aria-expanded="true" aria-controls="collapsePet">
+                <a class="text-reset text-decoration-none" href="#collapsePet">
+            <i class="fas fa-fw fa-paw"></i>
+                <span>Pets</span>
+                </a>
             </div>
+            <div id="collapsePet" class="collapse" aria-labelledby="headingPets"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Opções:</h6>
+                    <a class="collapse-item" href="./addpet.php">Adicionar Pet</a>
+                    <a class="collapse-item" href="./conpet.php">Consultar Pet</a>
+                    
+                </div>
+            </div>
+        </li>
 
-            <!-- Nav Item - Relatórios -->
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Outros
+        </div>
+
+        <!-- Nav Item - Relatórios -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSettings"
-                aria-expanded="true" aria-controls="collapseSettings">
-                <i class="fa fa-print" aria-hidden="true"></i>
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRelatorio"
+                aria-expanded="true" aria-controls="collapseRelatorio" href="#collapseRelatorio">
+                <i class="fas fa fa-bar-chart"></i>
                 <span>Relatórios</span>
             </a>
-            <div id="collapseSettings" class="collapse" aria-labelledby="headingSettings" data-parent="#accordionSidebar">
+            <div id="collapseRelatorio" class="collapse" aria-labelledby="headingSettings" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Opções</h6>
-                    <a class="collapse-item" href="alterar">Relatório Financeiro</a>
-                    <a class="collapse-item" href="alterar">Relatório Funcionário</a>
-                    <a class="collapse-item" href="alterar">Relatório Pet</a>
-                    <a class="collapse-item" href="alterar">Relatório Serviço</a>
-                    <a class="collapse-item" href="alterar">Relatório Tutor</a></li>
+                    <a class="collapse-item" href="../buttons.html">1</a>
+                    <a class="collapse-item" href="../cards.html">2</a>
+                </div>
             </div>
         </li>
 
@@ -169,7 +176,7 @@
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
-
+        
 
         </ul>
         <!-- End of Sidebar -->
@@ -181,8 +188,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav
-                    class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow fixed-top margin-l">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow fixed-top margin-l">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -202,7 +208,7 @@
                             </div>
                         </div>
                     </form>
-                    <h5 class="text-primary">Serviços - Consultar</h5>
+
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -218,7 +224,8 @@
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
                                         <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Buscar..." aria-label="Search" aria-describedby="basic-addon2">
+                                            placeholder="Buscar..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -296,7 +303,8 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../img/undraw_profile_1.svg" alt="...">
+                                        <img class="rounded-circle" src="../img/undraw_profile_1.svg"
+                                            alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -307,7 +315,8 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../img/undraw_profile_2.svg" alt="...">
+                                        <img class="rounded-circle" src="../img/undraw_profile_2.svg"
+                                            alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -318,7 +327,8 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../img/undraw_profile_3.svg" alt="...">
+                                        <img class="rounded-circle" src="../img/undraw_profile_3.svg"
+                                            alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -345,12 +355,13 @@
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
-                        <-- Nav Item - User Information -->
+                        <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="../img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle"
+                                    src="../img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -380,123 +391,223 @@
                 </nav>
                 <!-- End of Topbar -->
 
+                
+                
+                
+                
                 <!-- Body Content-->
 
                 <!-- Form Container-->
-                <div class="card shadow container w-75 margin-b margin-t" id="card">
+            <div class="card shadow container w-75 margin-b margin-t" id="card">
 
-                    <!-- Begin Page Content -->
-                    <div class="container-fluid">
+                      <!-- Begin Page Content -->
+                <div class="container-fluid">
+                  
 
-                        <!--Start Consulta Content-->
-                        <div class="mt-3">
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="servico-tab" data-bs-toggle="tab" href="#servico"
-                                        role="tab" aria-controls="servico" aria-selected="true">Serviço</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="servico" role="tabpanel"
-                                aria-labelledby="servico-tab">
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4 mt-5">
+                      <div class="card-header py-3">
+                          
+                          <div class="row">
+                              <div class="col">
+                                  <h6 class="m-0 font-weight-bold text-primary">Serviços</h6>
+                              </div>
+                              <div class="col-auto">
+                                <form class="form-inline">
+                                  <input type="text" class="form-control" placeholder="Pesquisar">
+                                  <button class="btn btn-primary" type="button">
+                                      <i class="fas fa-search fa-sm"></i>
+                                  </button>
+                                <!-- Botão CADASTRAR na tela de consulta-->
+                                <a href="./addservico.html" class="btn btn-primary ml-1"
+                                title="Cadastrar">
+                                <i class="fas fa-fw fa-plus"></i></a>
+                                 <!-- Fim Botão CADASTRAR na tela de consulta-->
+                                </form>
+                              </div>
+                                
+                                <!-- Modal -->
+                                <div class="container-fluid" id="card">
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-dialog-centered modal-xl custom-dialog">
+                                    <div class="modal-content p-3">
+                                        <!--Modal Content-->
+                                        <div class="mt-3">
+                                          <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                            <li class="nav-item">
+                                              <a class="nav-link active" id="servico-tab" data-bs-toggle="tab" href="#servico" role="tab" aria-controls="servico" aria-selected="true">Serviço</a>
+                                            </li>
+                                            
+                                          </ul>
+                                          </div>
+                                          
+                                          <div class="tab-content" id="myTabContent">
+                                            <div class="tab-pane fade show active" id="servico" role="tabpanel" aria-labelledby="servico-tab">
+                                              <!-- servico tab content -->
+                                              <div class="container mt-5 mb-5">
+                                                <!--Formulário para preenchimento do cadastro do serviço-->
+  
+                   <!--NOME-->
+  
+  <div class="container mt-5 text-left">
+    <div class="row align-items-start">
+     <div class="col">
+      <div class="mb-3">
+       <label for="exampleFormControlInput1" class="form-label">*Nome:</label>
+       <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Digite o Nome do Serviço">
+      </div>
+     </div>
+     <div class="col">
+      <div class="mb-3">
+       <label for="exampleFormControlInput1" class="form-label">*Duração Padrão:</label>
+       <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Digite a Duração do Serviço">
+      </div>
+     </div>
+    </div>
+   </div>
+   
+   <!-- -->
+   <div class="container text-left">
+    <div class="row align-items-start">
+     <div class="col">
+      <div class="mb-3">
+       <label for="exampleFormControlInput1" class="form-label">Fluxo Agenda:</label>
+       <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Fluxo Agenda">
+      </div>
+     </div>
+     <div class="col">
+      <div class="mb-3">
+       <label for="exampleFormControlInput1" class="form-label">Frequência Recomendada:</label>
+       <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Frequência Recomendada">
+      </div>
+     </div>
+    </div>
+   </div>
+   
+   <div class="container mb-5 text-left">
+ <div class="row align-items-start">
+   <div class="col">
+     <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Modelo de Atendimento:</label>
+    <textarea class="form-control" id="descreverservico" rows="5" placeholder="Descreva aqui como funciona o serviço"></textarea>
+   </div>
+   </div>
+ </div>
+ </div>
+ 
+ <!--Esse esquema abaixo são os botões salvar e cancelar em relação ao Serviço-->
 
-                                <!-- Serviço tab content -->
-
-                                <div class="container mt-5">
-                                    <div class="row">
-                                        <div class="col mb-3">
-                                            <label for="nomeserviço" class="form-label"><B>Nome do Serviço</B></label>
-                                            <type="text" class="form-control" id="nomeserviço" name="nomeserviço">
-                                                </type>
-                                        </div>
-                                        <div class="col mb-3">
-                                            <label for="duracao" class="form-label"><b>Duração</b></label>
-                                            <type="text" class="form-control" id="duracao" name="duracao">
-                                                </type>
-                                        </div>
-                                        <div class="col mb-2">
-                                            <label for="preco" class="form-label"><b>Preço</b></label>
-                                            <type="text" class="form-control" id="preco" name="preco">
-                                                </type>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col mb-3">
-                                            <label for="fluxoag" class="form-label"><B>Fluxo Agenda</B></label>
-                                            <type="text" class="form-control" id="fluxoag" name="fluxoag">
-                                                </type>
-                                        </div>
-                                        <div class="col mb-3">
-                                            <label for="periodorec" class="form-label"><b>Período
-                                                    Recomendado</b></label>
-                                            <type="text" class="form-control" id="periodorec" name="periodorec">
-                                                </type>
-                                        </div>
-                                    </div>
-                                    <div class="row align-items-start">
-                                        <div class="col">
-                                            <div class="mb-3">
-                                                <label for="modatend" class="form-label"><b>Modelo
-                                                        de Atendimento</b></label>
-                                                <type="text" class="form-control" rows="5" nome="modatend"
-                                                    id="modatend">
-                                                    </type>
+   <!-- End of Service-->
+                                                  
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
-                                <!--BOTÕES Consultar/editar/excluir -->
-                                <div class="container mt-4 mb-5">
-                                    <div class="d-flex justify-content-between">
-                                        <a href="./conservico.html" class="btn btn-primary btn-circle"
-                                            title="Voltar">
-                                            <i class="fas fa-fw fa-chevron-left"></i></a>
-                                        <div class="ml-auto">
-                                            <a href="./addservico.html" class="btn btn-primary btn-circle"
-                                                title="Editar">
-                                                <i class="fas fa-fw fa-pencil"></i></a>
-                                            <a href="./addservico.html" class="btn btn-danger btn-circle"
-                                                title="Excluir">
-                                                <i class="fas fa-fw fa-trash"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--Fim BOTÕES Consultar/editar/excluir -->
+                                            <hr>
+                              <div class="container mt-4 mb-5">
+                                <div class="d-flex justify-content-between">
+                                
+                                    <button type="button" class="btn btn-primary btn-circle"><i class="fas fa-fw fa-chevron-left"></i></button>
+                                    <div class="ml-auto">
+                                    <a href="conservico2.html" class="btn btn-success btn-circle"><i class="fas fa-fw fa-chevron-down"></i></a>
+                                    <a href="conservico.html" class="btn btn-danger btn-circle"><i class="fas fa-fw fa-xmark"></i></a>
+                                    </div> 
+                                    
+                                  </div> 
                             </div>
-
-
-                        </div>
-                        <!--End consulta content-->
-
-                    </div>
-                    <!-- /.container-fluid -->
-
+                                            </div>
+                                            
+                                          
+                                            </div>
+                                        <!----------------->
+                                      
+                                    </div>
+                                  </div>
+                                </div>
+                                </div>
+                              </div>
+                              <div class="card-body">
+                          
+                          <div class="table-responsive">
+                              <table class="table table-bordered" width="100%" cellspacing="0">
+                                  <thead>
+                                    <tr>
+                                        <th>cod. servico</th>
+                                        <th>Nome do serviço</th>
+                                        <th>Duração</th>
+                                        <th>Preço</th>
+                                    </tr>
+                                  </thead>
+                                  <tfoot>
+                                    <tr>
+                                        <th>cod. servico</th>
+                                        <th>Nome do serviço</th>
+                                        <th>Duração</th>
+                                        <th>Preço</th>
+                                    </tr>
+                                  </tfoot>
+                                  <tbody>
+                                  
+                                    <tr>
+                                        <td><a href="conservico2.html">1</a></td>
+                                        <td><a href="conservico2.html">Banho</a></td>
+                                        <td><a href="conservico2.html">30 min</a></td>
+                                        <td><a href="conservico2.html">R$50,00</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="conservico2.html">2</a></td>
+                                        <td><a href="conservico2.html">Tosa</a></td>
+                                        <td><a href="conservico2.html">50 min</a></td>
+                                        <td><a href="conservico2.html">R$100,00</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="conservico2.html">3</a></td>
+                                        <td><a href="conservico2.html">Banho e Tosa</a></td>
+                                        <td><a href="conservico2.html">70 min</a></td>
+                                        <td><a href="conservico2.html">R$120,00</a></td>
+                                    </tr>
+                                  
+                                  </tbody>
+                              </table>
+                          </div>
+                              </div>
+                          </div>
+                      </div>
+                      </div>
+                            
+                            
+                    
+                    
+                
+                    
                 </div>
+                <!-- /.container-fluid -->
+
+            </div>
                 <!-- End Form Container-->
 
                 <!-- End Body Content-->
-
+                
+            
+            
+            
+            
             </div>
             <!-- End of Main Content -->
 
-
+            
 
         </div>
         <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
-    <!-- Footer -->
-    <footer class="sticky-footer bg-white margin-l">
-        <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-                <span>Copyright &copy; Your Website 2021</span>
-            </div>
+<!-- Footer -->
+<footer class="sticky-footer bg-white margin-l" >
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2021</span>
         </div>
-    </footer>
-    <!-- End of Footer -->
+    </div>
+</footer>
+<!-- End of Footer -->
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
@@ -513,8 +624,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.
-                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <a class="btn btn-primary" href="../login.html">Logout</a>
@@ -526,23 +636,13 @@
 
     <script>
         // Activate tab functionality
-        var tab = new bootstrap.Tab(document.getElementById("pessoa-tab"));
+        var tab = new bootstrap.Tab(document.getElementById("servico-tab"));
         tab.show();
 
-        $(document).ready(function () {
-            $('#pessoa').submit(function (e) {
-                e.preventDefault(); // Prevent form submission
-
-                // Perform any necessary validation or processing here
-
-                // Move to the next step
-                $('#pessoa').hide();
-                $('#funcao').show();
-            });
-        });
-
-    </script>
-    <script src="../js/allpet.js"></script>
+        // Get reference to the calendar container element
+      </script>
+      <script src="../js/allpet.js"></script>
+      
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -561,5 +661,8 @@
     <script src="../js/demo/chart-pie-demo.js"></script>
 
 </body>
+
+
+
 
 </html>

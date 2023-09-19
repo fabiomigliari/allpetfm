@@ -1,48 +1,3 @@
-<?php
-include 'connect.php';
-
-$success = 0;
-// Fetch days of the week from the "daysweek" table
-$sql = "SELECT nomedodia, id FROM diasdasemana";
-$result = mysqli_query($conn, $sql);
-
-
-if(isset($_POST['submit']))
-{
-
-// Dados de Pessoa
-
-
-$email = mysqli_real_escape_string($conn, $_POST['email']);
-$tipo = 1;
-
-
-//$funcao = $_POST['funcao'];
-
-// Dados de Endereço
-
-
-$endereco = "INSERT INTO endereco (cep, rua, num_da_casa, cidade, estado, bairro) VALUES ('$_POST[cep]', '$_POST[rua]', '$_POST[numero]', '$_POST[cidade]', '$_POST[estado]', '$_POST[bairro]')";
-$funcionario = "INSERT INTO funcionarios (cpf_pessoa, diadefolga, hora_de_trab, perfil ) VALUES ('$_POST[cpf]', '$_POST[folga]', '$_POST[hora_de_trab]', '$_POST[perfil]')";
-
-mysqli_query($conn, "START TRANSACTION");
-
-  if(mysqli_query($conn, $endereco))
-{
-  $lastInsertedId = mysqli_insert_id($conn);
-  $pessoa = "INSERT INTO pessoas (nome, cpf, dtnasc, telefone, email, rg, tipo, fkendereco) VALUES ('$_POST[nome]', '$_POST[cpf]', '$_POST[dt_nasc]', '$_POST[telefone]', '$email', '$_POST[rg]', '$tipo', '$lastInsertedId')";
-    mysqli_query($conn, $pessoa);
-  
-    mysqli_query($conn, $funcionario);
-      
-    $success = 1;
-  }
-    else echo "Occorreu algum erro";
-}
-mysqli_query($conn, "COMMIT");
-
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,16 +9,18 @@ mysqli_query($conn, "COMMIT");
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>AllPet - Dashboard</title>
+    <title>AllPet | Adicionar Funcionário</title>
 
     <!-- Custom fonts for this template-->
-    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/fontawesome-free/fontawesome-free-6.4.0-web/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/fontawesome-free/css/style-allpet.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
 </head>
 
@@ -73,10 +30,10 @@ mysqli_query($conn, "COMMIT");
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion fixed-top" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../tests/index.html">
                 <div class="sidebar-brand-icon">
                     <img src="../icon-allpet.svg" alt="Dog">
                 </div>
@@ -88,7 +45,7 @@ mysqli_query($conn, "COMMIT");
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="../index.html">
+                <a class="nav-link" href="../tests/index.html">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Home</span></a>
             </li>
@@ -101,68 +58,78 @@ mysqli_query($conn, "COMMIT");
                 Interface
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item -Funcionário -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFuncionarios"
-                    aria-expanded="true" aria-controls="collapseFuncionarios">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Funcionário</span>
-                </a>
-                <div id="collapseFuncionarios" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addfuncionario.html">Adicionar Funcionário</a>
-                        <a class="collapse-item" href="./confuncionario.html">Consultar Funcionário</a>
-                    </div>
+                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFuncionario"
+                    aria-expanded="true" aria-controls="collapseFuncionario">
+                    <a class="text-reset text-decoration-none" href="#collapseFuncionario">
+                        <i class="fas fa-fw fa-user"></i>
+                        <span>Funcionários</span>
+                    </a>
                 </div>
-            </li>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
-                    aria-expanded="true" aria-controls="collapseThree">
-                    <i class="fas fa-fw fa-file-alt"></i>
-                    <span>Serviços</span>
-                </a>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addservico.html">Adicionar Serviços</a>
-                        <a class="collapse-item" href="./conservico.html">Consultar Serviços</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
-                    aria-expanded="true" aria-controls="collapseFour">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Tutor</span>
-                </a>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addtutor.html">Adicionar Tutor</a>
-                        <a class="collapse-item" href="./contutor.html">Consultar Tutor</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePet"
-                    aria-expanded="true" aria-controls="collapsePet">
-                    <i class="fas fa-fw fa-paw"></i>
-                    <span>Pet</span>
-                </a>
-                <div id="collapsePet" class="collapse" aria-labelledby="headingPets"
+                <div id="collapseFuncionario" class="collapse" aria-labelledby="headingTwo"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addpet.html">Adicionar Pet</a>
-                        <a class="collapse-item" href="./conpet.html">Consultar Pet</a>
-                        
+                        <a class="collapse-item" href="./addfuncionario.php">Adicionar Funcionário</a>
+                        <a class="collapse-item" href="./confuncionario.php">Consultar Funcionário</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Serviço -->
+            <li class="nav-item">
+                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseServico"
+                    aria-expanded="true" aria-controls="collapseServico">
+                    <a class="text-reset text-decoration-none" href="#collapseServico">
+                        <i class="fas fa-fw fa-file-alt"></i>
+                        <span>Serviços</span>
+                    </a>
+                </div>
+                <div id="collapseServico" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Opções:</h6>
+                        <a class="collapse-item" href="./addservico.php">Adicionar Serviços</a>
+                        <a class="collapse-item" href="./conservico.php">Consultar Serviços</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Tutor -->
+            <li class="nav-item">
+                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTutor"
+                    aria-expanded="true" aria-controls="collapseTutor">
+                    <a class="text-reset text-decoration-none" href="#collapseTutor">
+                        <i class="fas fa-fw fa-user"></i>
+                        <span>Tutores</span>
+                    </a>
+                </div>
+                <div id="collapseTutor" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Opções:</h6>
+                        <a class="collapse-item" href="./addtutor.php">Adicionar Tutor</a>
+                        <a class="collapse-item" href="./contutor.php">Consultar Tutor</a>
+                    </div>
+                </div>
+            </li>
+
+
+
+            <!-- Nav Item - PET -->
+            <li class="nav-item">
+                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePet"
+                    aria-expanded="true" aria-controls="collapsePet">
+                    <a class="text-reset text-decoration-none" href="#collapsePet">
+                        <i class="fas fa-fw fa-paw"></i>
+                        <span>Pets</span>
+                    </a>
+                </div>
+                <div id="collapsePet" class="collapse" aria-labelledby="headingPets" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Opções:</h6>
+                        <a class="collapse-item" href="./addpet.php">Adicionar Pet</a>
+                        <a class="collapse-item" href="./conpet.php">Consultar Pet</a>
+
                     </div>
                 </div>
             </li>
@@ -175,23 +142,25 @@ mysqli_query($conn, "COMMIT");
                 Outros
             </div>
 
-            <!-- Nav Item - Configurações -->
+            <!-- Nav Item - Relatórios -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSettings"
-                    aria-expanded="true" aria-controls="collapseSettings">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Configurações</span>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseRelatorio"
+                    aria-expanded="true" aria-controls="collapseRelatorio" href="#collapseRelatorio">
+                    <i class="fas fa fa-bar-chart"></i>
+                    <span>Relatórios</span>
                 </a>
-                <div id="collapseSettings" class="collapse" aria-labelledby="headingSettings" data-parent="#accordionSidebar">
+                <div id="collapseRelatorio" class="collapse" aria-labelledby="headingSettings"
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções</h6>
-                        <a class="collapse-item" href="../buttons.html">Buttons</a>
-                        <a class="collapse-item" href="../cards.html">Cards</a>
+                        <a class="collapse-item" href="../buttons.html">1</a>
+                        <a class="collapse-item" href="../cards.html">2</a>
                     </div>
                 </div>
             </li>
 
-            
+
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -200,7 +169,7 @@ mysqli_query($conn, "COMMIT");
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
-        
+
 
         </ul>
         <!-- End of Sidebar -->
@@ -212,7 +181,8 @@ mysqli_query($conn, "COMMIT");
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav
+                    class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow fixed-top margin-l">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -223,7 +193,7 @@ mysqli_query($conn, "COMMIT");
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..."
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
@@ -232,7 +202,7 @@ mysqli_query($conn, "COMMIT");
                             </div>
                         </div>
                     </form>
-
+                    <h5 class="text-primary">Funcionário -Adicionar</h5>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -248,8 +218,7 @@ mysqli_query($conn, "COMMIT");
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
                                         <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
+                                            placeholder="Buscar..." aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -319,7 +288,7 @@ mysqli_query($conn, "COMMIT");
                                 <!-- Counter - Messages ->
                                 <span class="badge badge-danger badge-counter">7</span>
                             </a>
-                            <!-- Dropdown - Messages ->
+                            <!-- Dropdown - Messages --
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="messagesDropdown">
                                 <h6 class="dropdown-header">
@@ -327,8 +296,7 @@ mysqli_query($conn, "COMMIT");
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../img/undraw_profile_1.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="../img/undraw_profile_1.svg" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -339,8 +307,7 @@ mysqli_query($conn, "COMMIT");
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../img/undraw_profile_2.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="../img/undraw_profile_2.svg" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -351,8 +318,7 @@ mysqli_query($conn, "COMMIT");
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="../img/undraw_profile_3.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="../img/undraw_profile_3.svg" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -384,8 +350,7 @@ mysqli_query($conn, "COMMIT");
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="../img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="../img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -417,159 +382,263 @@ mysqli_query($conn, "COMMIT");
 
                 <!-- Body Content-->
 
-                <!-- ADD Funcionario -->
-                <div class="card shadow container w-75 mb-5">
-                    
-                    <form>
-                <!-- Container Pessoa-->
-                  <div class="container mt-5">
-                    <div class="row">
-                      <div class="col mb-3">
-                        <label for="nome" class="form-label">Nome</label>
-                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome">
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col mb-3">
-                        <label for="cpf" class="form-label">CPF</label>
-                            <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Digite o cpf">
-                      </div>
-                      <div class="col mb-3">
-                        <label for="rg" class="form-label">RG</label>
-                            <input type="text" class="form-control" id="rg" name="rg" placeholder="Digite o RG">
-                      </div>
-                      <div class="col mb-3">
-                        <label for="telefone" class="form-label">Telefone</label>
-                            <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Digite o telefone">
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col mb-3">
-                        <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Digite o email">
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Container Função -->
-                  <div class="container mt-5">
-                    <h5 class="text-left mb-3">Funcão</h5>
-                    <div class="row">
-                      <div class="col mb-3">
-                        <label for="funcao" class="form-label">Função</label>
-                            <input type="text" class="form-control" id="funcao" name="funcao" placeholder="Digite a função">
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col mb-3">
-                        <label for="perfil" class="form-label">Perfil</label>
-                            <input type="text" class="form-control" id="perfil" name="perfil" placeholder="Digite o perfil">
-                      </div>
-                      <div class="col mb-3">
-                        <label for="hora_de_trab" class="form-label">Horário de Trabalho</label>
-                            <input type="number" class="form-control" id="hora_de_trab" name="hora_de_trab" placeholder="Digite o horário">
-                      </div>
-                      <div class="col mb-3">
-                        <label for="diadefolga" class="form-label">Dia de Folga</label>
-                        <?php
+                <!-- Form Container-->
+                <div class="card shadow container w-75 margin-b margin-t" id="card">
 
-                        echo '<select class="form-control" name="folga">';
-                        while ($row = mysqli_fetch_assoc($result)) {
-                        $dayName = $row['nomedodia'];
-                        $id = $row['id'];
-                        echo '<option value="' . $id . '">' . $dayName . '</option>';
-                        }
-                        echo '</select><br>';
-                        ?>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Nome</label>
-                            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Digite o nome">
-                      </div>
-                    </div>
-                  </div>
-                  <!-- Container Endereço-->
-                  <div class="container mt-5">
-                    <h5 class="text-left mb-3">Endereço</h5>
-                    <div class="row">
-                      <div class="col mb-3">
-                        <label for="rua" class="form-label">Endereço</label>
-                            <input type="text" class="form-control" id="rua" name="rua" placeholder="Digite o endereço">
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col mb-3">
-                        <label for="bairro" class="form-label">Bairro</label>
-                            <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Digite o bairro">
-                      </div>
-                      <div class="col mb-3">
-                        <label for="cidade" class="form-label">Cidade</label>
-                            <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Digite a cidade">
-                      </div>
-                      <div class="col mb-3">
-                        <label for="estado" class="form-label">Estado</label>
-                            <input type="text" class="form-control" id="estado" name="estado" placeholder="Digite estado">
-                      </div>
-                    </div>
-                    <div class="row">
-                        <div class="col mb-3">
-                          <label for="cep" class="form-label">CEP</label>
-                              <input type="text" class="form-control" id="cep" name="cep" placeholder="Digite o CEP">
+                    <!-- Begin Page Content -->
+                    <div class="container-fluid">
+
+                        <div class="mt-3">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="pessoa-tab" data-bs-toggle="tab" href="#pessoa"
+                                        role="tab" aria-controls="pessoa" aria-selected="true">Pessoa</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="endereco-tab" data-bs-toggle="tab" href="#endereco"
+                                        role="tab" aria-controls="endereco" aria-selected="false">Endereço</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="funcao-tab" data-bs-toggle="tab" href="#funcao" role="tab"
+                                        aria-controls="funcao" aria-selected="false">Função</a>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="col mb-3">
-                          <label for="numero" class="form-label">Numero</label>
-                              <input type="text" class="form-control" id="numero" name="numero" placeholder="Digite o numero">
+
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="pessoa" role="tabpanel"
+                                aria-labelledby="pessoa-tab">
+
+                                <!-- Aba Pessoa tab content -->
+
+                                <div class="container mt-5 mb-5">
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="nome" class="form-label"><b>Nome</b></label>
+                                            <input type="text" class="form-control" id="nome" name="nome"
+                                                placeholder="Digite o nome">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="cpf" class="form-label"><B>CPF</B></label>
+                                            <input type="text" class="form-control" id="cpf" name="cpf"
+                                                placeholder="Digite o cpf">
+                                        </div>
+                                        <div class="col mb-3">
+                                            <label for="rg" class="form-label"><b>RG</b></label>
+                                            <input type="text" class="form-control" id="rg" name="rg"
+                                                placeholder="Digite o RG">
+                                        </div>
+                                        <div class="col mb-3">
+                                            <label for="telefone" class="form-label"><b>Telefone</b></label>
+                                            <input type="text" class="form-control" id="telefone" name="telefone"
+                                                placeholder="Digite o telefone">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4 mb-3">
+                                            <label for="email" class="form-label"><b>Email</b></label>
+                                            <input type="email" class="form-control" id="email" name="email"
+                                                placeholder="Digite o email">
+                                        </div>
+                                        <div class="col mb-3">
+                                            <label for="dtnasc" class="form-label"><b>Data de Nascimento</b></label>
+                                            <input type="dtnasc" class="form-control" id="dtnasc" name="dtnasc"
+                                                placeholder="Digite a Data de Nascimento">
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <!--BOTÕES ADICIONAR -->
+                                <div class="container mt-4 mb-5">
+                                    <div class="d-flex justify-content-between">
+                                        <a href="./addfuncionario.html"  class="btn btn-primary btn-circle" title="Voltar">
+                                            <i class="fas fa-fw fa-chevron-left"></i></a>
+                                        <div class="ml-auto">
+                                            <a href="./addfuncionario.html" class="btn btn-success btn-circle"
+                                                title="Adicionar">
+                                                <i class="fas fa-fw fa-chevron-down"></i></a>
+                                            <a href="./addfuncionario.html" class="btn btn-danger btn-circle"
+                                                title="Excluir">
+                                                <i class="fas fa-fw fa-xmark"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- FIM BOTÕES ADICIONAR -->
+                            </div>
+                            <div class="tab-pane fade" id="funcao" role="tabpanel" aria-labelledby="funcao-tab">
+                              
+                                <!-- Aba Funcão tab content -->
+                               
+                                <div class="container mt-5 mb-4">
+                                    <div class="row">
+                                        <div class="col-4 mb-3">
+                                            <label for="funcao" class="form-label"><b>Função</b></label>
+                                            <select class='form-control' name='funcao'>
+                                                <option value='0'>Selecione...</option>
+                                                <option value='Atendente'>Atendente</option>
+                                                <option value='Banhista'>Banhista</option>
+                                                <option value='Gerente'>Gerente</option>
+                                                <option value='Tosador'>Tosador</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-4 mb-3">
+                                            <label for="salario" class="form-label"><b>Salário</b></label>
+                                            <input type="text" class="form-control" id="salario" name="salario"
+                                                placeholder="Digite o salário">
+                                        </div><br>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="perfil" class="form-label"><b>Perfil</b></label>
+                                            <select class="form-control" name="perfil" id="perfil" name="perfil">
+                                                <option value="0">Selecione...</option>
+                                                <option value="atendente">Atendente </option>
+                                                <option value="gerente">Gerente </option>
+                                            </select>
+                                        </div>
+                                        <div class="col mb-3">
+                                            <label for="hora_de_trab" class="form-label"><b>Horário de
+                                                    Trabalho</b></label>
+                                            <input type="number" class="form-control" id="hora_de_trab"
+                                                name="hora_de_trab" placeholder="Digite o horário">
+                                        </div>
+                                        <div class="col mb-3">
+                                            <label for="diadefolga" class="form-label"><b>Dia de Folga</b></label>
+                                            <select class="form-control" name="folga">
+                                                <option value="0">Selecione...</option>
+                                                <option value="seg">Segunda-Feira </option>
+                                                <option value="ter">Terça-Feira </option>
+                                                <option value="qua">Quarta-Feira </option>
+                                                <option value="qui">Quinta-Feira </option>
+                                                <option value="sex">Sexta-Feira </option>
+                                                <option value="sab">Sábado </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                               <!--BOTÕES ADICIONAR -->
+                               <div class="container mt-4 mb-5">
+                                <div class="d-flex justify-content-between">
+                                    <a href="./addfuncionario.html"  class="btn btn-primary btn-circle" title="Voltar">
+                                        <i class="fas fa-fw fa-chevron-left"></i></a>
+                                    <div class="ml-auto">
+                                        <a href="./addfuncionario.html" class="btn btn-success btn-circle"
+                                            title="Adicionar">
+                                            <i class="fas fa-fw fa-chevron-down"></i></a>
+                                        <a href="./addfuncionario.html" class="btn btn-danger btn-circle"
+                                            title="Excluir">
+                                            <i class="fas fa-fw fa-xmark"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- FIM BOTÕES ADICIONAR -->
+                            </div>
+                            <div class="tab-pane fade" id="endereco" role="tabpanel" aria-labelledby="endereco-tab">
+                             
+                                <!--Aba Endereço tab content -->
+                               
+                                <div class="container mt-5 mb-5">
+
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="rua" class="form-label"><b>Logradouro</b></label>
+                                            <input type="text" class="form-control" id="rua" name="rua"
+                                                placeholder="Digite o logradouro">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="bairro" class="form-label"><b>Bairro</b></label>
+                                            <input type="text" class="form-control" id="bairro" name="bairro"
+                                                placeholder="Digite o bairro">
+                                        </div>
+                                        <div class="col mb-3">
+                                            <label for="cidade" class="form-label"><b>Cidade</b></label>
+                                            <input type="text" class="form-control" id="cidade" name="cidade"
+                                                placeholder="Digite a cidade">
+                                        </div>
+                                        <div class="col mb-3">
+                                            <label for="estado" class="form-label"><b>Estado</b></label>
+                                            <input type="text" class="form-control" id="estado" name="estado"
+                                                placeholder="Digite estado">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4 mb-3">
+                                            <label for="cep" class="form-label"><b>CEP</b></label>
+                                            <input type="text" class="form-control" id="cep" name="cep"
+                                                placeholder="Digite o CEP">
+                                        </div>
+                                        <div class="col-2 mb-3">
+                                            <label for="numero" class="form-label"><b>Número</b></label>
+                                            <input type="text" class="form-control" id="numero" name="numero"
+                                                placeholder="Digite o numero">
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <label for="complemento" class="form-label"><b>Complemento</b></label>
+                                            <input type="text" class="form-control" id="complemento"
+                                                placeholder="Digite o complemento">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="pontoreferencia" class="form-label"><b>Ponto de
+                                                    Referência</b></label>
+                                            <input type="text" class="form-control" id="pontoreferencia"
+                                                placeholder="Digite o ponto de referência">
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                               <!--BOTÕES ADICIONAR -->
+                               <div class="container mt-4 mb-5">
+                                <div class="d-flex justify-content-between">
+                                    <a href="./addfuncionario.html"  class="btn btn-primary btn-circle" title="Voltar">
+                                        <i class="fas fa-fw fa-chevron-left"></i></a>
+                                    <div class="ml-auto">
+                                        <a href="./addfuncionario.html" class="btn btn-success btn-circle"
+                                            title="Adicionar">
+                                            <i class="fas fa-fw fa-chevron-down"></i></a>
+                                        <a href="./addfuncionario.html" class="btn btn-danger btn-circle"
+                                            title="Excluir">
+                                            <i class="fas fa-fw fa-xmark"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- FIM BOTÕES ADICIONAR -->
+                            </div>
                         </div>
-                        <div class="col-6 mb-3">
-                          <label for="complemento" class="form-label">Complemento</label>
-                              <input type="text" class="form-control" id="complemento" placeholder="Digite o complemento">
-                        </div>
-                      </div>
-                    <div class="row">
-                      <div class="col mb-3">
-                        <label for="pontoreferencia" class="form-label">Ponto de Referência</label>
-                            <input type="text" class="form-control" id="pontoreferencia" placeholder="Digite o ponto de referência">
-                      </div>
+
                     </div>
-                  </div>
-                  <!-- Container Button-->
-                  <div class="container mt-5 mb-5">
-                    <div class="gap-2 d-md-block">
-                            <button type="submit" name="submit" class="btn btn-success width-b">Salvar</button>
-                            <button type="button" class="btn btn-secondary width-b">Cancelar</button>
-                            <?php
-                        if($success == 1)
-                            echo ("Cadastro feito com sucesso");
-                        ?>
-                      </div>
-                
+                    <!-- /.container-fluid -->
+
                 </div>
-                <!-- End Funcionario -->
-                
-                <!-- /.container-fluid -->
+                <!-- End Form Container-->
 
                 <!-- End Body Content-->
-                
+
             </div>
             <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
+
 
         </div>
         <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
-
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white margin-l">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; Your Website 2021</span>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
@@ -595,6 +664,26 @@ mysqli_query($conn, "COMMIT");
         </div>
     </div>
 
+
+    <script>
+        // Activate tab functionality
+        var tab = new bootstrap.Tab(document.getElementById("pessoa-tab"));
+        tab.show();
+
+        $(document).ready(function () {
+            $('#pessoa').submit(function (e) {
+                e.preventDefault(); // Prevent form submission
+
+                // Perform any necessary validation or processing here
+
+                // Move to the next step
+                $('#pessoa').hide();
+                $('#funcao').show();
+            });
+        });
+
+    </script>
+    <script src="../js/allpet.js"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
