@@ -62,35 +62,27 @@ function getWindowWidth() {
   
     
 // Close the popup when the user clicks outside of it
+const popup = document.querySelector('.popup');
 
-window.addEventListener("click", function(event) {
-  console.log(event.target);
-  var popup = document.querySelector('.popup');
-  var cadastro;
-  document.querySelectorAll('button').forEach(function (cadd){
-    
-    if(cadd.value === 'cadastro')
-    {
-      console.log(cadd);
-     cadastro = cadd;
-     console.log(cadastro);
-    
-    }
-    // else{
-    //   cadastro = 'not';
-    // }
-    
-  });
-  console.log(cadastro, 'test');
-    console.log(popup);
-  if (!event.target.closest('.popup') && event.target != cadastro) {
-       popup.style.display = "none";
-       console.log('closing');
-   }
+// window.addEventListener("click", function(event1) {
+//   console.log(event1.target);
+  
+//     console.log(popup.style.display);
+//     if(popup.style.display === 'block'){ 
+      
+//       window.addEventListener('click', event => {
+//         if (!event.target.closest('.popup')) {
+//           popup.style.display = "none";
+//           console.log('closing');
+//           window.removeEventListener('click', event);
+          
+//       }
+//       });
+  
+//     }
   
   
-});
-
+// });
 
   // Performando a ação do botão submit
      const parentElements = Array.from(document.getElementsByTagName('form'));
@@ -174,13 +166,32 @@ case 'cadastro':
   popup.style.display = "block";
 
   centerPopup();
-// // Close the popup when the user clicks outside of it
-// window.addEventListener("click", function(event) {
+  
+setTimeout(() => {
+  window.addEventListener('click', clickHandler);
+}, 1000);
+
+
+
+//    // Close the modal when clicking outside of it
+//  window.addEventListener("click", (event) => {
+
+//   if (event.target.closest('.popup')) {
+//       closeModal();
+//   }
+//   if (popup.style.display === 'none') {
+//     window.removeEventListener('click', event);
+//     console.log('Click event listener removed.');
+//   }
 //   console.log(event.target);
-//   if (event.target != popup) {
-//        popup.style.display = "none";
-//    }
-// });
+// }, false);
+  //    if (event.target != popup) {
+  //         popup.style.display = "none";
+  //     }
+  // console.log("testandoooo");
+  // });
+  // }, 1000);
+
    
 
   break;
@@ -193,10 +204,19 @@ case 'closePopupButton':
   break;
    
   default:
+   
     // Do something when an input doesn't have a value
     console.log('Input is empty.');
   
+}function closeModal() {
+  popup.style.display = "none";
 }
+
+
+// // Prevent the click event inside the modal from closing it
+// popup.addEventListener("click", (event) => {
+//   event.stopPropagation();
+// });
   
   console.log(inputElements);
   
@@ -251,7 +271,7 @@ case 'closePopupButton':
 
       // Get references to the sidebar and popup elements
 const sidebar = document.querySelector('.sidebar');
-const popup = document.querySelector('.popup');
+
 
 // Function to centralize the popup
 function centerPopup() {
@@ -278,3 +298,21 @@ function centerPopup() {
 // Call the centerPopup function initially and whenever the window is resized
 centerPopup();
 window.addEventListener('resize', centerPopup);
+// function popupclose(){
+  
+  
+  // }
+
+  // Define the event listener function
+function clickHandler(event) {
+  console.log('Click event occurred.');
+  if (!event.target.closest('.popup')) {
+    popup.style.display = 'none';
+    console.log(popup.style.display);
+  }
+  // Add your logic here for stopping the event listener when a certain condition is met.
+  if (popup.style.display === 'none') {
+    window.removeEventListener('click', clickHandler);
+    console.log('Click event listener removed.');
+  }
+}
