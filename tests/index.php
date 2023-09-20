@@ -17,16 +17,16 @@ require_once('autoload.php');
 
 if (isset($_GET['setup']) && $_GET['setup'] == true) {
     // echo 'test';
-    $endereco = new Address($db);
+    $endereco = new Address($db, '40', '19909-200', 'seilaaad', '60', 'ourinhos', 'SP ', 'SantosDum');
     // $endereco->setId('1');
     $people = new People($db, 'Garmaladdte', '2010-09-20', '42123713', '23234123', 'dskdad@gmail.com', '14422333', '1', $endereco);
     //   echo $endereco->createTableIfNotExists();
-    //     echo $people->createTableIfNotExists();
+    //   echo $people->createTableIfNotExists();
 
     // echo $people->insertPerson($people);
-    
-    echo $people->getAllonDB();
-    // echo $people->getById('4125683');
+    // echo $endereco->insertAddress($endereco);
+    echo $endereco->getAllonDB();
+    // echo $endereco->getById('4');
 
     
     // if (empty($peopleList)) {

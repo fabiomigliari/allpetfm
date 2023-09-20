@@ -52,7 +52,7 @@ class People {
                 )";
                     
                  
-                $stmt = $this->pdo->query($query);
+                $stmt = $this->pdo->prepare($query);
                 if($stmt->execute())
                 {
                     $message[] = 'Successfuly created table or Already exists';
@@ -111,7 +111,8 @@ class People {
                     $json['Tipo'] = $pessoa->get_tipo();
                     $json['Data de Nascimento'] = $pessoa->get_dt_nasc();
                     
-                    return json_encode($json);
+                    $data = mb_convert_encoding($json, 'UTF-8', 'ISO-8859-1');
+                    return json_encode($data);
                 } else {
                     echo 'Erro ao executar a inserção';
                 }
