@@ -2,7 +2,7 @@
 
 class pessoaRepositorio
 {
-    
+    private $pdo;
 
     public function __construct($pdo)
     {

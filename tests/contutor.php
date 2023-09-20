@@ -1,10 +1,5 @@
 <?php
 
-    
-    require_once "./pessoaRepositorio.php";
-    require_once "./Classes/Pessoa.php";
-    require_once "./Classes/Endereco.php";
-    require_once "./Classes/Tutor.php";
     require_once('autoload.php');
 
     $pessoaRepositorio = new pessoaRepositorio($db);
