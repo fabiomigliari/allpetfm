@@ -19,13 +19,16 @@ if (isset($_GET['setup']) && $_GET['setup'] == true) {
     // echo 'test';
     $endereco = new Address($db, '40', '19909-200', 'seilaaad', '60', 'ourinhos', 'SP ', 'SantosDum');
     // $endereco->setId('1');
-    $people = new People($db, 'Garmaladdte', '2010-09-20', '42123713', '23234123', 'dskdad@gmail.com', '14422333', '1', $endereco);
+    $tutor = New Tutor($db,'59',true,'2010-09-25', 'Gmaaddte', '2010-09-20', '1745223', '11202013', 'dskdad@gmail.com', '14422333', '1', $endereco);
+   //  $people = new People($db, 'Garmaladdte', '2010-09-20', '42123713', '23234123', 'dskdad@gmail.com', '14422333', '1', $endereco);
     //   echo $endereco->createTableIfNotExists();
     //   echo $people->createTableIfNotExists();
 
     // echo $people->insertPerson($people);
     // echo $endereco->insertAddress($endereco);
-    echo $endereco->getAllonDB();
+   //  echo $endereco->getAllonDB();
+    echo $tutor->getAllonDB(2);
+   //  echo $tutor->insertTutor($tutor);
     // echo $endereco->getById('4');
 
     

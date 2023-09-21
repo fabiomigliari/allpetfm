@@ -1,5 +1,5 @@
 <?php
-
+require_once('autoload.php');
 class pessoaRepositorio
 {
     private $pdo;
@@ -118,7 +118,7 @@ class pessoaRepositorio
             return null;
         }
 
-        $sql = "SELECT * FROM endereco where id_endereco = {$id} limit 1";
+        $sql = "SELECT * FROM enderecos where id_endereco = {$id} limit 1";
         $statement = $this->pdo->query($sql);
         $endereco = $statement->fetch();
 
@@ -127,7 +127,7 @@ class pessoaRepositorio
             return null; 
         }
         
-        return new Endereco(
+        return new Address(null,
             $endereco['id_endereco'],
             $endereco['cep'],
             $endereco['rua'],

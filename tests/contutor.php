@@ -2,8 +2,8 @@
 
     require_once('autoload.php');
 
-    $pessoaRepositorio = new pessoaRepositorio($db);
-    $tutores = $pessoaRepositorio->buscarTutores();
+    // $pessoaRepositorio = new pessoaRepositorio($db);
+    // $tutores = $pessoaRepositorio->buscarTutores();
 
     
     
@@ -558,25 +558,8 @@ document.addEventListener('DOMContentLoaded', function() {
                                           <th colspan="2">Ações</th>
                                       </tr>
                                   </tfoot>
-                                  <tbody>
-                                      <?php foreach ($tutores as $tutor): ?>
+                                  <tbody id="table">
                                       
-                                          <tr>
-                                          <td><?= $tutor->get_cpf(); ?></td>
-                                          <td><?= $tutor->get_nome(); ?></td>
-                                          <td><?= empty($tutor->get_endereco()) ? 'N/A' : $tutor->get_endereco()->get_logradouro().", ". $tutor->get_endereco()->get_num_casa().". ".$tutor->get_endereco()->get_bairro()." - ".$tutor->get_endereco()->get_cidade()."/".$tutor->get_endereco()->get_estado(); ?></td>
-                                          <td><?= $tutor->get_telefone(); ?></td>
-                                          <td><button type="button" class="btn btn-warning btn-sm" value="Editar">Editar</button></td>
-                                          <td>
-                                          
-                                  
-                                                  <input type="hidden" value="<?= $tutor->get_idTutor()?>" >
-                                                  <button type="button" class="btn btn-danger btn-sm" value="Excluir">Excluir</button>
-                                              
-                                          </td>
-                                      </tr>
-                                      
-                                      <?php endforeach; ?>
                                       
                                   </tbody>
                               </table>

@@ -59,7 +59,7 @@ function getWindowWidth() {
   // Start observing the container for width changes
   resizeObserver.observe(container);
 
-  
+  tables();
     
 // Close the popup when the user clicks outside of it
 const popup = document.querySelector('.popup');
@@ -260,9 +260,93 @@ case 'closePopupButton':
       }
 
 
+function tables(){      // Get a reference to the tbody element where you want to display the JSON data.
+const tbody = document.getElementById("table");
+
+// URL of the JSON data source
+const apiUrl = "http://localhost:8000//index.php?setup=true"; // Replace with your JSON data source URL
+
+// Fetch JSON data from the URL
+fetch(apiUrl)
+  .then((response) => {
+    // Check if the response status is OK (status code 200)
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    // Parse the JSON response
+    return response.json();
+  })
+  .then((data) => {
+    // Process the JSON data and populate the tbody with rows and cells
+    data.forEach((item) => {
+      // Create a new table row (<tr>)
+      const row = document.createElement("tr");
+
+      // Create table cells (<td>) for each property you want to display
+      const cell1 = document.createElement("td");
+      cell1.textContent = item.cpf; // Replace with the actual property name from your JSON data
+      // console.log(item);
+      const cell2 = document.createElement("td");
+      // console.log(item.nome);
+      cell2.textContent = item.nome; // Replace with the actual property name from your JSON data
+
+      const cell3 = document.createElement("td");
+      cell3.textContent = item.rua + ',' + item.num_da_casa + '.' + item.bairro + '-' + item.cidade + '/' + item.estado ;
+
+      const cell6 = document.createElement("td");
+      // console.log(item.nome);
+      cell6.textContent = item.telefone; 
+
+
+      // Excluir Button
+      const cell4 = document.createElement("td");
+      const buttonExc = document.createElement("button");
+      buttonExc.type = "button";
+      buttonExc.classList.add("btn", "btn-danger", "btn-sm");
+      buttonExc.value = "Excluir";
+      buttonExc.textContent = "Excluir";
+      cell4.appendChild(buttonExc);
+
+      // Editar Button
+      const cell5 = document.createElement("td");
+      const buttonEdt = document.createElement("button");
+      buttonEdt.type = "button";
+      buttonEdt.classList.add("btn", "btn-warning", "btn-sm");
+      buttonEdt.value = "Editar";
+      buttonEdt.textContent = "Editar";
+      cell5.appendChild(buttonEdt);
+
+
+      // Append cells to the row
+      row.appendChild(cell1);
+      row.appendChild(cell2);
+      row.appendChild(cell3);
+      row.appendChild(cell6);
+      row.appendChild(cell5);
+      row.appendChild(cell4);
+
+      // Append the row to the tbody
+      tbody.appendChild(row);
+
+      buttonEdt.addEventListener('click', function(){
+        alert('Button clicked');
+
+      })
+      buttonExc.addEventListener('click', function(){
+        alert('Button clicked');
+      })
+
+    });
+  })
+  .catch((error) => {
+    console.error("Fetch error:", error);
+  });
 
 
 
+
+
+}
 
 
 

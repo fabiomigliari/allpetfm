@@ -22,6 +22,7 @@ class Address{
         $this->estado = $estado;
         $this->bairro = $bairro;
     }
+    
 
     public function getId()
     {

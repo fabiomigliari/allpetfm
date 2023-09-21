@@ -2,16 +2,16 @@
 require_once('autoload.php');
 
 class People {
-    private $pdo;
+    protected $pdo;
 
-    private string $nome;
-    private string $dt_nasc;
-    private string $rg;
-    private string $cpf;
-    private string $email;
-    private string $telefone;
-    private int $tipo;
-    private Address $endereco;
+    protected string $nome;
+    protected string $dt_nasc;
+    protected string $rg;
+    protected string $cpf;
+    protected string $email;
+    protected string $telefone;
+    protected int $tipo;
+    protected Address $endereco;
 
 
     public function __construct($pdo, string $nome, string $dt_nasc, string $rg, string $cpf, string $email, string $telefone, int $tipo, Address $endereco) {
