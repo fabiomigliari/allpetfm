@@ -86,8 +86,9 @@ class pessoaRepositorio
       //método para buscar todos os PETS no banco de dados.
     public function buscarPets()
     {
-        $sql = "SELECT * FROM pet AS pt 
-                        INNER JOIN tutor AS t ON t.id_tutor = pt.fkid_tutor ORDER BY pet_nome";
+        $sql = "SELECT * FROM pet AS pt
+                        INNER JOIN tutor AS t ON t.id_tutor = pt.fkid_tutor 
+                        INNER JOIN pessoas AS pes ON pes.cpf = pt.fktutor_cpf ORDER BY pet_nome";
         $statement = $this->pdo->query($sql);
         $pets = $statement->fetchAll(PDO::FETCH_ASSOC);
 
