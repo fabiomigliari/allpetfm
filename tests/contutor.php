@@ -622,36 +622,36 @@ document.addEventListener('DOMContentLoaded', function() {
                                     <div class="row">
                                         <div class="col mb-3">
                                             <label for="nometut" class="form-label"><B>Nome</B></label>
-                                            <input type="text" class="form-control" id="nometut" name="nometut"
+                                            <input type="text" class="form-control"  name="nometut"
                                                 placeholder="Digite o nome">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col mb-3">
                                             <label for="cpftut" class="form-label"><b>CPF</b></label>
-                                            <input type="text" class="form-control" id="cpftut" name="cpftut"
+                                            <input type="text" class="form-control"  name="cpftut"
                                                 placeholder="Digite o cpf">
                                         </div>
                                         <div class="col mb-3">
                                             <label for="rgtut" class="form-label"><b>RG</b></label>
-                                            <input type="text" class="form-control" id="rgtut" name="rgtut"
+                                            <input type="text" class="form-control"  name="rgtut"
                                                 placeholder="Digite o RG">
                                         </div>
                                         <div class="col mb-3">
                                             <label for="telefonetut" class="form-label"><b>Telefone</b></label>
-                                            <input type="text" class="form-control" id="telefonetut" name="telefonetut"
+                                            <input type="text" class="form-control"  name="telefonetut"
                                                 placeholder="Digite o telefone">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-8 mb-3">
                                             <label for="emailtut" class="form-label"><b>Email</b></label>
-                                            <input type="email" class="form-control" id="emailtut" name="emailtut"
+                                            <input type="email" class="form-control"  name="emailtut"
                                                 placeholder="Digite o email">
                                         </div>
                                         <div class="col mb-1">
                                             <label for="dtnasctut" class="form-label"><b>Data de Nascimento</b></label>
-                                            <input type="email" class="form-control" id="dtnasctut" name="dtnasctut"
+                                            <input type="email" class="form-control"  name="dtnasctut"
                                                 placeholder="Digite a data de Nascimento">
                                         </div>
                                     </div>
@@ -735,7 +735,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     
                                         <div class="ml-auto">
                                             
-                                            <button type="submit" name="Adicionartut" class="btn btn-success btn-circle"
+                                            <button type="button" name="Adicionartut" class="btn btn-success btn-circle"
                                                 title="Adicionar"  value="adicionarTutor">
                                                 <i class="fas fa-fw fa-chevron-down"></i></button>
 

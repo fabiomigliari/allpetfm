@@ -59,7 +59,30 @@ if (isset($_GET['setup']) && $_GET['setup'] == true) {
     //     $allPeople = $people->getAll();
     //     echo json_encode($allPeople);
     // }
+ }else if (isset($_GET['cad']) && $_SERVER['REQUEST_METHOD'] === "POST") {
+     // Retrieve JSON data from the request body
+     $json_data = file_get_contents("php://input");
+     $data = json_decode($json_data, true);
+ 
+     if ($data) {
+         // Process the data (e.g., save it to a database)
+         // Respond with a JSON message
+         $response = array(
+             "message" => "Data received successfully",
+             "data" => $data
+         );
+         echo json_encode($response);
+     } else {
+         http_response_code(400); // Bad Request
+         echo json_encode(array("message" => "Invalid JSON data"));
+     }
  } else {
-    $page = $functions->getPage();
+     http_response_code(405); // Method Not Allowed
+     echo json_encode(array("message" => "Method not allowed"));
  }
+ 
+ 
+// //  else {
+// //     $page = $functions->getPage();
+//  }
 ?>

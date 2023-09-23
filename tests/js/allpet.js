@@ -171,6 +171,7 @@ setTimeout(() => {
   window.addEventListener('click', clickHandler);
 }, 200);
 
+ 
 
 
 //    // Close the modal when clicking outside of it
@@ -202,6 +203,10 @@ case 'closePopupButton':
   console.log('closing');
 
   break;
+case 'adicionarTutor':
+  postData();
+  
+    break;
    
   default:
    
@@ -260,14 +265,14 @@ case 'closePopupButton':
       }
 
 
-function tables(){      // Get a reference to the tbody element where you want to display the JSON data.
+async function tables(){      // Get a reference to the tbody element where you want to display the JSON data.
 const tbody = document.getElementById("table");
 
 // URL of the JSON data source
 const apiUrl = "http://localhost:8000//index.php?setup=true"; // Replace with your JSON data source URL
 
 // Fetch JSON data from the URL
-fetch(apiUrl)
+await fetch(apiUrl)
   .then((response) => {
     // Check if the response status is OK (status code 200)
     if (!response.ok) {
@@ -381,6 +386,7 @@ function centerPopup() {
 
 // Call the centerPopup function initially and whenever the window is resized
 centerPopup();
+
 window.addEventListener('resize', centerPopup);
 // function popupclose(){
   
@@ -400,3 +406,43 @@ function clickHandler(event) {
     console.log('Click event listener removed.');
   }
 }
+
+
+
+async function postData() {
+  try {
+      // Get form data as a FormData object
+      const formData = new FormData(this);
+
+      // Convert FormData to JSON
+      const formDataJson = {};
+      formData.forEach((value, key) => {
+          formDataJson[key] = value;
+      });
+
+      // Send the data using Fetch API with await
+      const response = await fetch("http://localhost:8000//index.php?cad", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formDataJson),
+      });
+
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+
+      // Parse the JSON response with await
+      const data = await response.json();
+
+      // Handle the response from the server
+      console.log(data);
+  } catch (error) {
+      // Handle errors here
+      console.error("Error:", error);
+  }
+}
+
+// Call the async function when needed
+ // Replace 'yourFormElement' with the actual form element
