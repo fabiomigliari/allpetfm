@@ -1,0 +1,22 @@
+{
+    "name": "biel/src",
+    "require": {
+        "slim/slim": "^4.12",
+        "slim/psr7": "^1.6",
+        "ramsey/uuid": "^4.7"
+    },
+    "require-dev": {
+        "slim/slim": "^4.12"
+    },
+    "autoload": {
+        "psr-4": {
+            "classmap\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "GabrielRei5",
+            "email": "gabrielmundogigante@gmail.com"
+        }
+    ]
+}

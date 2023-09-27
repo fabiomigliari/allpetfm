@@ -1,0 +1,47 @@
+version: '3.9'
+
+services:
+  php:
+    build:
+      context: .  # Build from the current directory (where Dockerfile is located)
+    volumes:
+      - ./api:/var/www/html  # Map your PHP application code to the container
+    networks:
+      - my_network
+    depends_on:
+      - db
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=allpet
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d  # Map your Nginx configuration
+      - ./api:/var/www/html  # Map the PHP code to the Nginx container
+    networks:
+      - my_network
+    depends_on:
+      - php
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: allpet
+    networks:
+      - my_network
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+      - ./mysql:/docker-entrypoint-initdb.d
+      - ./mysql/custom.cnf:/etc/mysql/conf.d/custom.cnf  # Map the SQL script
+    ports:
+      - "3307:3306"
+
+networks:
+  my_network:
+        driver: bridge
