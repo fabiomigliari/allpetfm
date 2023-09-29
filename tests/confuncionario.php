@@ -4,12 +4,15 @@
     require_once "./pessoaRepositorio.php";
     require_once "./Classes/Pessoa.php";
     require_once "./Classes/Endereco.php";
-    require_once "./Classes/Funcao.php";
     require_once "./Classes/Funcionario.php";
+    require_once "./Classes/Funcao.php";
 
     $pessoaRepositorio = new pessoaRepositorio($pdo);
     $funcionarios = $pessoaRepositorio->buscarFuncionarios();
     
+   
+
+
 ?>
 
 <!DOCTYPE html>
@@ -737,6 +740,7 @@
                                                         <th>Nome</th>
                                                         <th>Telefone</th>
                                                         <th>Função</th>
+                                                        <th>Folga</th>
                                                         <th>Endereço</th>
                                                         <th colspan="2">Ações</th>
                                                     </tr>
@@ -747,6 +751,7 @@
                                                         <th>Nome</th>
                                                         <th>Telefone</th>
                                                         <th>Função</th>
+                                                        <th>Folga</th>
                                                         <th>Endereço</th>
                                                         <th colspan="2">Ações</th>
                                                     </tr>
@@ -759,6 +764,7 @@
                                                         <td><?= $funcionario->get_nome(); ?></td>
                                                         <td><?= $funcionario->get_telefone(); ?></td>
                                                         <td><?= empty($funcionario->get_funcao()) ? 'N/A' : $funcionario->get_funcao()->get_nomeFuncao()?>"?></td>
+                                                        <td><?= empty($funcionario->get_dia_de_folga()) ? 'N/A' : $funcionario->get_dia_de_folga()?>"?></td>
                                                         <td><?= empty($funcionario->get_endereco()) ? 'N/A' : $funcionario->get_endereco()->get_logradouro().", ". $funcionario->get_endereco()->get_num_casa().". ".$funcionario->get_endereco()->get_bairro()." - ".$funcionario->get_endereco()->get_cidade()."/".$funcionario->get_endereco()->get_estado(); ?></td>
                                                         <td><input type="submit" class="btn btn-warning btn-sm" value="Editar"></td>
                                                         <td>

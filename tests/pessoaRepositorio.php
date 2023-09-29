@@ -50,6 +50,7 @@ class pessoaRepositorio
      {
          $sql = "SELECT * FROM funcionarios AS f
                  INNER JOIN pessoas AS p ON p.cpf = f.cpf_pessoa 
+                 INNER JOIN funcao AS func ON func.id = f.fkfuncao 
                  ORDER BY nome";
          $statement = $this->pdo->query($sql);
          $funcionarios = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -60,29 +61,28 @@ class pessoaRepositorio
              $funcao = $this->buscarFuncaoPorId($pessoa['fkfuncao']);
              
              
+             
              $funcionario =  new Funcionario(
                  $pessoa['nome'],
-                 $pessoa['dtnasc'],
-                 $pessoa['rg'],
                  $pessoa['cpf'],
-                 $pessoa['email'],
+                 $pessoa['dtnasc'],
                  $pessoa['telefone'],
-                 $pessoa['tipo'],
+                 $pessoa['rg'],
+                 $pessoa['email'],
                  $endereco,
-                 
+                 $funcao
                 );
-
+                
                 $funcionario->set_id_funcionario($pessoa['id']);
                 $funcionario->set_horario_de_trabalho($pessoa['hora_de_trab']);
                 $funcionario->set_dia_de_folga($pessoa['diadefolga']);
                 $funcionario->set_perfil($pessoa['perfil']);
-                
 
-             return $funcionario;
-         }, $funcionarios);
- 
+                return $funcionario;
+            }, $funcionarios);
+
          return $dadosFuncionario;
-     }
+    }
 
       //método para buscar todos os PETS no banco de dados.
     public function buscarPets()
@@ -166,8 +166,8 @@ class pessoaRepositorio
             $funcao['id'],
             $funcao['nome_funcao'],
             $funcao['departamento'],
-            $funcao['descricao_funcao'],
-            $funcao['salario']
+            $funcao['salario'],
+            $funcao['descricao_funcao']
         );
 
         return $funcao;

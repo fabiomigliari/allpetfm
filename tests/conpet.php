@@ -520,7 +520,7 @@ document.addEventListener('DOMContentLoaded', function() {
                           
                           <div class="row">
                               <div class="col">
-                                  <h6 class="m-0 font-weight-bold text-primary">Petz</h6>
+                                  <h6 class="m-0 font-weight-bold text-primary">Pets</h6>
                               </div>
                               <div class="col-auto">
                                 <form class="form-inline">
