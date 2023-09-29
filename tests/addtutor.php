@@ -13,12 +13,12 @@
           $_POST['emailtut'],
           $_POST['dtnasctut'],
           $endereco = new Endereco( 
+          $_POST['ceptut'],
           $_POST['logratut'],
-          $_POST['bairrotut'],
+          $_POST['numerotut'],
           $_POST['cidadetut'],
           $_POST['estadotut'],
-          $_POST['ceptut'],
-          $_POST['numerotut'],
+          $_POST['bairrotut'],
           $_POST['complementotut'],
           $_POST['pontoreferenciatut']
           ),

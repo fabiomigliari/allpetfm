@@ -27,11 +27,11 @@ class pessoaRepositorio
 
             $tutor =  new Tutor(
                 $pessoa['nome'],
-                $pessoa['dtnasc'],
-                $pessoa['rg'],
                 $pessoa['cpf'],
-                $pessoa['email'],
+                $pessoa['dtnasc'],
                 $pessoa['telefone'],
+                $pessoa['rg'],
+                $pessoa['email'],
                 $endereco,
                 $pessoa['status'],
                 $pessoa['dtregistro']
@@ -135,12 +135,12 @@ class pessoaRepositorio
         
         return new Endereco(
             $endereco['id_endereco'],
-            $endereco['cep'],
             $endereco['rua'],
             $endereco['num_da_casa'],
             $endereco['cidade'],
             $endereco['estado'],
-            $endereco['bairro']
+            $endereco['bairro'],
+            $endereco['cep']
         );
 
         return $endereco;
@@ -179,6 +179,15 @@ class pessoaRepositorio
     public function deletarTutor(int $id)
     {
         $sql = "DELETE FROM tutor WHERE id_tutor = ?";
+        $statement = $this->pdo->prepare($sql);
+        $statement->bindValue(1, $id);
+        $statement->execute();
+    }
+
+    //Método para deletar a Pessoa do banco de dados cadastrado.
+    public function deletarPessoa(String $id)
+    {
+        $sql = "DELETE FROM pessoas WHERE cpf = ?";
         $statement = $this->pdo->prepare($sql);
         $statement->bindValue(1, $id);
         $statement->execute();
