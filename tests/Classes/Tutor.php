@@ -9,6 +9,25 @@ class Tutor extends Pessoa{
     private bool $status;
     private string $dtregistro;
 
+    public function __construct(?string $nome = null, ?string $cpf=null,
+    ?string $rg = null,
+    ?string $telefone = null,
+    ?string $email = null, 
+    ?string $dt_nasc = null,
+    ?Endereco $endereco = null, bool $status, string $dtregistro)
+    {   
+        parent::__construct(
+            $this->nome = $nome,
+            $this->cpf = $cpf,
+            $this->rg = $rg,
+            $this->telefone = $telefone,
+            $this->email = $email,
+            $this->dt_nasc = $dt_nasc,
+            $this->endereco = $endereco);
+            $this->status = $status;
+            $this->dtregistro = $dtregistro;
+    }
+
     public function set_idTutor(int $id_tutor)
     {
         $this->id_tutor = $id_tutor;

@@ -672,8 +672,11 @@ document.addEventListener('DOMContentLoaded', function() {
                                     <thead>
                                         <tr>
                                             <th>Nome do Pet</th>
-                                            <th>Espécie</th>
+                                            <th>Sexo</th>
                                             <th>Raça</th>
+                                            <th>Espécie</th>
+                                            <th>Pelagem</th>
+                                            <th>Cor</th>
                                             <th>Nome do Tutor</th>
                                             <th>Fone Tutor</th>
                                             <th colspan="2">Ações</th>
@@ -682,8 +685,11 @@ document.addEventListener('DOMContentLoaded', function() {
                                     <tfoot>
                                         <tr>
                                             <th>Nome do Pet</th>
-                                            <th>Espécie</th>
+                                            <th>Sexo</th>
                                             <th>Raça</th>
+                                            <th>Espécie</th>
+                                            <th>Pelagem</th>
+                                            <th>cor</th>
                                             <th>Nome do Tutor</th>
                                             <th>Fone Tutor</th>
                                             <th colspan="2">Ações</th>
@@ -693,10 +699,13 @@ document.addEventListener('DOMContentLoaded', function() {
                                         <?php foreach($pets as $pet):?>
                                         <tr>
                                             <td><?= $pet->get_nomePet() ?></td>
-                                            <td><?= $pet->get_especie() ?></a></td>
+                                            <td><?= $pet->get_sexo();?></a></td>
                                             <td><?= $pet->get_raca() ?></a></td>
-                                            <td><?php echo "Nome do dono?";?></a></td>
-                                            <td><?php echo "Tel do dono?";?></a></td>
+                                            <td><?= $pet->get_especie(); ?></a></td>
+                                            <td><?= $pet->get_pelagem();?></a></td>
+                                            <td><?= $pet->get_cor();?></a></td>
+                                            <td><?= $pet->get_cpfTutor()?></a></td>
+                                            <td><?= $pet->get_cpfTutor()?></a></td>
                                             <td><input type="submit" class="btn btn-warning btn-sm" value="Editar"></td>
                                             <td>
                                                 <form action="droppet.php" method="post">

@@ -7,26 +7,25 @@
 class Pessoa{
     
   //Criando os ATRIBUTOS da Classe PESSOA.
-    private string $nome;
-    private string $dt_nasc;
-    private string $rg;
-    private string $cpf;
-    private string $email;
-    private string $telefone;
-    private int $tipo;
-    private Endereco $endereco;
+    protected string $nome;
+    protected string $cpf;
+    protected string $rg;
+    protected string $telefone;
+    protected string $email;
+    protected string $dt_nasc;
+    protected Endereco $endereco;
+    protected string $tipo;
     
 
   //Criando o método CONSTRUTOR da classe PESSOA  
-  public function __construct(string $nome, string $dt_nasc, string $rg, string $cpf, string $email, string $telefone, int $tipo, Endereco $endereco)
+  public function __construct(string $nome, string $cpf, string $rg, string $telefone, string $email, string $dt_nasc,  Endereco $endereco)
   {
     $this->nome = $nome;
-    $this->dt_nasc = $dt_nasc;
-    $this->rg = $rg;
     $this->cpf = $cpf;
-    $this->email = $email;
+    $this->rg = $rg;
     $this->telefone = $telefone;
-    $this->tipo = $tipo;
+    $this->email = $email;
+    $this->dt_nasc = $dt_nasc;
     $this->endereco = $endereco;
     
   }

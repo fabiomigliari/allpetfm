@@ -1,5 +1,37 @@
 <?php
-  // var_dump($_POST);
+    require_once "./conexao_bd.php";
+    require_once "./pessoaRepositorio.php";
+    require_once "./Classes/Pessoa.php";
+    require_once "./Classes/Tutor.php";
+  
+      if(isset($_POST['Adicionartut'])){
+          $tutor = new Tutor(  
+          $_POST['nometut'],
+          $_POST['cpftut'],
+          $_POST['rgtut'],
+          $_POST['telefonetut'],
+          $_POST['emailtut'],
+          $_POST['dtnasctut'],
+          $endereco = new Endereco( 
+          $_POST['logratut'],
+          $_POST['bairrotut'],
+          $_POST['cidadetut'],
+          $_POST['estadotut'],
+          $_POST['ceptut'],
+          $_POST['numerotut'],
+          $_POST['complementotut'],
+          $_POST['pontoreferenciatut']
+          ),
+          true,
+          '02-02-2323'
+        );
+     
+
+      $pessoaRepositorio = new pessoaRepositorio($pdo);
+      $pessoaRepositorio->salvarTutor($tutor);
+      
+      header("Location: contutor.php");
+      }
 ?>
 
 <!DOCTYPE html>
@@ -383,309 +415,184 @@
                 <!-- End of Topbar -->
 
                 <!-- Body Content-->
+                <form method="post" action="addtutor.php">
+                      <!-- Form Container-->
+                    
+                      <div class="card shadow container w-75 margin-b margin-t" id="card">
 
-                <!-- Form Container-->
-                <div class="card shadow container w-75 margin-b margin-t" id="card">
-
-                    <!-- Begin Page Content -->
-                    <div class="container-fluid">
-
-
-                        <!-- abas superiores -->
-
-                        <div class="mt-3">
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="pessoa-tab" data-bs-toggle="tab" href="#pessoa"
-                                        role="tab" aria-controls="pessoa" aria-selected="true">Pessoa</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" id="endereco-tab" data-bs-toggle="tab" href="#endereco"
-                                        role="tab" aria-controls="endereco" aria-selected="false">Endereço</a>
-                                </li>
-
-                            </ul>
-                        </div>
-                        
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="pessoa" role="tabpanel"
-                                aria-labelledby="pessoa-tab">
-
-                               
-
-                                <!-- Aba ADICIONA PESSOA-->
-                        
-                                 <!-- Formulário de Tutor -->
-                                <div class="container mt-5">
-                                    <div class="row">
-                                        <div class="col mb-3">
-                                            <label for="nometut" class="form-label"><B>Nome</B></label>
-                                            <input type="text" class="form-control" id="nometut" name="nometut"
-                                                placeholder="Digite o nome">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col mb-3">
-                                            <label for="cpftut" class="form-label"><b>CPF</b></label>
-                                            <input type="text" class="form-control" id="cpftut" name="cpftut"
-                                                placeholder="Digite o cpf">
-                                        </div>
-                                        <div class="col mb-3">
-                                            <label for="rgtut" class="form-label"><b>RG</b></label>
-                                            <input type="text" class="form-control" id="rgtut" name="rgtut"
-                                                placeholder="Digite o RG">
-                                        </div>
-                                        <div class="col mb-3">
-                                            <label for="telefonetut" class="form-label"><b>Telefone</b></label>
-                                            <input type="text" class="form-control" id="telefonetut" name="telefonetut"
-                                                placeholder="Digite o telefone">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-8 mb-3">
-                                            <label for="emailtut" class="form-label"><b>Email</b></label>
-                                            <input type="email" class="form-control" id="emailtut" name="emailtut"
-                                                placeholder="Digite o email">
-                                        </div>
-                                        <div class="col mb-1">
-                                            <label for="dtnasctut" class="form-label"><b>Data de Nascimento</b></label>
-                                            <input type="email" class="form-control" id="dtnasctut" name="dtnasctut"
-                                                placeholder="Digite a data de Nascimento">
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
-                                <!-- FIM TUTOR-->
-
-                                <!--BOTÃO VOLTAR-->
-                                <div class="container mt-4 mb-5">
-
-                                    <div class="d-flex justify-content-between">
-                                         <a  onclick="history.go(-1)" class="btn btn-primary btn-circle" title="Voltar">
-                                             <i class="fas fa-fw fa-chevron-left"></i></a>
-                                    </div>
-                                </div>
-                                <!-- FIM BOTÃO VOLTAR -->
-                            </div>
-
-                            <div class="tab-pane fade" id="endereco" role="tabpanel" aria-labelledby="endereco-tab">
-                            
-                          
-                                <!-- Aba cadastro Endereço  -->
-
-                                <div class="container mt-5">
-                                
-                                    <div class="row">
-                                    
-                                        <div class="col mb-3">
-                                            <label for="logratut" class="form-label"><b>Logradouro</b></label>
-                                            <input type="text" class="form-control" id="logratut" name="logratut"
-                                                placeholder="Digite o logradouro">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col mb-3">
-                                            <label for="bairrotut" class="form-label"><b>Bairro</b></label>
-                                            <input type="text" class="form-control" id="bairrotut" name="bairrotut"
-                                                placeholder="Digite o bairro">
-                                        </div>
-                                        <div class="col mb-3">
-                                            <label for="cidadetut" class="form-label"><b>Cidade</b></label>
-                                            <input type="text" class="form-control" id="cidadetut" name="cidadetut"
-                                                placeholder="Digite a cidade">
-                                        </div>
-                                        <div class="col mb-3">
-                                            <label for="estadotut" class="form-label"><b>Estado</b></label>
-                                            <input type="text" class="form-control" id="estadotut" name="estadotut"
-                                                placeholder="Digite estado">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-4 mb-3">
-                                            <label for="ceptut" class="form-label"><b>CEP</b></label>
-                                            <input type="text" class="form-control" id="ceptut" name="ceptut"
-                                                placeholder="Digite o CEP">
-                                        </div>
-                                        <div class="col mb-3">
-                                            <label for="numerotut" class="form-label"><b>Número</b></label>
-                                            <input type="text" class="form-control" id="numerotut" name="numerotut"
-                                                placeholder="Digite o numero">
-                                        </div>
-                                        <div class="col-6 mb-3">
-                                            <label for="complementotut" class="form-label"><b>Complemento</b></label>
-                                            <input type="text" class="form-control" id="complementotut"
-                                                name="complementotut" placeholder="Digite o complemento">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col mb-3">
-                                            <label for="pontoreferenciatut" class="form-label"><b>Ponto de Referência</b></label>
-                                            <input type="text" class="form-control" id="pontoreferenciatut"
-                                                name="pontoreferenciatut" placeholder="Digite o ponto de referência">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--BOTÕES ADICIONAR -->
-                                <div class="container mt-4 mb-5">
-                                    <div class="d-flex justify-content-between">
-                                    <a  onclick="history.go(-1)" class="btn btn-primary btn-circle" title="Voltar">
-                                            <i class="fas fa-fw fa-chevron-left"></i></a>
-
-                                        <div class="ml-auto">
-                                            <button type="submit" name="Adicionartut" class="btn btn-success btn-circle"
-                                                title="Adicionar"  value="adicionarTutor">
-                                                <i class="fas fa-fw fa-chevron-down"></i></button>
-
-                                            <button type="reset" class="btn btn-danger btn-circle">
-                                                <i class="fas fa-fw fa-xmark"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- FIM BOTÕES ADICIONAR -->
-                            </div>
-                        </div>
-
-                        <!--fIm Endereço-->
-
-                        <!--Pet-->
-                        <div class="tab-pane fade" id="pet" role="tabpanel" aria-labelledby="pet-tab">
-                            <!-- Pet tab content -->
-
-                            <!-- ABAS INFERIORES (PETS) 
-                                <div class="container mt-5">
-                                    <div class="tab-pane fade show active" id="tab1">
-                                        <div class="tab-content mt-2">
-                                            <div class="tab-pane fade show active" id="subtab1">
-                                                <div class="row">
-                                                    <div class="col mb-3">
-                                                        <label for="nomepet" class="form-label"><b>Nome do Pet</b></label>
-                                                        <input type="text" class="form-control" id="nomepet" name="nomepet" 
-                                                            placeholder="Digite o Nome do Pet">
-                                                    </div>
-                                                    <div class="col mb-3">
-                                                        <label for="sexopet" class="form-label"><b>Sexo</b></label>
-                                                        <select class='form-control' id="sexopet" name="sexopet">
-                                                            <option value='embranco'></option>
-                                                            <option value='macho'>Macho</option>
-                                                            <option value='femea'>Fêmea</option></select>
-                                                    </div>
-                                                    <div class="col mb-3">
-                                                        <label for="salario" class="form-label"><b>Data de
-                                                                Nascimento</b></label>
-                                                        <p>03/06/2022</p>
-                                                    </div>
-
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col mb-3">
-                                                        <label for="especie" class="form-label"><b>Espécie</b></label>
-                                                        <p>A</p>
-                                                    </div>
-                                                    <div class="col mb-3">
-                                                        <label for="raca" class="form-label"><b>Raça</b></label>
-                                                        <p>Pit Bull</p>
-                                                    </div>
-                                                    <div class="col mb-3">
-                                                        <label for="pelagem" class="form-label"><b>Pelagem</b></label>
-                                                        <p>Pequena</p>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col mb-3">
-                                                        <label for="observacao"
-                                                            class="form-label"><b>Observação</b></label>
-                                                        <p>Cachorro manso</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="subtab2">
-                                                <div class="row">
-                                                    <div class="col mb-3">
-                                                        <label for="nomepet" class="form-label"><b>Nome do
-                                                                pet</b></label>
-                                                        <p>Scooby</p>
-                                                    </div>
-                                                    <div class="col mb-3">
-                                                        <label for="diadefolga" class="form-label"><b>Sexo</b></label>
-                                                        <p>Masculino</p>
-                                                    </div>
-                                                    <div class="col mb-3">
-                                                        <label for="salario" class="form-label"><b>Data de
-                                                                Nascimento</b></label>
-                                                        <p>09/12/2020</p>
-                                                    </div>
-
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col mb-3">
-                                                        <label for="especie" class="form-label"><b>Espécie</b></label>
-                                                        <p>B</p>
-                                                    </div>
-                                                    <div class="col mb-3">
-                                                        <label for="raca" class="form-label"><b>Raça</b></label>
-                                                        <p>Pintcher</p>
-                                                    </div>
-                                                    <div class="col mb-3">
-                                                        <label for="pelagem" class="form-label"><b>Pelagem</b></label>
-                                                        <p>Pequena</p>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col mb-3">
-                                                        <label for="observacao"
-                                                            class="form-label"><b>Observação</b></label>
-                                                        <p>Cachorro bravo</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+<!-- Begin Page Content -->
+<div class="container-fluid">
 
 
-                                    <ul class="nav nav-tabs">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" data-toggle="tab" href="#subtab1">Doguinho</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#subtab2">Scooby</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                 <FIM ABAS INFERIORES (PETS) -->
+    <!-- abas superiores -->
 
-                            <!--botoes pet-->
+    <div class="mt-3">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="pessoa-tab" data-bs-toggle="tab" href="#pessoa"
+                    role="tab" aria-controls="pessoa" aria-selected="true">Pessoa</a>
+            </li>
 
-                            <div class="container mt-4 mb-5">
+            <li class="nav-item">
+                <a class="nav-link" id="endereco-tab" data-bs-toggle="tab" href="#endereco"
+                    role="tab" aria-controls="endereco" aria-selected="false">Endereço</a>
+            </li>
 
-                                <div class="d-flex justify-content-between">
+        </ul>
+    </div>
+    
+    <div class="tab-content" id="myTabContent">
+    
+        <div class="tab-pane fade show active" id="pessoa" role="tabpanel"
+            aria-labelledby="pessoa-tab">
 
-                                    <a href="contutor.html" class="btn btn-primary btn-circle" title="Voltar"><i
-                                            class="fas fa-fw fa-chevron-left"></i></a>
-                                    <div class="ml-auto">
-                                        <button type="button" class="btn btn-primary btn-circle" title="Cadastrar"
-                                            data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                class="fas fa-fw fa-plus"></i></button>
-                                        <button type="button" class="btn btn-primary btn-circle" title="Editar"><i
-                                                class="fas fa-fw fa-pencil"></i></button>
-                                        <button type="button" class="btn btn-danger btn-circle ml-2" title="Excluir"><i
-                                                class="fas fa-fw fa-trash"></i></button>
+        
 
-                                    </div>
-
-                                </div>
-                            </div>
-                            <!--fim botoes pet-->
-
-
-                        </div>
-
+            <!-- Aba ADICIONA PESSOA-->
+    
+            <!-- Formulário de Tutor -->
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="nometut" class="form-label"><B>Nome</B></label>
+                        <input type="text" class="form-control" id="nometut" name="nometut"
+                            placeholder="Digite o nome">
                     </div>
-                    <!-- /.container-fluid -->
-
                 </div>
-                <!-- End Form Container-->
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="cpftut" class="form-label"><b>CPF</b></label>
+                        <input type="text" class="form-control" id="cpftut" name="cpftut"
+                            placeholder="Digite o cpf">
+                    </div>
+                    <div class="col mb-3">
+                        <label for="rgtut" class="form-label"><b>RG</b></label>
+                        <input type="text" class="form-control" id="rgtut" name="rgtut"
+                            placeholder="Digite o RG">
+                    </div>
+                    <div class="col mb-3">
+                        <label for="telefonetut" class="form-label"><b>Telefone</b></label>
+                        <input type="text" class="form-control" id="telefonetut" name="telefonetut"
+                            placeholder="Digite o telefone">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8 mb-3">
+                        <label for="emailtut" class="form-label"><b>Email</b></label>
+                        <input type="email" class="form-control" id="emailtut" name="emailtut"
+                            placeholder="Digite o email">
+                    </div>
+                    <div class="col mb-1">
+                        <label for="dtnasctut" class="form-label"><b>Data de Nascimento</b></label>
+                        <input type="date" class="form-control" id="dtnasctut" name="dtnasctut"
+                            placeholder="Digite a data de Nascimento">
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <!-- FIM TUTOR-->
 
+            <!--BOTÃO VOLTAR-->
+            <div class="container mt-4 mb-5">
+
+                <div class="d-flex justify-content-between">
+                    <a  onclick="history.go(-1)" class="btn btn-primary btn-circle" title="Voltar">
+                        <i class="fas fa-fw fa-chevron-left"></i></a>
+                </div>
+            </div>
+            <!-- FIM BOTÃO VOLTAR -->
+        </div>
+
+        <div class="tab-pane fade" id="endereco" role="tabpanel" aria-labelledby="endereco-tab">
+        
+    
+            <!-- Aba cadastro Endereço  -->
+
+            <div class="container mt-5">
+            
+                <div class="row">
+                
+                    <div class="col mb-3">
+                        <label for="logratut" class="form-label"><b>Logradouro</b></label>
+                        <input type="text" class="form-control" id="logratut" name="logratut"
+                            placeholder="Digite o logradouro">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="bairrotut" class="form-label"><b>Bairro</b></label>
+                        <input type="text" class="form-control" id="bairrotut" name="bairrotut"
+                            placeholder="Digite o bairro">
+                    </div>
+                    <div class="col mb-3">
+                        <label for="cidadetut" class="form-label"><b>Cidade</b></label>
+                        <input type="text" class="form-control" id="cidadetut" name="cidadetut"
+                            placeholder="Digite a cidade">
+                    </div>
+                    <div class="col mb-3">
+                        <label for="estadotut" class="form-label"><b>Estado</b></label>
+                        <input type="text" class="form-control" id="estadotut" name="estadotut"
+                            placeholder="Digite estado">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 mb-3">
+                        <label for="ceptut" class="form-label"><b>CEP</b></label>
+                        <input type="text" class="form-control" id="ceptut" name="ceptut"
+                            placeholder="Digite o CEP">
+                    </div>
+                    <div class="col mb-3">
+                        <label for="numerotut" class="form-label"><b>Número</b></label>
+                        <input type="text" class="form-control" id="numerotut" name="numerotut"
+                            placeholder="Digite o numero">
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label for="complementotut" class="form-label"><b>Complemento</b></label>
+                        <input type="text" class="form-control" id="complementotut"
+                            name="complementotut" placeholder="Digite o complemento">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mb-3">
+                        <label for="pontoreferenciatut" class="form-label"><b>Ponto de Referência</b></label>
+                        <input type="text" class="form-control" id="pontoreferenciatut"
+                            name="pontoreferenciatut" placeholder="Digite o ponto de referência">
+                    </div>
+                </div>
+            </div>
+            <!--BOTÕES ADICIONAR -->
+            <div class="container mt-4 mb-5">
+                <div class="d-flex justify-content-between">
+                <a  onclick="history.go(-1)" class="btn btn-primary btn-circle" title="Voltar">
+                        <i class="fas fa-fw fa-chevron-left"></i></a>
+                
+                    <div class="ml-auto">
+                        
+                        <button type="submit" name="Adicionartut" class="btn btn-success btn-circle"
+                            title="Adicionar"  value="adicionarTutor">
+                            <i class="fas fa-fw fa-chevron-down"></i></button>
+
+                        <button type="button" class="btn btn-danger btn-circle" value="closePopupButton">
+                            <i class="fas fa-fw fa-xmark"></i></button>
+                        </div>
+                    
+                    </div>
+                </div>
+                <!-- FIM BOTÕES ADICIONAR -->
+        </div>
+    
+    </div>
+
+    <!--fIm Endereço-->
+
+    
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+</form>
+<!-- End Form Container-->
                 <!-- End Body Content-->
 
             </div>
@@ -702,7 +609,7 @@
     <footer class="sticky-footer bg-white margin-l">
         <div class="container my-auto">
             <div class="copyright text-center my-auto">
-                < <span>Copyright &copy; Your Website 2021</span>
+                 <span>Copyright &copy; Your Website 2023</span>
             </div>
         </div>
     </footer>
@@ -768,8 +675,6 @@
     <!-- Page level custom scripts -->
     <script src="../js/demo/chart-area-demo.js"></script>
     <script src="../js/demo/chart-pie-demo.js"></script>
-
-    
 
 </body>
 

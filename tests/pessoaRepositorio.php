@@ -32,8 +32,9 @@ class pessoaRepositorio
                 $pessoa['cpf'],
                 $pessoa['email'],
                 $pessoa['telefone'],
-                $pessoa['tipo'],
-                $endereco
+                $endereco,
+                $pessoa['status'],
+                $pessoa['dtregistro']
             );
                 $tutor->set_idTutor($pessoa['id_tutor']);
                 $tutor->set_status($pessoa['status']);
@@ -88,7 +89,9 @@ class pessoaRepositorio
     {
         $sql = "SELECT * FROM pet AS pt
                         INNER JOIN tutor AS t ON t.id_tutor = pt.fkid_tutor 
-                        INNER JOIN pessoas AS pes ON pes.cpf = pt.fktutor_cpf ORDER BY pet_nome";
+                        INNER JOIN pessoas AS pes ON pes.cpf = pt.fktutor_cpf 
+                        INNER JOIN especie AS e ON e.id_especie = pt.fk_especie
+                        INNER JOIN raca AS r ON r.id_raca = pt.fk_raca ORDER BY pet_nome";
         $statement = $this->pdo->query($sql);
         $pets = $statement->fetchAll(PDO::FETCH_ASSOC);
 
@@ -100,10 +103,12 @@ class pessoaRepositorio
                 $animal['fktutor_cpf'],
                 $animal['nome'],
                 $animal['sexo'],
-                $animal['dt_nasc'],
                 $animal['pelagem'],
                 $animal['cor'],
                 $animal['fkid_tutor'],
+                $animal['fk_especie'],
+                $animal['fk_raca'],
+                $animal['dt_nasc']
             );
 
             return $pet;
@@ -167,6 +172,7 @@ class pessoaRepositorio
 
         return $funcao;
     }
+
 /*---------->   MÉTODOS DE EXCLUSÃO DE DADOS    <----------*/
 
     //Método para deletar o TUTOR do banco de dados cadastrado.
@@ -198,5 +204,35 @@ class pessoaRepositorio
 
 
 /*---------->   MÉTODOS DE INSERÇÃO DE DADOS    <----------*/
+
+#Método de Inserção de dados
+public function salvarTutor(Tutor $tutor)
+{   
+    $sql = "INSERT INTO endereco (cep, rua, num_da_casa, cidade, estado, bairro ) VALUES (?, ?, ?, ?, ?, ?)";
+    $statement = $this->pdo->prepare($sql);
+    $statement->bindValue(1, $tutor->get_endereco()->get_cep()); 
+    $statement->bindValue(2, $tutor->get_endereco()->get_logradouro()); 
+    $statement->bindValue(3, $tutor->get_endereco()->get_num_casa()); 
+    $statement->bindValue(4, $tutor->get_endereco()->get_cidade()); 
+    $statement->bindValue(5, $tutor->get_endereco()->get_estado()); 
+    $statement->bindValue(6, $tutor->get_endereco()->get_bairro()); 
+    $statement->execute();  
     
+    $sql = "INSERT INTO pessoas (cpf, nome, rg, telefone, email, fkendereco, dtnasc ) VALUES ( ?, ?, ?, ?, ?, ?, ?)";
+    $statement = $this->pdo->prepare($sql);
+     
+    $statement->execute([$tutor->get_cpf(), 
+    $tutor->get_nome(), 
+    $tutor->get_rg(),
+    $tutor->get_telefone(), 
+    $tutor->get_email(),
+    $this->pdo->lastInsertId(),
+    $tutor->get_dt_nasc()]);
+
+   $sql = "INSERT INTO tutor (status, cpf_pessoa, dtregistro) VALUES (?, ?, ?)";
+    $statement = $this->pdo->prepare($sql);
+    $statement->execute([$tutor->get_status(), 
+    $tutor->get_cpf(),
+    $tutor->get_dtregistro()]);          
+}
 }

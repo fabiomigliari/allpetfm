@@ -16,9 +16,8 @@ class Endereco{
     
 
   //Criação dos MÉTODO CONSTRUTOR da Classe ENDERECO.
-    public function __construct( int $id_endereco, string $cep,  string $logradouro,  string $num_casa, string $cidade,  string $estado, string $bairro)
+    public function __construct( string $cep,  string $logradouro,  string $num_casa, string $cidade,  string $estado, string $bairro)
     {
-      $this->id_endereco = $id_endereco;
       $this->cep = $cep;
       $this->logradouro = $logradouro;
       $this->num_casa = $num_casa;
