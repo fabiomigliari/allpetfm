@@ -1,27 +1,15 @@
-<?php
-
-use tests\Entity\Servico;
-require __DIR__.'\..\vendor\autoload.php';
-
-$servico = Servico::getServico();
-
-
-
-
-?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
-
+<!-- testetestestsetestes git -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>AllPet | Serviço</title>
+    <title>AllPet | Agenda</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/fontawesome-free-6.4.0-web/css/all.min.css" rel="stylesheet" type="text/css">
@@ -40,6 +28,64 @@ $servico = Servico::getServico();
     
     <script>
 
+document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendar');
+
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+   // initialDate: '2023-08-14',
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay'
+    },
+    // Informações motradas na agenda - Se for editar, edite aqui
+    locale: 'pt-br',
+    buttonText: {
+          today: 'Hoje',
+          dayGridMonth: 'Mês',
+          timeGridWeek: 'Semana',
+          timeGridDay: 'Dia'
+        },
+    events: [
+          
+          //-------------------------------
+          
+          // Add more events...
+        ],
+        eventContent: function(info) {
+          var title = info.event.title;
+          var funcionario = info.event.extendedProps.funcionario;
+          var tutor = info.event.extendedProps.tutor;
+          var pet = info.event.extendedProps.pet;
+          var servico = info.event.extendedProps.servico;
+
+          var content = document.createElement('button');
+          content.classList.add('light-blue');
+          content.setAttribute('data-bs-target', '#exampleModal2');
+          content.setAttribute('data-bs-toggle', 'modal');
+          content.innerHTML = '<span class="fc-title">' + title + '</span>' +
+            '<div class="fc-description">' +
+            '<strong>Func.:</strong> ' + funcionario + '<br>' +
+            '<strong>Tut.:</strong> ' + tutor + '<br>' +
+            '<strong>Pet:</strong> ' + pet + '<br>' +
+            '<strong>Ser.:</strong> ' + servico +
+            '</div>';
+
+          return { domNodes: [content] };
+        }
+      });
+
+      calendar.render();
+      var toolbar = calendarEl.querySelectorAll('.fc-button');
+      console.log(toolbar);
+      toolbar.forEach(toolbar => {
+    toolbar.classList.add('blue-color');
+  
+});
+      
+    });
+
     </script>
 
 </head>
@@ -53,7 +99,7 @@ $servico = Servico::getServico();
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion fixed-top" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../tests/index.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./index.html">
                 <div class="sidebar-brand-icon">
                     <img src="../icon-allpet.svg" alt="Dog">
                 </div>
@@ -65,7 +111,7 @@ $servico = Servico::getServico();
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="../tests/index.php">
+                <a class="nav-link" href="./index.html">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Home</span></a>
             </li>
@@ -90,7 +136,7 @@ $servico = Servico::getServico();
                 <div id="collapseFuncionarios" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addfuncionario.php">Adicionar Funcionário</a>
+                        <a class="collapse-item" href="./addfuncionario.html">Adicionar Funcionário</a>
                         <a class="collapse-item" href="confuncionario.php">Consultar Funcionário</a>
                     </div>
                 </div>
@@ -132,38 +178,37 @@ $servico = Servico::getServico();
                 </div>
             </li>
 
-    
 
-          <!-- Nav Item - Utilities Collapse Menu PET -->
-          <li class="nav-item">
-            <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAgenda"
-                aria-expanded="true" aria-controls="collapseAgenda">
-                <a class="text-reset text-decoration-none" href="./conagenda.php">
-                    <i class="fas fa-fw fa-paw"></i>
-                <span>Pet</span>
-                </a>
-            </div>
-            <div id="collapseAgenda" class="collapse" aria-labelledby="headingPets"
-                data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Opções:</h6>
-                    <a class="collapse-item" href="./addpet.php">Adicionar Pet</a>
-                    <a class="collapse-item" href="conpet.php">Consultar Pet</a>
-                    
+            <!-- Nav Item - Utilities Collapse Menu PET -->
+            <li class="nav-item">
+                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAgenda"
+                    aria-expanded="true" aria-controls="collapseAgenda">
+                    <a class="text-reset text-decoration-none" href="./conagenda.html">
+                <i class="fas fa-fw fa-calendar"></i>
+                    <span>Pet</span>
+                    </a>
                 </div>
+                <div id="collapseAgenda" class="collapse" aria-labelledby="headingPets"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Opções:</h6>
+                        <a class="collapse-item" href="addpet.php">Adicionar Pet</a>
+                        <a class="collapse-item" href="conpet.php">Consultar Pet</a>
+                        
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Outros
             </div>
-        </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Outros
-        </div>
-
-         <!-- Nav Item - Relatórios -->
-         <li class="nav-item">
+           <!-- Nav Item - Relatórios -->
+        <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSettings"
                 aria-expanded="true" aria-controls="collapseSettings">
                 <i class="fa fa-print" aria-hidden="true"></i>
@@ -250,15 +295,15 @@ $servico = Servico::getServico();
                             </div>
                         </li>
 
-                        <!-- Nav Item - Alerts ->
+                        <!-- Nav Item - Alerts >
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts ->
+                                <-- Counter - Alerts >
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>
-                            <!-- Dropdown - Alerts ->
+                            <-- Dropdown - Alerts 
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
@@ -301,15 +346,15 @@ $servico = Servico::getServico();
                             </div>
                         </li>
 
-                        <!-- Nav Item - Messages ->
+                        < Nav Item - Messages >
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages ->
+                                < Counter - Messages >
                                 <span class="badge badge-danger badge-counter">7</span>
                             </a>
-                            <!-- Dropdown - Messages ->
+                            <-- Dropdown - Messages >
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="messagesDropdown">
                                 <h6 class="dropdown-header">
@@ -367,13 +412,13 @@ $servico = Servico::getServico();
                             </div>
                         </li>
 
-                        <div class="topbar-divider d-none d-sm-block"></div>
+                        <div class="topbar-divider d-none d-sm-block"></div> -->
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Legume McLanche</span>
                                 <img class="img-profile rounded-circle"
                                     src="../img/undraw_profile.svg">
                             </a>
@@ -415,172 +460,252 @@ $servico = Servico::getServico();
             <div class="card shadow container w-75 margin-b margin-t" id="card">
 
                       <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div class="container-fluid mt-5 mb-5">
                   
+<div class="d-flex justify-content-between">
+  <h4 class="fs-1">Agenda</h4>
 
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4 mt-5">
-                      <div class="card-header py-3">
-                          
-                          <div class="row">
-                              <div class="col">
-                                  <h6 class="m-0 font-weight-bold text-primary">Serviços</h6>
-                              </div>
-                              <div class="col-auto">
-                                <form class="form-inline">
-                                  <input type="text" class="form-control" placeholder="Pesquisar">
-                                  <button class="btn btn-primary m-2" type="button">
-                                      <i class="fas fa-search fa-sm"></i>
-                                  </button>
-                                <!-- Botão CADASTRAR na tela de consulta-->
-                                <a href="addservico.php" class="btn btn-primary ml-1"
-                                   title="Cadastrar">
-                                <i class="fas fa-fw fa-plus"></i></a>
-                                 <!-- Fim Botão CADASTRAR na tela de consulta-->
-                                </form>
-                              </div>
-
-                                <!-- Modal -->
-                                <div class="container-fluid" id="card">
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-dialog-centered modal-xl custom-dialog">
-                                    <div class="modal-content p-3">
-                                        <!--Modal Content-->
-                                        <div class="mt-3">
-                                          <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                            <li class="nav-item">
-                                              <a class="nav-link active" id="servico-tab" data-bs-toggle="tab" href="#servico" role="tab" aria-controls="servico" aria-selected="true">Serviço</a>
-                                            </li>
-                                            
-                                          </ul>
-                                          </div>
-
-                                          <div class="tab-content" id="myTabContent">
-                                            <div class="tab-pane fade show active" id="servico" role="tabpanel" aria-labelledby="servico-tab">
-                                              <!-- servico tab content -->
-                                              <div class="container mt-5 mb-5">
-                                                <!--Formulário para preenchimento do cadastro do serviço-->
-
-                   <!--NOME-->
-    <form method="post">
-          <div class="container mt-5 text-left">
-            <div class="row align-items-start">
-             <div class="col">
-              <div class="mb-3">
-               <label for="exampleFormControlInput1" class="form-label">*Nome:</label>
-               <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Digite o Nome do Serviço">
-              </div>
-             </div>
-             <div class="col">
-              <div class="mb-3">
-               <label for="exampleFormControlInput1" class="form-label">*Duração Padrão:</label>
-               <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Digite a Duração do Serviço">
-              </div>
-             </div>
-            </div>
-           </div>
-
-           <!-- -->
-           <div class="container text-left">
-            <div class="row align-items-start">
-             <div class="col">
-              <div class="mb-3">
-               <label for="exampleFormControlInput1" class="form-label">Fluxo Agenda:</label>
-               <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Fluxo Agenda">
-              </div>
-             </div>
-             <div class="col">
-              <div class="mb-3">
-               <label for="exampleFormControlInput1" class="form-label">Frequência Recomendada:</label>
-               <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Frequência Recomendada">
-              </div>
-             </div>
-            </div>
-           </div>
-
-           <div class="container mb-5 text-left">
-         <div class="row align-items-start">
-           <div class="col">
-             <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Modelo de Atendimento:</label>
-            <textarea class="form-control" id="descreverservico" rows="5" placeholder="Descreva aqui como funciona o serviço"></textarea>
-           </div>
-           </div>
-         </div>
-         </div>
-    </form>
- <!--Esse esquema abaixo são os botões salvar e cancelar em relação ao Serviço-->
-
-   <!-- End of Service-->
-
-                                            </div>
-                                            <hr>
-                              <div class="container mt-4 mb-5">
-                                <div class="d-flex justify-content-between">
-
-                                    <button type="button" class="btn btn-primary btn-circle"><i class="fas fa-fw fa-chevron-left"></i></button>
-                                    <div class="ml-auto">
-                                    <a href="conservico2.php" class="btn btn-success btn-circle"><i class="fas fa-fw fa-chevron-down"></i></a>
-                                    <a href="conservico.php" class="btn btn-danger btn-circle"><i class="fas fa-fw fa-xmark"></i></a>
-                                    </div>
-
-                                  </div>
-                            </div>
-                                            </div>
+                    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" title="Agendar" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <i class="fas fa-fw fa-plus"></i>
+</button>
 
 
-                                            </div>
-                                        <!----------------->
+</div>
+<!-- Modal 1 -->
+<div id="card">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg custom-dialog">
+    <div class="modal-content p-3">
+        <!--Modal Content-->
+        <div class="mt-3">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="Agenda-tab" data-bs-toggle="tab" href="#Agenda" role="tab" aria-controls="Agenda" aria-selected="true">Agenda</a>
+              </li>
+            </ul>
+        </div>
+            
+            <div class="tab-content" id="myTabContent">
+          
+              <div class="tab-pane fade show active" id="Agenda" role="tabpanel" aria-labelledby="Agenda-tab">
+               
+                <!-- Agenda adicionar - tab content -->
 
-                                    </div>
-                                  </div>
-                                </div>
-                                </div>
-                              </div>
-                              <div class="card-body">
-                          
-                          <div class="table-responsive">
-                              <table  id="myList" class="table table-bordered" width="100%" cellspacing="0">
-                                  <thead>
-                                  <tr>
-                                      <th>ID</th>
-                                      <th>Nome do serviço</th>
-                                      <th>Duração</th>
-                                      <th>Preço</th>
-                                      <th>Fluxo de agenda</th>
-                                      <th>Fr. recomendada</th>
-                                      <th>Descrição</th>
-                                      <th>Ação</th>
-                                  </tr>
-                                  </thead>
-                                      <tbody>
-                                      <?php foreach ($servico as $servicos):?>
-                                          <tr>
-                                              <td><?=   $servicos->id             ?></td>
-                                              <td><?=   $servicos->nomeservico    ?></td>
-                                              <td><?=   $servicos->duracao        ?></td>
-                                              <td><?=   $servicos->preco          ?></td>
-                                              <td><?=   $servicos->fluxoag        ?></td>
-                                              <td><?=   $servicos->periodorec     ?></td>
-                                              <td><?=   $servicos->modatend       ?></td>
-                                              <td style="width: 180px">
-                                                  <a href="editarservico.php?id=<?= $servicos->id ?>"><button type="button" name="editar" class= "btn btn-primary btn-sm-2">Editar</button>
-                                                  </a>
-                                                  <a href="excluirservico.php?id=<?= $servicos->id ?>"><button type="button" name="excluir" class= "btn btn-danger btn-sm-2">Excluir</button>
-                                                  </a>
-                                              </td>
-                                          </tr>
-                                      <?php endforeach; ?>
-                                      </tbody>
-                              </table>
-                          </div>
-                              </div>
-                          </div>
+                <div class="container mt-5">
+                    <div class="row">
+                      <div class="col mb-3">
+                        <label for="tutor" class="form-label"><b>Tutor</b></label>
+                      
+              
+                        <select class="form-control" name="tutor">
+                            <option value="Flávio Eduardo de Oliveira">Flávio Eduardo de Oliveira</option>
+                            <option value="Gabriel Paduleto">Gabriel Paduleto</option>
+                            <option value="Helio Neves">Helio Neves</option>
+                                                    
+                            </select>
                       </div>
+                      <div class="col mb-3">
+                        <label for="funcao" class="form-label"><b>Pet</b></label>
+                        <select class="form-control" name="pet">
+                            <option value="Bob">Bob</option>
+                            <option value="Doguinho">Doguinho</option>
+                            <option value="Mrley">Marley</option>
+                            <option value="Scooby">Scooby</option>
+                          
+                            </select>
                       </div>
-
-
-
+                    </div>
+                    <div class="row">
+                        <div class="col mb-3">
+                          <label for="tutor" class="form-label"><b></b>Funcionário</label>
+                        
+                
+                          <select class="form-control" name="funcionario">
+                            <option value="Alan Silva">Alan Silva</option>
+                            <option value="Brenda Gimenes">Brenda Gimenes</option>
+                            <option value="Bruno Pereira">Bruno Pereira</option>
+                            <option value="Carlos Gomes de Souza">Carlos Gomes de Souza</option>
+                            <option value="Caroline Benedita dos Santos">Caroline Benedita dos Santos</option>
+                            <option value="Daniele de Souza dos Santos">Daniele de Souza dos Santos</option>
+                            <option value="Eduardo Augusto Pereira">Eduardo Augusto Pereira</option>
+                            <option value="Felipe Botello de Andradina Silva">Felipe Botello de Andradina Silva</option>
+                            <option value="José da Silva">José da Silva</option>
+                          
+                            </select>
+                        </div>
+                        <div class="col mb-3">
+                          <label for="funcao" class="form-label"><b>Serviço</b></label>
+                          <select class="form-control" name="servico">
+                            <option value="Banho">Banho</option>
+                            <option value="Tosa">Tosa</option>
+                            <option value="Banho e Tosa">Banho e Tosa</option>
+                          
+                            </select>
+                        </div>
+                      </div>
+                    <div class="row">
+                      <div class="col mb-3">
+                        <label for="data_agenda" class="form-label"><b>Data</b></label>
+                            <input type="date" class="form-control" id="data_agenda" name="data_agenda" ">
+                      </div>
+                      <div class="col mb-3">
+                        <label for="hora" class="form-label"><b>Horário</b></label>
+                            <input type="number" class="form-control" id="hora" name="hora" placeholder="Digite o horário">
+                      </div>
+                      <div class="col mb-3">
+                        <label for="status" class="form-label"><b>Status</b></label>
+                      
+              
+                        <select class="form-control" name="status">
+                        <option value="ativo">Ativo</option>
+                        <option value="desativo">Inativo</option>
+                      
+                        </select>
+                      
+                      </div>
+                    </div>
+                    <div class="row">
+                        
+                        <div class="col mb-3">
+                          <label for="hora" class="form-label"><b>Recebimento</b></label>
+                              <input type="text" class="form-control" id="recebi" name="recebi" placeholder="Digite o aqui">
+                        </div>
+                        
+                      </div>
+                    <div class="row">
+                        <div class="col mb-3">
+                          <label for="hora" class="form-label"><b>Relatório Serviço</b></label>
+                              <textarea type="text" class="form-control" id="rel_serv" name="rel_serv" placeholder="Digite aqui"></textarea>
+                        </div>
+                        
+                      </div>
+                    <hr>
+                <div class="container mt-4 mb-5">
+                    <div class="d-flex justify-content-between">
+                    
+                        <button type="button" class="btn btn-primary btn-circle" title="Voltar"><i class="fas fa-fw fa-chevron-left"></i></button>
+                        <div class="ml-auto">
+                        <a href="contutor2.html" class="btn btn-success btn-circle" title="Salvar"><i class="fas fa-fw fa-chevron-down"></i></a>
+                        <a href="contutor2.html" class="btn btn-danger btn-circle" title="Cancelar"><i class="fas fa-fw fa-xmark"></i></a>
+                        </div> 
+                        
+                      </div> 
+                </div>
+              </div>
+              </div>
+            </div>
+        <!----------------->
+        
+      
+    </div>
+  </div>
+</div>
+</div>
+<!----------------->
+<!-- Modal 1 -->
+<div id="card">
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg custom-dialog">
+        <div class="modal-content p-3">
+            <!--Modal Content-->
+            <div class="mt-3">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="Agenda2-tab" data-bs-toggle="tab" href="#Agenda2" role="tab" aria-controls="Agenda2" aria-selected="true">Agenda</a>
+                  </li>
+                </ul>
+            </div>
+                
+                <div class="tab-content" id="myTabContent">
+              
+                  <div class="tab-pane fade show active" id="Agenda2" role="tabpanel" aria-labelledby="Agenda2-tab">
+                     <!-- Agenda tab content -->
+                <div class="container mt-5">
+                    <div class="row">
+                      <div class="col-4 mb-3">
+                        <label for="tutor" class="form-label">Tutor</label>
+                      
+              
+                        <p>Prayer</p>
+                      </div>
+                      <div class="col mb-3">
+                        <label for="funcao" class="form-label">Pet</label>
+                        <p>Scooby</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 mb-3">
+                          <label for="tutor" class="form-label">Funcionário</label>
+                        
+                
+                          <p>John Kennedy</p>
+                        </div>
+                        <div class="col mb-3">
+                          <label for="funcao" class="form-label">Serviço</label>
+                          <p>Tosa</p>
+                        </div>
+                      </div>
+                    <div class="row">
+                      <div class="col mb-3">
+                        <label for="data_agenda" class="form-label">Data</label>
+                            <p>2023-06-08</p>
+                      </div>
+                      <div class="col mb-3">
+                        <label for="hora" class="form-label">Horário</label>
+                            <p>10:00:00AM</p>
+                      </div>
+                      <div class="col mb-3">
+                        <label for="status" class="form-label">Status</label>
+                      
+              
+                        <p>Ativo</p>
+                      
+                      </div>
+                    </div>
+                    <div class="row">
+                        
+                        <div class="col mb-3">
+                          <label for="hora" class="form-label">Recebimento</label>
+                              <p>R$300.00</p>
+                        </div>
+                        
+                      </div>
+                    <div class="row">
+                        <div class="col mb-3">
+                          <label for="hora" class="form-label">Relatório Serviço</label>
+                              <p>Ele saiu pulando aqui me ajudaaa, help me please, oh my gosh.</p>
+                        </div>
+                        
+                      </div>
+                    <hr>
+                <div class="container mt-4 mb-5">
+                    <div class="d-flex justify-content-between">
+                    
+                        <button type="button" class="btn btn-primary btn-circle" title="Voltar"><i class="fas fa-fw fa-chevron-left"></i></button>
+                        <div class="ml-auto">
+                        <a href="contutor2.html" class="btn btn-success btn-circle" title="Salvar"><i class="fas fa-fw fa-chevron-down"></i></a>
+                        <a href="contutor2.html" class="btn btn-danger btn-circle" title="Cancelar"><i class="fas fa-fw fa-xmark"></i></a>
+                        </div> 
+                        
+                      </div>
+                </div>
+                  </div>
+                  </div>
+                </div>
+            <!----------------->
+            
+          
+        </div>
+      </div>
+    </div>
+    </div>
+    <!----------------->            
+                            <hr>
+                    <div id="calendar"></div>
+                            
+                            
+                    
                     
                 
                     
@@ -634,7 +759,7 @@ $servico = Servico::getServico();
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="../login.php">Logout</a>
+                    <a class="btn btn-primary" href="../login.html">Logout</a>
                 </div>
             </div>
         </div>
@@ -643,7 +768,7 @@ $servico = Servico::getServico();
 
     <script>
         // Activate tab functionality
-        var tab = new bootstrap.Tab(document.getElementById("servico-tab"));
+        var tab = new bootstrap.Tab(document.getElementById("pessoa-tab"));
         tab.show();
 
         // Get reference to the calendar container element

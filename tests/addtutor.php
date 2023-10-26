@@ -1,27 +1,3 @@
-<?php
-use tests\Entity\Servico;
-use tests\db\Database;
-
-require __DIR__.'\..\vendor\autoload.php';
-require 'db\Database.php';
-
-
-if(isset($_POST['botaocadastro'])) {
-    $obServico = new Servico;
-    $obServico-> nomeservico    =     $_POST['nomeservico'];
-    $obServico-> duracao        =     $_POST['duracao'];
-    $obServico-> preco          =     $_POST['preco'];
-    $obServico-> fluxoag        =     $_POST['fluxoag'];
-    $obServico-> periodorec     =     $_POST['periodorec'];
-    $obServico-> modatend       =     $_POST['modatend'];
-    $obServico->cadastrar();
-
-    header('location: addservico.php?status=success');
-    exit;
-}
-
-
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -33,7 +9,7 @@ if(isset($_POST['botaocadastro'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>AllPet | Serviço</title>
+    <title>AllPet | Tutores</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/fontawesome-free-6.4.0-web/css/all.min.css" rel="stylesheet" type="text/css">
@@ -57,7 +33,7 @@ if(isset($_POST['botaocadastro'])) {
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion fixed-top" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../tests/index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/tests/index.html">
                 <div class="sidebar-brand-icon">
                     <img src="../icon-allpet.svg" alt="Dog">
                 </div>
@@ -146,7 +122,7 @@ if(isset($_POST['botaocadastro'])) {
                         <span>Pet</span>
                     </a>
                 </div>
-                <div id="collapsePet" class="collapse" aria-labelledby="headingPets" data-parent="#accordionSidebar">
+                <div id="collapseAgenda" class="collapse" aria-labelledby="headingPets" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
                         <a class="collapse-item" href="addpet.php">Adicionar Pet</a>
@@ -184,6 +160,10 @@ if(isset($_POST['botaocadastro'])) {
 
 
             
+            <!-- Divider -->
+
+
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -225,7 +205,7 @@ if(isset($_POST['botaocadastro'])) {
                             </div>
                         </div>
                     </form>
-                    <h5 class="text-primary">Serviços - Adicionar</h5>
+                    <h5 class="text-primary">Tutor - Adicionar</h5>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -411,181 +391,383 @@ if(isset($_POST['botaocadastro'])) {
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
 
+
+                        <!-- abas superiores -->
+
                         <div class="mt-3">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="servico-tab" data-bs-toggle="tab" href="#servico"
-                                        role="tab" aria-controls="servico" aria-selected="true">Serviço</a>
+                                    <a class="nav-link active" id="pessoa-tab" data-bs-toggle="tab" href="#pessoa"
+                                        role="tab" aria-controls="pessoa" aria-selected="true">Pessoa</a>
                                 </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" id="endereco-tab" data-bs-toggle="tab" href="#endereco"
+                                        role="tab" aria-controls="endereco" aria-selected="false">Endereço</a>
+                                </li>
+
                             </ul>
                         </div>
 
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="servico" role="tabpanel"
-                                aria-labelledby="servico-tab">
-                                <!-- Pessoa tab content -->
+                            <div class="tab-pane fade show active" id="pessoa" role="tabpanel"
+                                aria-labelledby="pessoa-tab">
 
-                                <!--Formulário para preenchimento do cadastro do serviço-->
+                               
 
-                                <!-- Serviços tab content -->
+                                <!-- ADICIONA PESSOA-->
+
+                                 <!-- Aba Pessoa tab content -->
 
                                 <div class="container mt-5">
                                     <div class="row">
                                         <div class="col mb-3">
-                                            <form method="post" action="addservico.php">
-                                            <label for="nomeservico" class="form-label"><b>Nome do
-                                                    Serviço</b></label>
-                                            <input type="text" class="form-control" id="nomeservico" name="nomeservico"
-                                                placeholder="Digite o nome do Serviço">
-                                        </div>
-                                        <div class="col mb-3">
-                                            <label for="duracao" class="form-label"><b>Duração</b></label>
-                                            <input type="text" class="form-control" id="duracao" name="duracao"
-                                                placeholder="Digite a duração do Serviço">
-                                        </div>
-                                        <div class="col mb-2">
-                                            <label for="preco" class="form-label"><b>Preço</b></label>
-                                            <input type="text" class="form-control" id="preco" name="preco"
-                                                placeholder="Digite o Preço">
+                                            <label for="nometut" class="form-label"><B>Nome</B></label>
+                                            <input type="text" class="form-control" id="nometut" name="nometut"
+                                                placeholder="Digite o nome">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col mb-3">
-                                            <label for="fluxoag" class="form-label"><B>Fluxo Agenda</B></label>
-                                            <select class='form-control' name='fluxoag' id="fluxoag">
-                                                <option value='0'>Selecione...</option>
-                                                <option value="Em Andamento">Em Andamento</option>
-                                                <option value="Pendente">Pendente</option>
-                                                <option value="Finalizado">Finalizado</option>
-                                            </select>
-
+                                            <label for="cpftut" class="form-label"><b>CPF</b></label>
+                                            <input type="text" class="form-control" id="cpftut" name="cpftut"
+                                                placeholder="Digite o cpf">
                                         </div>
                                         <div class="col mb-3">
-                                            <label for="periodorec" class="form-label"><b>Período
-                                                    Recomendado</b></label>
-                                            <input type="text" class="form-control" id="periodorec" name="periodorec"
-                                                placeholder="Digite o Período Recomendado">
+                                            <label for="rgtut" class="form-label"><b>RG</b></label>
+                                            <input type="text" class="form-control" id="rgtut" name="rgtut"
+                                                placeholder="Digite o RG">
+                                        </div>
+                                        <div class="col mb-3">
+                                            <label for="telefonetut" class="form-label"><b>Telefone</b></label>
+                                            <input type="text" class="form-control" id="telefonetut" name="telefonetut"
+                                                placeholder="Digite o telefone">
                                         </div>
                                     </div>
-
-                                    <div class="row align-items-start">
-                                        <div class="col">
-                                            <div class="mb-3">
-                                                <label for="modatend" class="form-label"><b>Modelo
-                                                        de Atendimento</b></label>
-                                                <textarea name="modatend" class="form-control" id="modatend" rows="5"
-                                                    placeholder="Descreva aqui como funciona o serviço"></textarea>
-
-                                            </div>
+                                    <div class="row">
+                                        <div class="col-8 mb-3">
+                                            <label for="emailtut" class="form-label"><b>Email</b></label>
+                                            <input type="email" class="form-control" id="emailtut" name="emailtut"
+                                                placeholder="Digite o email">
+                                        </div>
+                                        <div class="col mb-1">
+                                            <label for="dtnasctut" class="form-label"><b>Data de Nascimento</b></label>
+                                            <input type="email" class="form-control" id="dtnasctut" name="dtnasctut"
+                                                placeholder="Digite a data de Nascimento">
                                         </div>
                                     </div>
                                 </div>
                                 <hr>
+                                <!-- FIM ADICIONA PESSOA -->
+
+                                 <!--BOTÕES ADICIONAR -->
+                                 <div class="container mt-4 mb-5">
+                                    <div class="d-flex justify-content-between">
+                                        <a href="addtutor.php" class="btn btn-primary btn-circle" title="Voltar">
+                                            <i class="fas fa-fw fa-chevron-left"></i></a>
+                                       
+                                    </div>
+                                </div>
+                                <!-- FIM BOTÕES ADICIONAR -->
+                            </div>
+
+                            <div class="tab-pane fade" id="endereco" role="tabpanel" aria-labelledby="endereco-tab">
+
+                          
+                                <!-- Aba Endereço tab content -->
+
+                                <div class="container mt-5">
+
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="logratut" class="form-label"><b>Logradouro</b></label>
+                                            <input type="text" class="form-control" id="logratut" name="logratut"
+                                                placeholder="Digite o endereço">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="bairrotut" class="form-label"><b>Bairro</b></label>
+                                            <input type="text" class="form-control" id="bairrotut" name="bairrotut"
+                                                placeholder="Digite o bairro">
+                                        </div>
+                                        <div class="col mb-3">
+                                            <label for="cidadetut" class="form-label"><b>Cidade</b></label>
+                                            <input type="text" class="form-control" id="cidadetut" name="cidadetut"
+                                                placeholder="Digite a cidade">
+                                        </div>
+                                        <div class="col mb-3">
+                                            <label for="estadotut" class="form-label"><b>Estado</b></label>
+                                            <input type="text" class="form-control" id="estadotut" name="estadotut"
+                                                placeholder="Digite estado">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4 mb-3">
+                                            <label for="ceptut" class="form-label"><b>CEP</b></label>
+                                            <input type="text" class="form-control" id="ceptut" name="ceptut"
+                                                placeholder="Digite o CEP">
+                                        </div>
+                                        <div class="col mb-3">
+                                            <label for="numerotut" class="form-label"><b>Número</b></label>
+                                            <input type="text" class="form-control" id="numerotut" name="numerotut"
+                                                placeholder="Digite o numero">
+                                        </div>
+                                        <div class="col-6 mb-3">
+                                            <label for="complementotut" class="form-label"><b>Complemento</b></label>
+                                            <input type="text" class="form-control" id="complementotut"
+                                                name="complementotut" placeholder="Digite o complemento">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="pontoreferenciatut" class="form-label"><b>Ponto de
+                                                    Referência</b></label>
+                                            <input type="text" class="form-control" id="pontoreferenciatut"
+                                                name="pontoreferenciatut" placeholder="Digite o ponto de referência">
+                                        </div>
+                                    </div>
+                                </div>
                                 <!--BOTÕES ADICIONAR -->
                                 <div class="container mt-4 mb-5">
                                     <div class="d-flex justify-content-between">
-                                        <a href="" class="btn btn-primary btn-circle" title="Voltar">
+                                        <a href="addtutor.php" class="btn btn-primary btn-circle" title="Voltar">
                                             <i class="fas fa-fw fa-chevron-left"></i></a>
                                         <div class="ml-auto">
-                                             <button name="botaocadastro" value="submit" class="btn btn-success btn-circle"
+                                            <a href="addtutor.php" class="btn btn-success btn-circle"
                                                title="Adicionar">
-                                                <i class="fas fa-fw fa-chevron-down"></i></button>
-                                            <a href="addservico.php" class="btn btn-danger btn-circle"
+                                                <i class="fas fa-fw fa-chevron-down"></i></a>
+                                            <a href="addtutor.php" class="btn btn-danger btn-circle"
                                                title="Excluir">
                                                 <i class="fas fa-fw fa-xmark"></i></a>
                                         </div>
                                     </div>
                                 </div>
-                                </form>
                                 <!-- FIM BOTÕES ADICIONAR -->
                             </div>
                         </div>
+                        <!--fIm Endereço-->
 
-                        <!-- End Form Container-->
+                        <!--Pet-->
+                        <div class="tab-pane fade" id="pet" role="tabpanel" aria-labelledby="pet-tab">
+                            <!-- Pet tab content -->
 
-                        <!-- End Body Content-->
+                            <!-- ABAS INFERIORES (PETS) 
+                                <div class="container mt-5">
+                                    <div class="tab-pane fade show active" id="tab1">
+                                        <div class="tab-content mt-2">
+                                            <div class="tab-pane fade show active" id="subtab1">
+                                                <div class="row">
+                                                    <div class="col mb-3">
+                                                        <label for="nomepet" class="form-label"><b>Nome do Pet</b></label>
+                                                        <input type="text" class="form-control" id="nomepet" name="nomepet" 
+                                                            placeholder="Digite o Nome do Pet">
+                                                    </div>
+                                                    <div class="col mb-3">
+                                                        <label for="sexopet" class="form-label"><b>Sexo</b></label>
+                                                        <select class='form-control' id="sexopet" name="sexopet">
+                                                            <option value='embranco'></option>
+                                                            <option value='macho'>Macho</option>
+                                                            <option value='femea'>Fêmea</option></select>
+                                                    </div>
+                                                    <div class="col mb-3">
+                                                        <label for="salario" class="form-label"><b>Data de
+                                                                Nascimento</b></label>
+                                                        <p>03/06/2022</p>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col mb-3">
+                                                        <label for="especie" class="form-label"><b>Espécie</b></label>
+                                                        <p>A</p>
+                                                    </div>
+                                                    <div class="col mb-3">
+                                                        <label for="raca" class="form-label"><b>Raça</b></label>
+                                                        <p>Pit Bull</p>
+                                                    </div>
+                                                    <div class="col mb-3">
+                                                        <label for="pelagem" class="form-label"><b>Pelagem</b></label>
+                                                        <p>Pequena</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col mb-3">
+                                                        <label for="observacao"
+                                                            class="form-label"><b>Observação</b></label>
+                                                        <p>Cachorro manso</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="subtab2">
+                                                <div class="row">
+                                                    <div class="col mb-3">
+                                                        <label for="nomepet" class="form-label"><b>Nome do
+                                                                pet</b></label>
+                                                        <p>Scooby</p>
+                                                    </div>
+                                                    <div class="col mb-3">
+                                                        <label for="diadefolga" class="form-label"><b>Sexo</b></label>
+                                                        <p>Masculino</p>
+                                                    </div>
+                                                    <div class="col mb-3">
+                                                        <label for="salario" class="form-label"><b>Data de
+                                                                Nascimento</b></label>
+                                                        <p>09/12/2020</p>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col mb-3">
+                                                        <label for="especie" class="form-label"><b>Espécie</b></label>
+                                                        <p>B</p>
+                                                    </div>
+                                                    <div class="col mb-3">
+                                                        <label for="raca" class="form-label"><b>Raça</b></label>
+                                                        <p>Pintcher</p>
+                                                    </div>
+                                                    <div class="col mb-3">
+                                                        <label for="pelagem" class="form-label"><b>Pelagem</b></label>
+                                                        <p>Pequena</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col mb-3">
+                                                        <label for="observacao"
+                                                            class="form-label"><b>Observação</b></label>
+                                                        <p>Cachorro bravo</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <ul class="nav nav-tabs">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="tab" href="#subtab1">Doguinho</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#subtab2">Scooby</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                 <FIM ABAS INFERIORES (PETS) -->
+
+                            <!--botoes pet-->
+
+                            <div class="container mt-4 mb-5">
+
+                                <div class="d-flex justify-content-between">
+
+                                    <a href="contutor.php" class="btn btn-primary btn-circle" title="Voltar"><i
+                                            class="fas fa-fw fa-chevron-left"></i></a>
+                                    <div class="ml-auto">
+                                        <button type="button" class="btn btn-primary btn-circle" title="Cadastrar"
+                                            data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                                class="fas fa-fw fa-plus"></i></button>
+                                        <button type="button" class="btn btn-primary btn-circle" title="Editar"><i
+                                                class="fas fa-fw fa-pencil"></i></button>
+                                        <button type="button" class="btn btn-danger btn-circle ml-2" title="Excluir"><i
+                                                class="fas fa-fw fa-trash"></i></button>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!--fim botoes pet-->
+
+
+                        </div>
 
                     </div>
-                    <!-- End of Main Content -->
-
-
+                    <!-- /.container-fluid -->
 
                 </div>
-                <!-- End of Content Wrapper -->
+                <!-- End Form Container-->
+
+                <!-- End Body Content-->
 
             </div>
-            <!-- End of Page Wrapper -->
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white margin-l">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-            <!-- Scroll to Top Button-->
-            <a class="scroll-to-top rounded" href="#page-top">
-                <i class="fas fa-angle-up"></i>
-            </a>
+            <!-- End of Main Content -->
 
-            <!-- Logout Modal-->
-            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">Select "Logout" below if you are ready to end your current
-                            session.</div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <a class="btn btn-primary" href="../login.html">Logout</a>
-                        </div>
-                    </div>
+
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white margin-l">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                < <span>Copyright &copy; Your Website 2021</span>
+            </div>
+        </div>
+    </footer>
+    <!-- End of Footer -->
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="../login.html">Logout</a>
                 </div>
             </div>
+        </div>
+    </div>
 
 
-            <script>
-                // Activate tab functionality
-                var tab = new bootstrap.Tab(document.getElementById("pessoa-tab"));
-                tab.show();
+    <script>
+        // Activate tab functionality
+        var tab = new bootstrap.Tab(document.getElementById("pessoa-tab"));
+        tab.show();
 
-                $(document).ready(function () {
-                    $('#pessoa').submit(function (e) {
-                        e.preventDefault(); // Prevent form submission
+        $(document).ready(function () {
+            $('#pessoa').submit(function (e) {
+                e.preventDefault(); // Prevent form submission
 
-                        // Perform any necessary validation or processing here
+                // Perform any necessary validation or processing here
 
-                        // Move to the next step
-                        $('#pessoa').hide();
-                        $('#funcao').show();
-                    });
-                });
+                // Move to the next step
+                $('#pessoa').hide();
+                $('#funcao').show();
+            });
+        });
 
-            </script>
-            <script src="../js/allpet.js"></script>
-            <!-- Bootstrap core JavaScript-->
-            <script src="../vendor/jquery/jquery.min.js"></script>
-            <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    </script>
+    <script src="../js/allpet.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-            <!-- Core plugin JavaScript-->
-            <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
-            <!-- Custom scripts for all pages-->
-            <script src="../js/sb-admin-2.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin-2.min.js"></script>
 
-            <!-- Page level plugins -->
-            <script src="../vendor/chart.js/Chart.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
 
-            <!-- Page level custom scripts -->
-            <script src="../js/demo/chart-area-demo.js"></script>
-            <script src="../js/demo/chart-pie-demo.js"></script>
+    <!-- Page level custom scripts -->
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
 
 </body>
 

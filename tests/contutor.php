@@ -1,15 +1,10 @@
 <?php
 
-use tests\Entity\Servico;
+use tests\Entity\Tutor;
 require __DIR__.'\..\vendor\autoload.php';
 
-$servico = Servico::getServico();
-
-
-
-
+$tutor = Tutor::getTutor();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +16,7 @@ $servico = Servico::getServico();
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>AllPet | Serviço</title>
+    <title>AllPet | Tutor</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/fontawesome-free-6.4.0-web/css/all.min.css" rel="stylesheet" type="text/css">
@@ -40,6 +35,103 @@ $servico = Servico::getServico();
     
     <script>
 
+document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendar');
+
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    initialDate: '2023-05-07',
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay'
+    },
+    locale: 'pt-br',
+    buttonText: {
+          today: 'Hoje',
+          dayGridMonth: 'Mês',
+          timeGridWeek: 'Semana',
+          timeGridDay: 'Dia'
+        },
+    events: [
+          {
+            title: 'Chegada',
+            start: '2023-06-01',
+            
+            description: 'Description for Event 1',
+            funcionario: 'John Doe',
+            tutor: 'Selinha',
+            pet: 'Max',
+            servico: 'Grooming'
+          },
+          {
+            title: 'Saida',
+            
+            start: '2023-06-08',
+            end: '2023-06-08',
+            description: 'Description for Event 1',
+            funcionario: 'John Doe',
+            tutor: 'Selinha',
+            pet: 'Max',
+            servico: 'Grooming'
+          },
+          {
+            title: 'Chegada',
+            
+            start: '2023-06-08',
+            end: '2023-06-08',
+            description: 'Description for Event 1',
+            funcionario: 'John Kennedy',
+            tutor: 'Prayer',
+            pet: 'Scooby',
+            servico: 'Grooming'
+          },
+          {
+            title: 'Chegada',
+            
+            start: '2023-06-09T10:30:00',
+            end: '2023-06-09T16:30:00',
+            description: 'Description for Event 1',
+            funcionario: 'John Doe',
+            tutor: 'Selinha',
+            pet: 'Max',
+            servico: 'Grooming'
+          },
+          
+          // Add more events...
+        ],
+        eventContent: function(info) {
+          var title = info.event.title;
+          var funcionario = info.event.extendedProps.funcionario;
+          var tutor = info.event.extendedProps.tutor;
+          var pet = info.event.extendedProps.pet;
+          var servico = info.event.extendedProps.servico;
+
+          var content = document.createElement('div');
+          content.innerHTML = '<span class="fc-title">' + title + '</span>' +
+          '<a class="text-decoration-none text-reset" href="conagenda2.php">' +
+            '<div class="fc-description">' +
+            '<strong>Func.:</strong> ' + funcionario + '<br>' +
+            '<strong>Tut.:</strong> ' + tutor + '<br>' +
+            '<strong>Pet:</strong> ' + pet + '<br>' +
+            '<strong>Ser.:</strong> ' + servico +
+            '</div>'
+          '</a>';
+
+          return { domNodes: [content] };
+        }
+      });
+
+      calendar.render();
+      var toolbar = calendarEl.querySelectorAll('.fc-button');
+      toolbar.forEach(toolbar => {
+    toolbar.classList.add('blue-color');
+  
+});
+      
+    });
+    
+
     </script>
 
 </head>
@@ -53,7 +145,7 @@ $servico = Servico::getServico();
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion fixed-top" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../tests/index.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/tests/index.php">
                 <div class="sidebar-brand-icon">
                     <img src="../icon-allpet.svg" alt="Dog">
                 </div>
@@ -65,7 +157,7 @@ $servico = Servico::getServico();
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="../tests/index.php">
+                <a class="nav-link" href="/tests/index.php">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Home</span></a>
             </li>
@@ -132,38 +224,38 @@ $servico = Servico::getServico();
                 </div>
             </li>
 
-    
 
-          <!-- Nav Item - Utilities Collapse Menu PET -->
-          <li class="nav-item">
-            <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAgenda"
-                aria-expanded="true" aria-controls="collapseAgenda">
-                <a class="text-reset text-decoration-none" href="./conagenda.php">
-                    <i class="fas fa-fw fa-paw"></i>
-                <span>Pet</span>
-                </a>
-            </div>
-            <div id="collapseAgenda" class="collapse" aria-labelledby="headingPets"
-                data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Opções:</h6>
-                    <a class="collapse-item" href="./addpet.php">Adicionar Pet</a>
-                    <a class="collapse-item" href="conpet.php">Consultar Pet</a>
-                    
+
+            <!-- Nav Item - Utilities Collapse Menu PET -->
+            <li class="nav-item">
+                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAgenda"
+                    aria-expanded="true" aria-controls="collapseAgenda">
+                    <a class="text-reset text-decoration-none" href="./conagenda.php">
+                        <i class="fas fa-fw fa-paw"></i>
+                    <span>Pet</span>
+                    </a>
                 </div>
+                <div id="collapseAgenda" class="collapse" aria-labelledby="headingPets"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Opções:</h6>
+                        <a class="collapse-item" href="./addpet.php">Adicionar Pet</a>
+                        <a class="collapse-item" href="./conpet.php">Consultar Pet</a>
+                        
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Outros
             </div>
-        </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Outros
-        </div>
-
-         <!-- Nav Item - Relatórios -->
-         <li class="nav-item">
+            <!-- Nav Item - Relatórios -->
+        <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSettings"
                 aria-expanded="true" aria-controls="collapseSettings">
                 <i class="fa fa-print" aria-hidden="true"></i>
@@ -424,163 +516,67 @@ $servico = Servico::getServico();
                           
                           <div class="row">
                               <div class="col">
-                                  <h6 class="m-0 font-weight-bold text-primary">Serviços</h6>
+                                  <h6 class="m-0 font-weight-bold text-primary">Tutores</h6>
                               </div>
                               <div class="col-auto">
                                 <form class="form-inline">
                                   <input type="text" class="form-control" placeholder="Pesquisar">
-                                  <button class="btn btn-primary m-2" type="button">
+                                  <button class="btn btn-primary" type="button">
                                       <i class="fas fa-search fa-sm"></i>
                                   </button>
-                                <!-- Botão CADASTRAR na tela de consulta-->
-                                <a href="addservico.php" class="btn btn-primary ml-1"
-                                   title="Cadastrar">
-                                <i class="fas fa-fw fa-plus"></i></a>
-                                 <!-- Fim Botão CADASTRAR na tela de consulta-->
+                                 <!-- Botão CADASTRAR na tela de consulta-->
+                                 <a href="addtutor.php" class="btn btn-primary ml-1"
+                                    title="Cadastrar">
+                                 <i class="fas fa-fw fa-plus"></i></a>
+                             <!-- Fim Botão CADASTRAR na tela de consulta-->
                                 </form>
-                              </div>
-
+                                
                                 <!-- Modal -->
-                                <div class="container-fluid" id="card">
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-dialog-centered modal-xl custom-dialog">
-                                    <div class="modal-content p-3">
-                                        <!--Modal Content-->
-                                        <div class="mt-3">
-                                          <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                            <li class="nav-item">
-                                              <a class="nav-link active" id="servico-tab" data-bs-toggle="tab" href="#servico" role="tab" aria-controls="servico" aria-selected="true">Serviço</a>
-                                            </li>
-                                            
-                                          </ul>
-                                          </div>
 
-                                          <div class="tab-content" id="myTabContent">
-                                            <div class="tab-pane fade show active" id="servico" role="tabpanel" aria-labelledby="servico-tab">
-                                              <!-- servico tab content -->
-                                              <div class="container mt-5 mb-5">
-                                                <!--Formulário para preenchimento do cadastro do serviço-->
-
-                   <!--NOME-->
-    <form method="post">
-          <div class="container mt-5 text-left">
-            <div class="row align-items-start">
-             <div class="col">
-              <div class="mb-3">
-               <label for="exampleFormControlInput1" class="form-label">*Nome:</label>
-               <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Digite o Nome do Serviço">
-              </div>
-             </div>
-             <div class="col">
-              <div class="mb-3">
-               <label for="exampleFormControlInput1" class="form-label">*Duração Padrão:</label>
-               <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Digite a Duração do Serviço">
-              </div>
-             </div>
-            </div>
-           </div>
-
-           <!-- -->
-           <div class="container text-left">
-            <div class="row align-items-start">
-             <div class="col">
-              <div class="mb-3">
-               <label for="exampleFormControlInput1" class="form-label">Fluxo Agenda:</label>
-               <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Fluxo Agenda">
-              </div>
-             </div>
-             <div class="col">
-              <div class="mb-3">
-               <label for="exampleFormControlInput1" class="form-label">Frequência Recomendada:</label>
-               <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Frequência Recomendada">
-              </div>
-             </div>
-            </div>
-           </div>
-
-           <div class="container mb-5 text-left">
-         <div class="row align-items-start">
-           <div class="col">
-             <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Modelo de Atendimento:</label>
-            <textarea class="form-control" id="descreverservico" rows="5" placeholder="Descreva aqui como funciona o serviço"></textarea>
-           </div>
-           </div>
-         </div>
-         </div>
-    </form>
- <!--Esse esquema abaixo são os botões salvar e cancelar em relação ao Serviço-->
-
-   <!-- End of Service-->
-
-                                            </div>
-                                            <hr>
-                              <div class="container mt-4 mb-5">
-                                <div class="d-flex justify-content-between">
-
-                                    <button type="button" class="btn btn-primary btn-circle"><i class="fas fa-fw fa-chevron-left"></i></button>
-                                    <div class="ml-auto">
-                                    <a href="conservico2.php" class="btn btn-success btn-circle"><i class="fas fa-fw fa-chevron-down"></i></a>
-                                    <a href="conservico.php" class="btn btn-danger btn-circle"><i class="fas fa-fw fa-xmark"></i></a>
-                                    </div>
-
-                                  </div>
-                            </div>
-                                            </div>
-
-
-                                            </div>
-                                        <!----------------->
-
-                                    </div>
-                                  </div>
                                 </div>
                                 </div>
                               </div>
+                              <!--Body Pesquisa-->
                               <div class="card-body">
-                          
-                          <div class="table-responsive">
-                              <table  id="myList" class="table table-bordered" width="100%" cellspacing="0">
-                                  <thead>
-                                  <tr>
-                                      <th>ID</th>
-                                      <th>Nome do serviço</th>
-                                      <th>Duração</th>
-                                      <th>Preço</th>
-                                      <th>Fluxo de agenda</th>
-                                      <th>Fr. recomendada</th>
-                                      <th>Descrição</th>
-                                      <th>Ação</th>
-                                  </tr>
-                                  </thead>
-                                      <tbody>
-                                      <?php foreach ($servico as $servicos):?>
-                                          <tr>
-                                              <td><?=   $servicos->id             ?></td>
-                                              <td><?=   $servicos->nomeservico    ?></td>
-                                              <td><?=   $servicos->duracao        ?></td>
-                                              <td><?=   $servicos->preco          ?></td>
-                                              <td><?=   $servicos->fluxoag        ?></td>
-                                              <td><?=   $servicos->periodorec     ?></td>
-                                              <td><?=   $servicos->modatend       ?></td>
-                                              <td style="width: 180px">
-                                                  <a href="editarservico.php?id=<?= $servicos->id ?>"><button type="button" name="editar" class= "btn btn-primary btn-sm-2">Editar</button>
-                                                  </a>
-                                                  <a href="excluirservico.php?id=<?= $servicos->id ?>"><button type="button" name="excluir" class= "btn btn-danger btn-sm-2">Excluir</button>
-                                                  </a>
-                                              </td>
-                                          </tr>
-                                      <?php endforeach; ?>
-                                      </tbody>
-                              </table>
-                          </div>
-                              </div>
+                            
+                            <div class="table-responsive">
+                                <table  id="myList" class="table table-bordered" width="100%" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th>ID do tutor</th>
+                                        <th>Status</th>
+                                        <th>CPF do tutor</th>
+                                        <th>Data de regitro </th>
+                                        <th>Ação </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php foreach ($tutor as $tutores):?>
+                                    <tr>
+                                        <td><?=   $tutores->id    ?></td>
+                                        <td><?=   $tutores->status      ?></td>
+                                        <td><?=   $tutores->cpf_pessoa  ?></td>
+                                        <td><?=   $tutores->dtregistro  ?></td>
+                                        <td style="width: 180px">
+                                            <a href="editartutor.php?id=<?= $tutores->id?>"><button type="button" name="editar" class= "btn btn-primary btn-sm-2">Editar</button>
+                                            </a>
+                                            <a href="excluirtutor.php?id=<?= $tutores->id?>"><button type="button" name="excluir" class= "btn btn-danger btn-sm-2">Excluir</button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                                </div>
+                              <!----------------->
+                            
                           </div>
                       </div>
                       </div>
-
-
-
+                            
+                            
+                    
                     
                 
                     
@@ -643,9 +639,10 @@ $servico = Servico::getServico();
 
     <script>
         // Activate tab functionality
-        var tab = new bootstrap.Tab(document.getElementById("servico-tab"));
+        var tab = new bootstrap.Tab(document.getElementById("pessoa-tab"));
         tab.show();
 
+       
         // Get reference to the calendar container element
       </script>
       <script src="../js/allpet.js"></script>

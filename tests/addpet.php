@@ -1,17 +1,31 @@
 <?php
+use tests\Entity\Pet;
+use tests\db\Database;
 
-use tests\Entity\Servico;
 require __DIR__.'\..\vendor\autoload.php';
+require 'db\Database.php';
 
-$servico = Servico::getServico();
 
+if(isset($_POST['botaocadastro'])) {
+    $obPet = new Pet;
+    $obPet-> id              =     $_POST['id'];
+    $obPet-> pet_nome        =     $_POST['pet_nome'];
+    $obPet-> especie         =     $_POST['especie'];
+    $obPet-> raca            =     $_POST['raca'];
+    $obPet-> pelagem         =     $_POST['pelagem'];
+    $obPet-> sexo            =     $_POST['sexo'];
+    $obPet-> dt_nasc         =     $_POST['dt_nasc'];
+    $obPet-> observacoes     =     $_POST['observacoes'];
+    $obPet->cadastrar();
 
+    header('location: addpet.php?status=success');
+    exit;
+}
 
 
 ?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
 
@@ -21,7 +35,7 @@ $servico = Servico::getServico();
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>AllPet | Serviço</title>
+    <title>AllPet | Pet </title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/fontawesome-free-6.4.0-web/css/all.min.css" rel="stylesheet" type="text/css">
@@ -33,14 +47,6 @@ $servico = Servico::getServico();
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="../agenda/main.min.js"></script>
-    <script src="../agenda/pt-br.js"></script>
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    
-    <script>
-
-    </script>
 
 </head>
 
@@ -53,7 +59,7 @@ $servico = Servico::getServico();
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion fixed-top" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../tests/index.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../tests/index.html">
                 <div class="sidebar-brand-icon">
                     <img src="../icon-allpet.svg" alt="Dog">
                 </div>
@@ -65,7 +71,7 @@ $servico = Servico::getServico();
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="../tests/index.php">
+                <a class="nav-link" href="../tests/index.html">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Home</span></a>
             </li>
@@ -83,14 +89,15 @@ $servico = Servico::getServico();
                 <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFuncionarios"
                     aria-expanded="true" aria-controls="collapseFuncionarios">
                     <a class="text-reset text-decoration-none" href="confuncionario.php">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Funcionário</span>
+                        <i class="fas fa-fw fa-user"></i>
+                        <span>Funcionário</span>
                     </a>
                 </div>
-                <div id="collapseFuncionarios" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseFuncionarios" class="collapse" aria-labelledby="headingTwo"
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Opções:</h6>
-                        <a class="collapse-item" href="./addfuncionario.php">Adicionar Funcionário</a>
+                        <a class="collapse-item" href="./addfuncionario.html">Adicionar Funcionário</a>
                         <a class="collapse-item" href="confuncionario.php">Consultar Funcionário</a>
                     </div>
                 </div>
@@ -101,8 +108,8 @@ $servico = Servico::getServico();
                 <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
                     aria-expanded="true" aria-controls="collapseThree">
                     <a class="text-reset text-decoration-none" href="conservico.php">
-                    <i class="fas fa-fw fa-file-alt"></i>
-                    <span>Serviços</span>
+                        <i class="fas fa-fw fa-file-alt"></i>
+                        <span>Serviços</span>
                     </a>
                 </div>
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
@@ -119,9 +126,9 @@ $servico = Servico::getServico();
                 <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour"
                     aria-expanded="true" aria-controls="collapseFour">
                     <a class="text-reset text-decoration-none" href="contutor.php">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Tutores</span>
-                </a>
+                        <i class="fas fa-fw fa-user"></i>
+                        <span>Tutor</span>
+                    </a>
                 </div>
                 <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -132,38 +139,57 @@ $servico = Servico::getServico();
                 </div>
             </li>
 
-    
+            <!-- Nav Item - Pet Collapse Menu -->
+            <li class="nav-item">
+                <div class="nav-link collapsed" data-toggle="collapse" data-target="#collapsePet" aria-expanded="true"
+                    aria-controls="collapsePet">
+                    <a class="text-reset text-decoration-none" href="conpet.php">
+                        <i class="fas fa-fw fa-paw"></i>
 
-          <!-- Nav Item - Utilities Collapse Menu PET -->
-          <li class="nav-item">
-            <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAgenda"
-                aria-expanded="true" aria-controls="collapseAgenda">
-                <a class="text-reset text-decoration-none" href="./conagenda.php">
-                    <i class="fas fa-fw fa-paw"></i>
-                <span>Pet</span>
-                </a>
-            </div>
-            <div id="collapseAgenda" class="collapse" aria-labelledby="headingPets"
-                data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Opções:</h6>
-                    <a class="collapse-item" href="./addpet.php">Adicionar Pet</a>
-                    <a class="collapse-item" href="conpet.php">Consultar Pet</a>
-                    
+                        <span>
+                            Pet
+                        </span>
+                    </a>
                 </div>
+                <div id="collapsePet" class="collapse" aria-labelledby="headingPets" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Opções:</h6>
+                        <a class="collapse-item" href="addpet.php">Adicionar Pet</a>
+                        <a class="collapse-item" href="conpet.php">Consultar Pet</a>
+
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu ->
+            <li class="nav-item">
+                <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAgenda"
+                    aria-expanded="true" aria-controls="collapseAgenda">
+                    <a class="text-reset text-decoration-none" href="./conagenda.html">
+                        <i class="fas fa-fw fa-calendar"></i>
+                        <span>Agenda</span>
+                    </a>
+                </div>
+                <div id="collapseAgenda" class="collapse" aria-labelledby="headingPets" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Opções:</h6>
+                        <a class="collapse-item" href="./addagenda.html">Adicionar Agenda</a>
+                        <a class="collapse-item" href="./conagenda.html">Consultar Agenda</a>
+
+                    </div>
+                </div>
+            </li>
+
+            <-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Outros
             </div>
-        </li>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Outros
-        </div>
-
-         <!-- Nav Item - Relatórios -->
-         <li class="nav-item">
+             <!-- Nav Item - Relatórios -->
+        <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSettings"
                 aria-expanded="true" aria-controls="collapseSettings">
                 <i class="fa fa-print" aria-hidden="true"></i>
@@ -189,9 +215,6 @@ $servico = Servico::getServico();
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-
-        
-
         </ul>
         <!-- End of Sidebar -->
 
@@ -202,7 +225,8 @@ $servico = Servico::getServico();
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow fixed-top margin-l">
+                <nav
+                    class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow fixed-top margin-l">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -222,7 +246,7 @@ $servico = Servico::getServico();
                             </div>
                         </div>
                     </form>
-
+                    <h5 class="text-primary">Pet - Adicionar</h5>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -238,8 +262,7 @@ $servico = Servico::getServico();
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
                                         <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Buscar..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
+                                            placeholder="Buscar..." aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -250,15 +273,15 @@ $servico = Servico::getServico();
                             </div>
                         </li>
 
-                        <!-- Nav Item - Alerts ->
+                        <!-- Nav Item - Alerts 
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts ->
+                                < Counter - Alerts 
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>
-                            <!-- Dropdown - Alerts ->
+                            <Dropdown - Alerts 
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
@@ -301,15 +324,15 @@ $servico = Servico::getServico();
                             </div>
                         </li>
 
-                        <!-- Nav Item - Messages ->
+                        <Nav Item - Messages 
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
-                                <!-- Counter - Messages ->
+                                < Counter - Messages 
                                 <span class="badge badge-danger badge-counter">7</span>
                             </a>
-                            <!-- Dropdown - Messages ->
+                            < Dropdown - Messages 
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="messagesDropdown">
                                 <h6 class="dropdown-header">
@@ -373,9 +396,8 @@ $servico = Servico::getServico();
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="../img/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Fábio Migliari</span>
+                                <img class="img-profile rounded-circle" src="../img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -405,216 +427,180 @@ $servico = Servico::getServico();
                 </nav>
                 <!-- End of Topbar -->
 
-                
-                
-                
-                
                 <!-- Body Content-->
 
                 <!-- Form Container-->
-            <div class="card shadow container w-75 margin-b margin-t" id="card">
+                <div class="card shadow container w-75 margin-b margin-t" id="card">
 
-                      <!-- Begin Page Content -->
-                <div class="container-fluid">
-                  
+                    <!-- Begin Page Content -->
+                    <div class="container-fluid">
 
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4 mt-5">
-                      <div class="card-header py-3">
-                          
-                          <div class="row">
-                              <div class="col">
-                                  <h6 class="m-0 font-weight-bold text-primary">Serviços</h6>
-                              </div>
-                              <div class="col-auto">
-                                <form class="form-inline">
-                                  <input type="text" class="form-control" placeholder="Pesquisar">
-                                  <button class="btn btn-primary m-2" type="button">
-                                      <i class="fas fa-search fa-sm"></i>
-                                  </button>
-                                <!-- Botão CADASTRAR na tela de consulta-->
-                                <a href="addservico.php" class="btn btn-primary ml-1"
-                                   title="Cadastrar">
-                                <i class="fas fa-fw fa-plus"></i></a>
-                                 <!-- Fim Botão CADASTRAR na tela de consulta-->
-                                </form>
-                              </div>
+                        <div class="mt-3">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="pet-tab" data-bs-toggle="tab" href="#pet" role="tab"
+                                        aria-controls="pet" aria-selected="true">Pet</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="pet" role="tabpanel" aria-labelledby="pet-tab">
 
-                                <!-- Modal -->
-                                <div class="container-fluid" id="card">
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-dialog-centered modal-xl custom-dialog">
-                                    <div class="modal-content p-3">
-                                        <!--Modal Content-->
-                                        <div class="mt-3">
-                                          <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                            <li class="nav-item">
-                                              <a class="nav-link active" id="servico-tab" data-bs-toggle="tab" href="#servico" role="tab" aria-controls="servico" aria-selected="true">Serviço</a>
-                                            </li>
-                                            
-                                          </ul>
-                                          </div>
-
-                                          <div class="tab-content" id="myTabContent">
-                                            <div class="tab-pane fade show active" id="servico" role="tabpanel" aria-labelledby="servico-tab">
-                                              <!-- servico tab content -->
-                                              <div class="container mt-5 mb-5">
-                                                <!--Formulário para preenchimento do cadastro do serviço-->
-
-                   <!--NOME-->
-    <form method="post">
-          <div class="container mt-5 text-left">
-            <div class="row align-items-start">
-             <div class="col">
-              <div class="mb-3">
-               <label for="exampleFormControlInput1" class="form-label">*Nome:</label>
-               <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Digite o Nome do Serviço">
-              </div>
-             </div>
-             <div class="col">
-              <div class="mb-3">
-               <label for="exampleFormControlInput1" class="form-label">*Duração Padrão:</label>
-               <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Digite a Duração do Serviço">
-              </div>
-             </div>
-            </div>
-           </div>
-
-           <!-- -->
-           <div class="container text-left">
-            <div class="row align-items-start">
-             <div class="col">
-              <div class="mb-3">
-               <label for="exampleFormControlInput1" class="form-label">Fluxo Agenda:</label>
-               <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Fluxo Agenda">
-              </div>
-             </div>
-             <div class="col">
-              <div class="mb-3">
-               <label for="exampleFormControlInput1" class="form-label">Frequência Recomendada:</label>
-               <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Frequência Recomendada">
-              </div>
-             </div>
-            </div>
-           </div>
-
-           <div class="container mb-5 text-left">
-         <div class="row align-items-start">
-           <div class="col">
-             <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Modelo de Atendimento:</label>
-            <textarea class="form-control" id="descreverservico" rows="5" placeholder="Descreva aqui como funciona o serviço"></textarea>
-           </div>
-           </div>
-         </div>
-         </div>
-    </form>
- <!--Esse esquema abaixo são os botões salvar e cancelar em relação ao Serviço-->
-
-   <!-- End of Service-->
-
-                                            </div>
-                                            <hr>
-                              <div class="container mt-4 mb-5">
-                                <div class="d-flex justify-content-between">
-
-                                    <button type="button" class="btn btn-primary btn-circle"><i class="fas fa-fw fa-chevron-left"></i></button>
-                                    <div class="ml-auto">
-                                    <a href="conservico2.php" class="btn btn-success btn-circle"><i class="fas fa-fw fa-chevron-down"></i></a>
-                                    <a href="conservico.php" class="btn btn-danger btn-circle"><i class="fas fa-fw fa-xmark"></i></a>
+                                <!-- Pet tab content -->
+                                <form method="post" action="addpet.php">
+                                <div class="container mt-5">
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="nomepet" class="form-label"><b>Nome</b></label>
+                                            <input type="text" class="form-control" id="pet_nome" name="pet_nome"
+                                                placeholder="Digite o nome do pet">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="especie" class="form-label"><b>Espécie</b></label>
+                                            <select class="form-control" id="especie" name="especie">
+                                                <option value="0">Selecione...</option>
+                                                <option value="1">A </option>
+                                                <option value="2">B </option>
+                                                <option value="3">C </option>
+                                                <option value="4">D </option>
+                                            </select>
+                                        </div>
+                                        <div class="col mb-3">
+                                            <label for="raca" class="form-label"><b>Raça</b></label>
+                                            <select class="form-control" name="raca" id="raca">
+                                                <option value="0">Selecione...</option>
+                                                <option value="1">Akita </option>
+                                                <option value="2">Basset hound </option>
+                                                <option value="3">Beagle </option>
+                                                <option value="4">Bichon frise </option>
+                                                <option value="5">Boiadeiro australiano </option>
+                                                <option value="6">Border collie </option>
+                                                <option value="7">Boston terrier </option>
+                                                <option value="8">Boxer </option>
+                                                <option value="9">Buldogue francês </option>
+                                                <option value="10">Buldogue ingles </option>
+                                                <option value="11">Bullterrier </option>
+                                                <option value="12">Cane corso </option>
+                                                <option value="13"> Cavalier king charles spaniel </option>
+                                                <option value="14"> Chihuahua </option>
+                                                <option value="15"> Chow chow </option>
+                                                <option value="16"> Cocker spaniel ingles </option>
+                                                <option value="17"> Dachshund </option>
+                                                <option value="18"> Dálmata </option>
+                                                <option value="19"> Doberman </option>
+                                                <option value="20"> Dogo argentino </option>
+                                                <option value="21"> Dogue alemão </option>
+                                                <option value="22"> Fila brasileiro </option>
+                                                <option value="23"> Golden retriever </option>
+                                                <option value="24"> Husky siberiano </option>
+                                                <option value="25"> Jack russell terror </option>
+                                                <option value="26"> Labrador retriever </option>
+                                                <option value="27"> Lhasa apso </option>
+                                                <option value="28"> Lulu da pomerânia </option>
+                                                <option value="29"> Maltês </option>
+                                                <option value="30"> Mastiff inglês </option>
+                                                <option value="31"> Mastim tibetano </option>
+                                                <option value="32"> Pastor alemão </option>
+                                                <option value="33"> Pastor australiano </option>
+                                                <option value="34"> Pastor de Shetland </option>
+                                                <option value="35"> Pequines </option>
+                                                <option value="36"> Pinscher </option>
+                                                <option value="37"> Pit bull </option>
+                                                <option value="38"> Poodle </option>
+                                                <option value="39"> Pug </option>
+                                                <option value="40"> Rottweiler </option>
+                                                <option value="41"> Schnauzer </option>
+                                                <option value="42"> Shar-pei </option>
+                                                <option value="43"> Shiba </option>
+                                                <option value="44"> Shih tzu </option>
+                                                <option value="45"> Staffordshire bull terrier </option>
+                                                <option value="46"> Weimaraner </option>
+                                                <option value="47"> Vorkshire </option>
+                                            </select>
+                                        </div>
+                                        <div class="col mb-3">
+                                            <label for="pelagem" class="form-label"><b>Pelagem</b></label>
+                                            <select class="form-control" id="pelagempet" name="pelagem">
+                                                <option value="0">Selecione...</option>
+                                                <option value="Pequeno">Pequena</option>
+                                                <option value="medio">Média</option>
+                                                <option value="grande">Grande</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="sexo" class="form-label"><b>Sexo</b></label>
+                                            <select class="form-control" id="sexopet" name="sexo">
+                                                <option value="0">Selecione...</option>
+                                                <option value="Pequeno">Masculino </option>
+                                                <option value="medio">Feminino </option>
+                                            </select>
+                                        </div>
+                                        <div class="col mb-3">
+                                            <label for="funcao" class="form-label"><b>Data de Nascimento</b></label>
+                                            <input type="date" class="form-control" id="dtnasc" name="dt_nasc">
+                                        </div>
                                     </div>
 
-                                  </div>
+                                    <div class="row">
+                                        <div class="col mb-3">
+                                            <label for="obspet" class="form-label"><b>Observações</b></label>
+                                            <textarea class="form-control" id="obspet" rows="5" name="observacoes"
+                                                placeholder="Insira aqui observações importantes"></textarea>
+                                        </div>
+                                    </div>
+                                    <hr>
+
+                                    <!--BOTÕES ADICIONAR -->
+                                    <div class="container mt-4 mb-5">
+                                        <div class="d-flex justify-content-between">
+                                            <a href="addpet.php" class="btn btn-primary btn-circle" title="Voltar">
+                                                <i class="fas fa-fw fa-chevron-left"></i></a>
+                                            <div class="ml-auto">
+                                                <button name="botaocadastro" value="submit" class="btn btn-success btn-circle"
+                                                        title="Adicionar">
+                                                    <i class="fas fa-fw fa-chevron-down"></i></button>
+                                                <a href="addpet.php" class="btn btn-danger btn-circle"
+                                                   title="Excluir">
+                                                    <i class="fas fa-fw fa-xmark"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- FIM BOTÕES ADICIONAR -->
+                                </div>
                             </div>
-                                            </div>
 
+                        </div>
+                        <!-- /.container-fluid -->
 
-                                            </div>
-                                        <!----------------->
-
-                                    </div>
-                                  </div>
-                                </div>
-                                </div>
-                              </div>
-                              <div class="card-body">
-                          
-                          <div class="table-responsive">
-                              <table  id="myList" class="table table-bordered" width="100%" cellspacing="0">
-                                  <thead>
-                                  <tr>
-                                      <th>ID</th>
-                                      <th>Nome do serviço</th>
-                                      <th>Duração</th>
-                                      <th>Preço</th>
-                                      <th>Fluxo de agenda</th>
-                                      <th>Fr. recomendada</th>
-                                      <th>Descrição</th>
-                                      <th>Ação</th>
-                                  </tr>
-                                  </thead>
-                                      <tbody>
-                                      <?php foreach ($servico as $servicos):?>
-                                          <tr>
-                                              <td><?=   $servicos->id             ?></td>
-                                              <td><?=   $servicos->nomeservico    ?></td>
-                                              <td><?=   $servicos->duracao        ?></td>
-                                              <td><?=   $servicos->preco          ?></td>
-                                              <td><?=   $servicos->fluxoag        ?></td>
-                                              <td><?=   $servicos->periodorec     ?></td>
-                                              <td><?=   $servicos->modatend       ?></td>
-                                              <td style="width: 180px">
-                                                  <a href="editarservico.php?id=<?= $servicos->id ?>"><button type="button" name="editar" class= "btn btn-primary btn-sm-2">Editar</button>
-                                                  </a>
-                                                  <a href="excluirservico.php?id=<?= $servicos->id ?>"><button type="button" name="excluir" class= "btn btn-danger btn-sm-2">Excluir</button>
-                                                  </a>
-                                              </td>
-                                          </tr>
-                                      <?php endforeach; ?>
-                                      </tbody>
-                              </table>
-                          </div>
-                              </div>
-                          </div>
-                      </div>
-                      </div>
-
-
-
-                    
-                
-                    
+                    </div>
                 </div>
-                <!-- /.container-fluid -->
-
-            </div>
                 <!-- End Form Container-->
 
                 <!-- End Body Content-->
-                
-            
-            
-            
-            
+
             </div>
             <!-- End of Main Content -->
 
-            
+
 
         </div>
         <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
-<!-- Footer -->
-<footer class="sticky-footer bg-white margin-l" >
-    <div class="container my-auto">
-        <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2021</span>
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white margin-l">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; Your Website 2021</span>
+            </div>
         </div>
-    </div>
-</footer>
-<!-- End of Footer -->
+    </footer>
+    <!-- End of Footer -->
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
@@ -634,7 +620,7 @@ $servico = Servico::getServico();
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="../login.php">Logout</a>
+                    <a class="btn btn-primary" href="../login.html">Logout</a>
                 </div>
             </div>
         </div>
@@ -643,13 +629,12 @@ $servico = Servico::getServico();
 
     <script>
         // Activate tab functionality
-        var tab = new bootstrap.Tab(document.getElementById("servico-tab"));
+        var tab = new bootstrap.Tab(document.getElementById("pet-tab"));
         tab.show();
 
-        // Get reference to the calendar container element
-      </script>
-      <script src="../js/allpet.js"></script>
-      
+
+    </script>
+    <script src="../js/allpet.js"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -668,8 +653,5 @@ $servico = Servico::getServico();
     <script src="../js/demo/chart-pie-demo.js"></script>
 
 </body>
-
-
-
 
 </html>

@@ -1,40 +1,15 @@
-<<<<<<< HEAD
 <?php
 
-use tests\Entity\Servico;
-
+use tests\Entity\Funcionario;
 require __DIR__.'\..\vendor\autoload.php';
 
-////VALIDAÇÃO DO ID
-if(!isset($_GET['id'])){
-    header('location: conservico.php?status=error');
-    exit;
-}
-//CONSULTA O SERVICO
-$obServico = Servico::getServicos($_GET['id']);
-//var_dump($obServico);
-//exit();
+$funcionario = Funcionario::getFuncionario();
 
-//VERIFICANDO OBJETO
-if ($obServico !== null) {
-    // Objeto de 'Servico' é válido
-}
-//VALIDAÇÃO DO POST
-if(isset($_POST['excluir'])){
 
-    $obServico->excluir();
 
-    header('location: conservico.php?status=success');
-    exit;
-}
-
-//VALIDAÇÃO DE SERVICO
-//if(!$obServico instanceof Servico){
-//    header('location: conservico.php?status=error');
-//    exit;
-//}
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,7 +21,7 @@ if(isset($_POST['excluir'])){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>AllPet | Serviço</title>
+    <title>AllPet | Funcionário</title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/fontawesome-free-6.4.0-web/css/all.min.css" rel="stylesheet" type="text/css">
@@ -78,7 +53,7 @@ if(isset($_POST['excluir'])){
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion fixed-top" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../tests/index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../tests/index.php">
             <div class="sidebar-brand-icon">
                 <img src="../icon-allpet.svg" alt="Dog">
             </div>
@@ -90,7 +65,7 @@ if(isset($_POST['excluir'])){
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="../tests/index.html">
+            <a class="nav-link" href="../tests/index.php">
                 <i class="fas fa-fw fa-home"></i>
                 <span>Home</span></a>
         </li>
@@ -115,7 +90,7 @@ if(isset($_POST['excluir'])){
             <div id="collapseFuncionarios" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Opções:</h6>
-                    <a class="collapse-item" href="./addfuncionario.html">Adicionar Funcionário</a>
+                    <a class="collapse-item" href="./addfuncionario.php">Adicionar Funcionário</a>
                     <a class="collapse-item" href="confuncionario.php">Consultar Funcionário</a>
                 </div>
             </div>
@@ -163,7 +138,7 @@ if(isset($_POST['excluir'])){
         <li class="nav-item">
             <div class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAgenda"
                  aria-expanded="true" aria-controls="collapseAgenda">
-                <a class="text-reset text-decoration-none" href="./conagenda.html">
+                <a class="text-reset text-decoration-none" href="./conagenda.php">
                     <i class="fas fa-fw fa-paw"></i>
                     <span>Pet</span>
                 </a>
@@ -449,10 +424,21 @@ if(isset($_POST['excluir'])){
 
                         <div class="row">
                             <div class="col">
-                                <br>
-                                <h6 class="m-0 font-weight-bold text-danger">Tem certeza de que deseja excluir o serviço abaixo?</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Funcionários</h6>
                             </div>
-
+                            <div class="col-auto">
+                                <form class="form-inline">
+                                    <input type="text" class="form-control" placeholder="Pesquisar">
+                                    <button class="btn btn-primary m-2" type="button">
+                                        <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                    <!-- Botão CADASTRAR na tela de consulta-->
+                                    <a href="addfuncionario.php" class="btn btn-primary ml-1"
+                                       title="Cadastrar">
+                                        <i class="fas fa-fw fa-plus"></i></a>
+                                    <!-- Fim Botão CADASTRAR na tela de consulta-->
+                                </form>
+                            </div>
 
                             <!-- Modal -->
                             <div class="container-fluid" id="card">
@@ -463,29 +449,16 @@ if(isset($_POST['excluir'])){
                                             <div class="mt-3">
                                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                                     <li class="nav-item">
-                                                        <a class="nav-link active" id="servico-tab" data-bs-toggle="tab" href="#servico" role="tab" aria-controls="servico" aria-selected="true">Serviço</a>
+                                                        <a class="nav-link active" id="funcionario-tab" data-bs-toggle="tab" href="#funcionario" role="tab" aria-controls="servico" aria-selected="true">Serviço</a>
                                                     </li>
 
                                                 </ul>
                                             </div>
 
                                             <div class="tab-content" id="myTabContent">
-                                                <div class="tab-pane fade show active" id="servico" role="tabpanel" aria-labelledby="servico-tab">
+                                                <div class="tab-pane fade show active" id="funcionario" role="tabpanel" aria-labelledby="funcionario-tab">
                                                     <!-- servico tab content -->
 
-                                                    <hr>
-                                                    <div class="container mt-4 mb-5">
-                                                        <div class="d-flex justify-content-between">
-
-                                                            <button type="button" class="btn btn-primary btn-circle"><i class="fas fa-fw fa-chevron-left"></i></button>
-                                                            <div class="ml-auto">
-                                                                <a href="conservico2.php" class="btn btn-success btn-circle"><i class="fas fa-fw fa-chevron-down"></i></a>
-                                                                <a href="conservico.php" class="btn btn-danger btn-circle"><i class="fas fa-fw fa-xmark"></i></a>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
 
 
                                             </div>
@@ -497,45 +470,40 @@ if(isset($_POST['excluir'])){
                             </div>
                         </div>
                         <div class="card-body">
-                        <form action="" method="post">
+
                             <div class="table-responsive">
-                                <table id="myList" class="table table-bordered" width="100%" cellspacing="0">
+                                <table  id="myList" class="table table-bordered" width="100%" cellspacing="0">
                                     <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Nome do serviço</th>
-                                        <th>Duração</th>
-                                        <th>Preço</th>
-                                        <th>Fluxo de agenda</th>
-                                        <th>Fr. recomendada</th>
-                                        <th>Descrição</th>
+                                        <th>CPF</th>
+                                        <th>Horário de trabalho</th>
+                                        <th>Dia de Folga </th>
+                                        <th>Perfil </th>
+                                        <th>Função </th>
+                                        <th>Ação </th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <?php if ($obServico !== null) : ?>
+                                    <?php foreach ($funcionario as $funcionarios):?>
                                         <tr>
-                                            <td><?= $obServico->id ?></td>
-                                            <td><?= $obServico->nomeservico ?></td>
-                                            <td><?= $obServico->duracao ?></td>
-                                            <td><?= $obServico->preco ?></td>
-                                            <td><?= $obServico->fluxoag ?></td>
-                                            <td><?= $obServico->periodorec ?></td>
-                                            <td><?= $obServico->modatend ?></td>
+                                            <td><?=   $funcionarios->id             ?></td>
+                                            <td><?=   $funcionarios->cpf_pessoa     ?></td>
+                                            <td><?=   $funcionarios->hora_de_trab   ?></td>
+                                            <td><?=   $funcionarios->diadefolga     ?></td>
+                                            <td><?=   $funcionarios->perfil         ?></td>
+                                            <td><?=   $funcionarios->fkfuncao       ?></td>
+                                            <td style="width: 180px">
+                                                <a href="editarfuncionario.php?id=<?= $funcionarios->id ?>"><button type="button" name="editar" class= "btn btn-primary btn-sm-2">Editar</button>
+                                                </a>
+                                                <a href="excluirfuncionario.php?id=<?= $funcionarios->id ?>"><button type="button" name="excluir" class= "btn btn-danger btn-sm-2">Excluir</button>
+                                                </a>
+                                            </td>
                                         </tr>
-                                    <?php else : ?>
-                                        <tr>
-                                            <td colspan="7">Nenhum serviço encontrado com o ID fornecido.</td>
-                                        </tr>
-
-                                    <?php endif; ?>
+                                    <?php endforeach; ?>
                                     </tbody>
                                 </table>
-                                <button type="submit" name="excluir" class= "btn btn-danger btn-sm-2">Excluir</button>
-                                <a href="conservico.php"><button type="button" class= "btn btn-primary btn-sm-2">Voltar</button></a>
-                        </form>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
@@ -596,7 +564,7 @@ if(isset($_POST['excluir'])){
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="../login.html">Logout</a>
+                <a class="btn btn-primary" href="../login.php">Logout</a>
             </div>
         </div>
     </div>
@@ -635,42 +603,8 @@ if(isset($_POST['excluir'])){
 
 
 </html>
-=======
-<?php
-
-use tests\Entity\Servico;
-
-require __DIR__.'\..\vendor\autoload.php';
 
 
 
 
-//VALIDAÇÃO DO ID
-if(!isset($_GET['id']) or !is_numeric($_GET['id'])){
-    header('location: conservico.php?status=error');
-    exit;
-}
-
-//CONSULTA O SERVICO
-$obServico = Servico::getServicos($_GET['id']);
-
-
-
-//VALIDAÇÃO DA VAGA
-if(!$obServico instanceof Servico){
-    header('location: conservico.php?status=error');
-    exit;
-}
-
-//VALIDAÇÃO DO POST
-if(isset($_POST['excluir'])){
-
-    $obServico->excluir();
-
-    header('location: conservico.php?status=success');
-    exit;
-}
-
-
-?>
->>>>>>> origin/main
+</html>
